@@ -5,8 +5,10 @@ const userSchema = new Schema ({
     username: String,
     email: String,
     password: String,
-    role: Role
+    roleAndRights: {
+        
+    } 
 });
 
-const User =model('User', userSchema);
-export default User;
+const user = model('User', userSchema);
+export default user;
