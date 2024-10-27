@@ -6,7 +6,11 @@ const userSchema = new Schema ({
     email: String,
     password: String,
     roleAndRights: {
-        
+        title: ["Admin", "Customer", "Guest"],
+        create: Boolean,
+        read: Boolean,
+        update: Boolean,
+        delete: Boolean
     } 
 });
 
