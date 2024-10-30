@@ -1,1 +1,0 @@
-//App.js file sets up the primary structure of the app, defines routes, and includes navigation.
