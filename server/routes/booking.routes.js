@@ -1,7 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
 
-import Booking from './models/booking.js';
 
 const app = express();
 
