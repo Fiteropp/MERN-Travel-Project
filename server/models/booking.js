@@ -10,7 +10,8 @@ const bookingSchema = new Schema ({
         type: Schema.Types.ObjectId,
         ref: 'Hotel'
     },
-    date: Date
+    dateIn: Date,
+    dateOut: Date
 });
 
 const booking = model('Booking', bookingSchema);
