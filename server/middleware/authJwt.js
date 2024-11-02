@@ -57,7 +57,7 @@ isAdmin = (req, res, next) => {
     });
   };
   
-  isModerator = (req, res, next) => {
+isModerator = (req, res, next) => {
     User.findById(req.userId).exec((err, user) => {
       if (err) {
         res.status(500).send({ message: err });
@@ -88,10 +88,18 @@ isAdmin = (req, res, next) => {
     });
   };
   
+checkModeratorOrAdmin = (req, res, next) => {
+    if (isModerator(req, res, () => {}) || isAdmin(req, res, () => {})) {
+      return next();
+    }
+    return res.status(403).json({ message: "Require Moderator or Admin role!" });
+  };
+
   const authJwt = {
     verifyToken,
     isAdmin,
-    isModerator
+    isModerator,
+    checkModeratorOrAdmin
   };
  
 export default authJwt;
