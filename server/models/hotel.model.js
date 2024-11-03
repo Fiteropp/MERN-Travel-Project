@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import city from "./models/city";
+import city from "./city.model.js";
 const {Schema, model} = mongoose;
 
 const hotelSchema = new Schema ({
@@ -32,8 +32,8 @@ const hotelSchema = new Schema ({
         required: true,
     },
     city: {
-        type: Schema.Types.ObjectId,
-        ref: 'city'
+        type: String,
+        required:true,
     },
     address: {
         type: String,

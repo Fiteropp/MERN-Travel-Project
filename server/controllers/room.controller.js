@@ -1,8 +1,8 @@
-import Room from "../models/Room.js";
-import Hotel from "../models/Hotel.js";
+import Room from "../models/room.model.js";
+import Hotel from "../models/hotel.model.js";
 
 export const createRoom = async (req, res, next) => {
-    const hotelId = req.params.hotelId;
+    const hotelId = req.params.hotelid;
     const newRoom = new Room(req.body);
 
     try {
@@ -17,6 +17,7 @@ export const createRoom = async (req, res, next) => {
         res.status(200).json(savedroom);
     } catch(err) {
         next(err);
+        res.status(500).send({ message: err.message });
     }
 };
 
@@ -30,6 +31,7 @@ export const updateRoom = async (req, res, next) => {
         res.status(200).json(updatedRoom);
     } catch (err) {
         next(err);
+        res.status(500).send({ message: err.message });
     }
 };
 
@@ -47,6 +49,7 @@ export const deleteRoom = async (req, res, next) => {
 
     } catch (err) {
         next(err);
+        res.status(500).send({ message: err.message });
     }
 };
 
@@ -56,6 +59,7 @@ export const getRoom = async (req, res, next) => {
         res.status(200).json(room)
     } catch (err) {
         next(err);
+        res.status(500).send({ message: err.message });
     }
 };
 export const getRooms = async (req, res, next) => {
@@ -64,5 +68,6 @@ export const getRooms = async (req, res, next) => {
         res.status(200).json(rooms)
     } catch (err) {
         next(err);
+        res.status(500).send({ message: err.message });
     }
 };

@@ -4,12 +4,10 @@ import {
     updateHotel,
     deleteHotel,
     getHotel
-} from "../controllers/hotel.controller"
-import hotel from "../models/hotel.model"
-import { authJwt } from "../middleware/authJwt"
+} from "../controllers/hotel.controller.js"
+import authJwt from '../middleware/authJwt.js';
 
 export default (app) => {
-    const app = express();
     
     //Create
     app.post("/api/createhotel", authJwt.checkModeratorOrAdmin, createHotel)

@@ -12,7 +12,12 @@ const bookingSchema = new Schema ({
         ref: 'Hotel',
         required: true
     },
-    date: Date
+    unavailableDates: [{type: [Date]}],
+    room: {
+        type: Schema.Types.ObjectId,
+        ref: 'Room',
+        required: true 
+    }
 });
 
 const booking = model('Booking', bookingSchema);

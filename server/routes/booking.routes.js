@@ -1,15 +1,26 @@
 import express from 'express';
-import mongoose from 'mongoose';
+import {
+    createBooking,
+    getBooking,
+    updateBooking,
+    deleteBooking
+
+} from "../controllers/booking.controller.js"
+import authJwt from "../middleware/authJwt.js"
 
 
-const app = express();
-
-
-app.post("/api/bookings", (req, res) => {
+export default (app) => {
     
-})
+    //CREATE
+    app.post("/api/bookings", authJwt.verifyToken, createBooking);
 
+    //GET
+    app.get("/api/bookings", authJwt.verifyToken, getBooking);
 
-app.get("/api/bookings/:user", (req, res) => {
-    /*User Bookings API */
-})
+    //UPDATE
+    app.put("/api/bookings/:bookingid", authJwt.verifyToken, updateBooking);
+    
+    //DELETE
+    app.delete("/api/delbooking/:bookingid", authJwt.verifyToken, deleteBooking);
+
+}

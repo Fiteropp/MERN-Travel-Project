@@ -1,4 +1,4 @@
-import Hotel from "../models/Hotel.js";
+import Hotel from "../models/hotel.model.js";
 
 export const createHotel = async (req, res, next) => {
   const newHotel = new Hotel(req.body);
@@ -8,6 +8,7 @@ export const createHotel = async (req, res, next) => {
     res.status(200).json(savedHotel);
   } catch (err) {
     next(err);
+    res.status(500).send({ message: err.message });
   }
 };
 export const updateHotel = async (req, res, next) => {
@@ -20,6 +21,7 @@ export const updateHotel = async (req, res, next) => {
     res.status(200).json(updatedHotel);
   } catch (err) {
     next(err);
+    res.status(500).send({ message: err.message });
   }
 };
 export const deleteHotel = async (req, res, next) => {
@@ -36,5 +38,6 @@ export const getHotel = async (req, res, next) => {
     res.status(200).json(hotel);
   } catch (err) {
     next(err);
+    res.status(500).send({ message: err.message });
   }
 };

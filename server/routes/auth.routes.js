@@ -1,11 +1,11 @@
-import { verifySignUp } from "../middlewares/index.js";
+import VerifySignUp from '../middleware/verifySignUp.js';
 import * as controller from "../controllers/auth.controller.js"; // all auth controllers
 
 export default (app) => {
   app.use((req, res, next) => {
     res.header(
       "Access-Control-Allow-Headers",
-      "x-access-token, Origin, Content-Type, Accept"
+      "Bearer, Origin, Content-Type, Accept"
     );
     next();
   });
@@ -13,8 +13,8 @@ export default (app) => {
   app.post(
     "/api/auth/signup",
     [
-      verifySignUp.checkDuplicateUsernameOrEmail,
-      verifySignUp.checkRolesExisted,
+      VerifySignUp.checkDuplicateUsernameOrEmail,
+      VerifySignUp.checkRolesExisted,
     ],
     controller.signup
   );

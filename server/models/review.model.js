@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import hotel from "./hotel";
+import hotel from "./hotel.model.js";
 const {Schema, model} = mongoose;
 
 const reviewSchema = new Schema ({

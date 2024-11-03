@@ -5,14 +5,13 @@ import {
     getRoom,
     getRooms,
     updateRoom
-} from "../controllers/room.controller"
-import { authJwt } from "../middleware/authJwt"
+} from "../controllers/room.controller.js"
+import authJwt from '../middleware/authJwt.js';
 
 export default (app) => {
-    const app = express();
     
     //CREATE
-    app.post("/api/createroom/.hotelid", authJwt.checkModeratorOrAdmin, createRoom)
+    app.post("/api/createroom/:hotelid", authJwt.checkModeratorOrAdmin, createRoom)
 
     //UPDATE
     app.put("/api/updateroom/:id", authJwt.checkModeratorOrAdmin, updateRoom)

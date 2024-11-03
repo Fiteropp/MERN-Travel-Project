@@ -1,9 +1,18 @@
 import express from 'express';
 import cors from 'cors';
+import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
+import authRoutes from './routes/auth.routes.js';
+import userRoutes from './routes/user.routes.js';
+import hotelsRoutes from './routes/hotels.routes.js';
+import roomsRoutes from './routes/rooms.routes.js';
+import bookingRoutes from './routes/booking.routes.js';
+dotenv.config();
+
 
 const app = express();
 
-import db from "./app/models";
+import db from "./models/index.js";
 const Role = db.role;
 
 var corsOptions = {
@@ -12,14 +21,17 @@ var corsOptions = {
 
 app.use(cors(corsOptions));
 
-// parse requests of content-type - application/json
+
 app.use(express.json());
 
-// parse requests of content-type - application/x-www-form-urlencoded
+app.use(cookieParser())
+
 app.use(express.urlencoded({ extended: true }));
 
+const db_url = process.env.CONNECTION_STRING;
+
 db.mongoose
-  .connect(process.env.CONNECTION_STRING, {
+  .connect(db_url, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
@@ -32,42 +44,35 @@ db.mongoose
     process.exit();
   });
 
+  authRoutes(app); // auth routes
+  userRoutes(app); // autorization test routes
+  hotelsRoutes(app);
+  roomsRoutes(app);
+  bookingRoutes(app);
 
-function initial() {
-  Role.estimatedDocumentCount((err, count) => {
-    if (!err && count === 0) {
-      new Role({
-        name: "user"
-      }).save(err => {
-        if (err) {
-          console.log("error", err);
+  async function initial() {
+    try {
+      const count = await Role.estimatedDocumentCount();
+  
+      if (count === 0) {
+        const roles = [
+          { name: "user" },
+          { name: "moderator" },
+          { name: "admin" },
+        ];
+  
+        for (const roleData of roles) {
+          const role = new Role(roleData);
+          await role.save();
+          console.log(`added '${role.name}' to roles collection`);
         }
-
-        console.log("added 'user' to roles collection");
-      });
-
-      new Role({
-        name: "moderator"
-      }).save(err => {
-        if (err) {
-          console.log("error", err);
-        }
-
-        console.log("added 'moderator' to roles collection");
-      });
-
-      new Role({
-        name: "admin"
-      }).save(err => {
-        if (err) {
-          console.log("error", err);
-        }
-
-        console.log("added 'admin' to roles collection");
-      });
+      }
+    } catch (err) {
+      console.error("Error initializing roles:", err);
     }
-  });
-}
+  };
+  
+
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
