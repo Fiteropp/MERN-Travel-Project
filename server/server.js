@@ -2,11 +2,11 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
-import authRoutes from './routes/auth.js';
-import userRoutes from './routes/user.js';
-import hotelsRoutes from './routes/hotels.js';
-import roomsRoutes from './routes/rooms.js';
-import bookingRoutes from './routes/booking.js';
+import authRoutes from './routes/authRoute.js';
+import userRoutes from './routes/mockuserRoute.js';
+import hotelsRoutes from './routes/hotelsRoute.js';
+import roomsRoutes from './routes/roomsRoute.js';
+import bookingRoutes from './routes/bookingRoute.js';
 dotenv.config();
 
 
