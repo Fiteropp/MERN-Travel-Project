@@ -7,12 +7,13 @@ const hotelController =  {
      * @param {import('express').Request} req
      * @param {import('express').Response} res
      */
-    async getAllHotels(req, res) 
+    async getAllHotels(req, res, next) 
     {
         try 
         {
             const hotels = await hotel.find();
             res.status(200).json(hotels);
+            next();
         } 
         catch(error) 
         {
@@ -26,13 +27,14 @@ const hotelController =  {
      * @param {import('express').Request} req - The request object containing hotel data in the body
      * @param {import('express').Response} res - The response object used to send back the added hotel or an error message
      */
-    async addHotel(req, res) 
+    async addHotel(req, res, next) 
     {
         try 
         {
             const newHotel = new hotel(req.body);
             await newHotel.save();
             res.status(201).json(newHotel);
+            next();
         }
         catch(error)
         {
@@ -45,7 +47,7 @@ const hotelController =  {
      * @param {import('express').Request} req - The request object containing the hotel data in the body and the hotel name in the params
      * @param {import('express').Response} res - The response object used to send back the updated hotel or an error message
      */
-    async updateHotel(req, res)
+    async updateHotel(req, res, next)
     {
         try
         {
@@ -60,6 +62,7 @@ const hotelController =  {
                 return res.status(404).json({ message: 'Hotel not found' });
             }
             res.json(updatedHotel);
+            next();
         }
         catch(error)
             {
@@ -72,7 +75,7 @@ const hotelController =  {
      * @param {import('express').Request} req - The request object containing the hotel name in the params
      * @param {import('express').Response} res - The response object used to send a success message or an error message
      */
-    async deleteHotel(req, res)
+    async deleteHotel(req, res, next)
     {
         try
         {
@@ -86,6 +89,7 @@ const hotelController =  {
                 return res.status(404).json({ message: 'Hotel not found' });
             }
             res.status(204).json({ message: 'Hotel deleted successfully' });
+            next();
         }
         catch(error)
         {
