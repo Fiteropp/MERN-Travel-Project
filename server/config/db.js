@@ -1,3 +1,4 @@
+// config/db.js
 //This file manages the connection to MongoDB, using Mongoose for easier interaction.
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
