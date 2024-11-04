@@ -2,13 +2,14 @@
 import Booking from "../models/booking.js";
 
 export const createBooking = async (req, res, next) => {
-    const { hotel, unavailableDates, room } = req.body; 
+    const { hotel, checkIn, checkOut, room } = req.body; 
     const userId = req.userId; 
     
     const newBooking = new Booking({
         user: userId, 
-        hotel: hotel, 
-        unavailableDates: unavailableDates,
+        hotel: hotel,
+        checkIn: new Date(checkIn),
+        checkOut: new Date(checkOut),
         room: room
     });
 
@@ -18,7 +19,6 @@ export const createBooking = async (req, res, next) => {
         res.status(200).json(savedBooking);
     } catch (err) {
         next(err); 
-        res.status(500).send({ message: err.message });
     }
 };
 
@@ -30,7 +30,6 @@ export const getBooking = async (req, res, next) => {
         res.status(200).json(bookings);
     } catch (err) {
         next(err);
-        res.status(500).send({ message: err.message });
     }
 };
 
@@ -45,7 +44,6 @@ export const updateBooking = async (req, res, next) => {
         res.status(200).send(updatedBooking)
     } catch(err) {
         next(err);
-        res.status(500).send({ message: err.message });
     }
 };
 
@@ -56,6 +54,5 @@ export const deleteBooking = async (req, res, next) => {
         res.status(200).send(deletedBooking)
     }catch(err) {
         next(err);
-        res.status(500).send({ message: err.message });
     }
 };

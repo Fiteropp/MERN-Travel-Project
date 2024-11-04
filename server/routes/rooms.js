@@ -21,17 +21,17 @@ export default (app) => {
         "roomNumber": 228
         }
     */
-    app.post("/api/createroom/:hotelid", authJwt.checkModeratorOrAdmin, createRoom)
+    app.post("/api/createroom/:hotelid", [authJwt.verifyToken, authJwt.checkModeratorOrAdmin], createRoom)
 
     //UPDATE
     //Same input as in CREATE
     //Replace :id with ObjectId of Room!
-    app.put("/api/updateroom/:id", authJwt.checkModeratorOrAdmin, updateRoom)
+    app.put("/api/updateroom/:id", [authJwt.verifyToken, authJwt.checkModeratorOrAdmin], updateRoom)
 
     //DELETE
     //Replace :hotelid with ObjectId of Hotel!
     //Replace :id with ObjectId of Room!
-    app.delete("/api/deleteroom/:id/:hotelid", authJwt.isAdmin, deleteRoom)
+    app.delete("/api/deleteroom/:id/:hotelid", [authJwt.verifyToken, authJwt.checkModeratorOrAdmin], deleteRoom)
 
     //GET
     //Replace :id with ObjectId of Room!
