@@ -4,7 +4,7 @@ import {
     updateHotel,
     deleteHotel,
     getHotel
-} from "../controllers/hotel.controller.js"
+} from "../controllers/hotelController.js"
 import authJwt from '../middleware/authJwt.js';
 
 export default (app) => {

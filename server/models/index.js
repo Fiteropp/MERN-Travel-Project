@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
-import User from "./user.model.js";
-import Role from "./role.model.js";
-import Booking from "./booking.model.js";
-import City from "./city.model.js";
-import Hotel from "./hotel.model.js";
-import Review from "./review.model.js";
+import User from "./user.js";
+import Role from "./role.js";
+import Booking from "./booking.js";
+import City from "./city.js";
+import Hotel from "./hotel.js";
+import Review from "./review.js";
 
 mongoose.Promise = global.Promise;
 
