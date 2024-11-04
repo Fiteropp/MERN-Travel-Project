@@ -19,5 +19,6 @@ export default (app) => {
     app.delete("/api/deletehotel/:id", authJwt.isAdmin, deleteHotel)
 
     //Get
+    //Replace :id with ObjectId of Hotel
     app.get("/api/findhotel/:id", getHotel)
 }

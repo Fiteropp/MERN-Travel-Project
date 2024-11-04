@@ -1,5 +1,5 @@
 import VerifySignUp from '../middleware/verifySignUp.js';
-import * as controller from "../controllers/auth.controller.js"; // all auth controllers
+import * as controller from "../controllers/authController.js"; // all auth controllers
 
 export default (app) => {
   app.use((req, res, next) => {
@@ -10,6 +10,8 @@ export default (app) => {
     next();
   });
 
+  
+  //Registration requires "email", "username" and "password"
   app.post(
     "/api/auth/signup",
     [
@@ -18,6 +20,8 @@ export default (app) => {
     ],
     controller.signup
   );
-
+  
+  
+  //Login Requires "username" and "password"
   app.post("/api/auth/signin", controller.signin);
 };

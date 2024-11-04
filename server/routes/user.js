@@ -9,7 +9,7 @@ export default (app) => {
       );
       next();
     });
-  
+    //These are for authrorization test purposes only!
     app.get("/api/test/all", controller.allAccess);
   
     app.get("/api/test/user", [authJwt.verifyToken], controller.userBoard);

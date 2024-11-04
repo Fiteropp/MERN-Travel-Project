@@ -5,7 +5,7 @@ import {
     updateBooking,
     deleteBooking
 
-} from "../controllers/booking.controller.js"
+} from "../controllers/bookingController.js"
 import authJwt from "../middleware/authJwt.js"
 
 
