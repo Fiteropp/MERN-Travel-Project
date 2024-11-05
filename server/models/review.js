@@ -1,19 +1,27 @@
 import mongoose from "mongoose";
-//import hotel from "./hotel";
-//import user from "./user";
+import hotel from "./hotel.js";
 const {Schema, model} = mongoose;
 
 const reviewSchema = new Schema ({
     user: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true
     },
     hotel: {
         type: Schema.Types.ObjectId,
-        ref: 'Hotel'
+        ref: 'Hotel',
+        required: true
     },
-    rating: Number,
-    comment: String
+    rating: {
+        type: Number,
+        min: 0,
+        max: 5,
+        required: true
+    },
+    comment:{
+        type: String
+    }
 })
 
 const review = model('Review', reviewSchema);
