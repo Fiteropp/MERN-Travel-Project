@@ -1,13 +1,15 @@
-import hotel from "../models/hotel";
 
-const hotelController =  {
+
+//import hotel from "../models/hotel";
+
+//const hotelController =  {
     /**
      * GET /api/hotels
      * Returns all hotels
      * @param {import('express').Request} req
      * @param {import('express').Response} res
      */
-    async getAllHotels(req, res, next) 
+/*    async getAllHotels(req, res, next) 
     {
         try 
         {
@@ -27,7 +29,7 @@ const hotelController =  {
      * @param {import('express').Request} req - The request object containing hotel data in the body
      * @param {import('express').Response} res - The response object used to send back the added hotel or an error message
      */
-    async addHotel(req, res, next) 
+  /*  async addHotel(req, res, next) 
     {
         try 
         {
@@ -47,7 +49,7 @@ const hotelController =  {
      * @param {import('express').Request} req - The request object containing the hotel data in the body and the hotel name in the params
      * @param {import('express').Response} res - The response object used to send back the updated hotel or an error message
      */
-    async updateHotel(req, res, next)
+ /*   async updateHotel(req, res, next)
     {
         try
         {
@@ -75,7 +77,7 @@ const hotelController =  {
      * @param {import('express').Request} req - The request object containing the hotel name in the params
      * @param {import('express').Response} res - The response object used to send a success message or an error message
      */
-    async deleteHotel(req, res, next)
+/*    async deleteHotel(req, res, next)
     {
         try
         {
@@ -98,4 +100,4 @@ const hotelController =  {
     }
 }
 
-export default hotelController;
+export default hotelController;*/

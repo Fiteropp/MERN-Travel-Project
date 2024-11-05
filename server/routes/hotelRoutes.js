@@ -1,3 +1,4 @@
+/*
 import express from 'express';
 import hotelController from '../controllers/hotelController';
 // Create a router object
@@ -10,3 +11,4 @@ router.put('/hotels/:name', hotelController.updateHotel);
 router.delete('/hotels/:name', hotelController.deleteHotel);
 // Export the router to use in the main app
 export default router;
+*/

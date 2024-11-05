@@ -1,3 +1,4 @@
+/*
 import mongoose from "mongoose";
 import city from "./models/city";
 const {Schema, model} = mongoose;
@@ -22,3 +23,4 @@ const hotelSchema = new Schema ({
 // while hotel is the variable that references the model. 
 const hotel = model('Hotel', hotelSchema);  
 export default hotel;
+*/
