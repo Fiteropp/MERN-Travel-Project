@@ -1,35 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { FeaturedHotels } from "./components/FeaturedHotels";
+import { Footer } from "./components/Footer";
+import { Header } from "./components/Header";
+import { Navigation } from "./components/Navigation";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <Navigation />
+      <Header />
+      <FeaturedHotels />
+      <section className="section_container">
+        <div className="" reward_container>
+          <p>100+ discount codes</p>
+          <h4>Join reward and discover amazing discounts on your booking</h4>
+          <button className="reward_btn">Join Rewards</button>
+        </div>
+      </section>
+      <div className="section_container client_container">
+        <h2 className="section_header">What our client say</h2>
+        <div className="client_grid">
+          <div className="client_card">
+            <img src="assets/client.jpg" alt="client" />
+            <p>
+              The booking process was seamless, and the confirmation was
+              instant. I highly recommend Mern Hotel Booking for hassle-free
+              hotel bookings.
+            </p>
+          </div>
+          <div className="client_card">
+            <img src="assets/client.jpg" alt="client" />
+            <p>
+              The website provided detailed information about hotel, including
+              amenities, photos, which helped me make an informed decision.
+            </p>
+          </div>
+          <div className="client_card">
+            <img src="assets/client.jpg" alt="client" />
+            <p>
+              I was able to book a room within minutes, and the hotel exceeded
+              my expectations. I appreciate Mern Hotel Booking efficiency and
+              reliability.
+            </p>
+          </div>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <section>
+        <Footer />
+      </section>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
