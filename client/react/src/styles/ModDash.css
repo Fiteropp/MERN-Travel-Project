@@ -1,0 +1,27 @@
+
+.wide-header-image{
+    width: 100%;
+    height: 400px;
+    object-fit: none;
+};
+
+.header-section {
+    position: relative;
+}
+
+.profile-header {
+    display: inline-block;
+    width: 200px;
+    position: absolute;
+}
+
+.profile-pic-wrapper{
+    border: 0.5px solid white;
+    height: 200px;
+    
+};
+
+.profile-pic {
+    height: 200px;
+    width: 200px;
+};
