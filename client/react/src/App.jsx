@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import ModDash from './pages/modDash'
+import ModDash from './pages/ModDash'
 import Header from './components/Header'
 
 function App() {
