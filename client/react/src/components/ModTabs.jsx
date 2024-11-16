@@ -6,6 +6,7 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 
 import ModTabUserInfo from "./UserProfileTabs/ModTabUserInfo";
+import ModTabHotels from "./UserProfileTabs/ModTabHotels";
 
 import '../styles/moddash.css';
 
@@ -60,7 +61,7 @@ export default function BasicTabs() {
         <ModTabUserInfo />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        Item Two
+        <ModTabHotels />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
         Item Three

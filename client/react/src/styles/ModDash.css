@@ -117,6 +117,24 @@
 }
 
 
+/*Hotels Tab*/
+.HotelElement{
+    display: flex;
+    flex-direction: row;
+    background-color: #d3e7e7;
+    border-radius: 30px;
+    padding: 25px;
+}
+
+.HotelImage{
+    border-radius: 15px;
+}
+
+.HotelElementText{
+    width: 100%;
+    text-align: right;
+    align-content:space-around;
+}
 
 
 /*Tabs MUI*/
