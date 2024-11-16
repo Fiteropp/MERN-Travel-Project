@@ -52,8 +52,8 @@ export default function BasicTabs() {
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} centered variant="fullWidth" aria-label="basic tabs example" className="tabs-sp-bw">
           <Tab className="tab-style" label="Account" {...a11yProps(0)} />
-          <Tab className="tab-style" label="Item Two" {...a11yProps(1)} />
-          <Tab className="tab-style" label="Item Three" {...a11yProps(2)} />
+          <Tab className="tab-style" label="Hotels" {...a11yProps(1)} />
+          <Tab className="tab-style" label="Settings" {...a11yProps(2)} />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>

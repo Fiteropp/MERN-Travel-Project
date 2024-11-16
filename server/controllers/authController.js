@@ -75,3 +75,36 @@ export const signin = async (req, res) => {
     res.status(500).send({ message: err.message });
   }
 };
+
+
+//User data
+export const getUserData = async (req, res, next) => {
+  const userId = req.userId;
+  try {
+      const user = await User.findOne({_id: userId });
+      res.json({
+        id: user._id,
+        img: user.img,
+        email: user.email,
+        name: user.name,
+        surname: user.surname,
+        username: user.username,
+        phone: user.phone});
+  } catch (err) {
+      next(err);
+  }
+};
+
+export const updateUserData = async (req, res, next) => {
+  const userId = req.userId;
+  try {
+      const updatedUser = await User.findByIdAndUpdate(
+          userId,
+          { $set: req.body },
+          { new: true }
+      );
+      res.status(200).send({message: "User Sucsessfully Updated!"})
+  } catch(err) {
+      next(err);
+  }
+};

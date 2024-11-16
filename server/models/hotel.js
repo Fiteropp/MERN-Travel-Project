@@ -42,6 +42,9 @@ const hotelSchema = new Schema ({
         type: Number,
         required: true
     },
+    assignedModerators:{
+        type: [String]
+    }
 });
 
 const hotel = model('Hotel', hotelSchema);  

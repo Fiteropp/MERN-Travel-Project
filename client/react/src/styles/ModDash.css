@@ -69,6 +69,7 @@
     padding: 54px 40px 54px 40px;
     border-radius: 30px;
     background-color: #FAFBFC;
+    flex-direction: column;
 }
 
 .account-tab-element{
@@ -76,6 +77,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .account-small-label{
