@@ -16,9 +16,12 @@ import db from "./models/index.js";
 const Role = db.role;
 
 var corsOptions = {
-  origin: "http://localhost:8081"
+  origin: "http://localhost:5173", // Update this to match your frontend
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true, // Allow credentials (cookies, authorization headers, etc.)
 };
 
+app.options('*', cors(corsOptions));
 app.use(cors(corsOptions));
 
 
@@ -28,7 +31,7 @@ app.use(cookieParser())
 
 app.use(express.urlencoded({ extended: true }));
 
-const db_url = process.env.CONNECTION_STRING;
+const db_url = process.env.DB_STRING;
 
 db.mongoose
   .connect(db_url, {
