@@ -87,10 +87,12 @@ nav {
 .header_image_container {
   position: relative;
   min-height: 500px;
-  background-image: linear-gradient(to right,
+  background-image: linear-gradient(
+      to right,
       rgba(44, 56, 85, 0.9),
-      rgba(100, 125, 187, 0.1)),
-    url("../assets/hero.png");
+      rgba(100, 125, 187, 0.1)
+    ),
+    url("./assets/images/hero.png");
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -245,7 +247,7 @@ nav {
 }
 
 .footer_col p:hover {
-  color: var(--text-dark)
+  color: var(--text-dark);
 }
 
 .footer_bar {

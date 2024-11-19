@@ -1,10 +1,11 @@
+import hotel from "../assets/images/hotel.jpg";
 const FeaturedHotels = () => {
   return (
     <section className="section_container popular_container">
       <h2 className="section_header">Popular Hotels</h2>
       <div className="popular_grid">
         <div className="popular_card">
-          <img src="assets/hotel.jpg" alt="popular hotel" />
+          <img src={hotel} alt="hotel" />
           <div className="popular_content">
             <div className="popular_card_header">
               <h4>Hotel Kämp</h4>
@@ -14,7 +15,7 @@ const FeaturedHotels = () => {
           </div>
         </div>
         <div className="popular_card">
-          <img src="assets/hotel.jpg" alt="popular hotel" />
+          <img src={hotel} alt="hotel" />
           <div className="popular_content">
             <div className="popular_card_header">
               <h4>Marriot</h4>
@@ -24,7 +25,7 @@ const FeaturedHotels = () => {
           </div>
         </div>
         <div className="popular_card">
-          <img src="assets/hotel.jpg" alt="popular hotel" />
+          <img src={hotel} alt="hotel" />
           <div className="popular_content">
             <div className="popular_card_header">
               <h4>The Ritz London</h4>
@@ -34,7 +35,7 @@ const FeaturedHotels = () => {
           </div>
         </div>
         <div className="popular_card">
-          <img src="assets/hotel.jpg" alt="popular hotel" />
+          <img src={hotel} alt="hotel" />
           <div className="popular_content">
             <div className="popular_card_header">
               <h4>Hotel Splendide Royal Lugano</h4>
@@ -44,7 +45,7 @@ const FeaturedHotels = () => {
           </div>
         </div>
         <div className="popular_card">
-          <img src="assets/hotel.jpg" alt="popular hotel" />
+          <img src={hotel} alt="hotel" />
           <div className="popular_content">
             <div className="popular_card_header">
               <h4>Hotel Splendide Royal Lugano</h4>
@@ -54,7 +55,7 @@ const FeaturedHotels = () => {
           </div>
         </div>
         <div className="popular_card">
-          <img src="assets/hotel.jpg" alt="popular hotel" />
+          <img src={hotel} alt="hotel" />
           <div className="popular_content">
             <div className="popular_card_header">
               <h4>Atlantis, The Palm</h4>
@@ -64,7 +65,7 @@ const FeaturedHotels = () => {
           </div>
         </div>
         <div className="popular_card">
-          <img src="assets/hotel.jpg" alt="popular hotel" />
+          <img src={hotel} alt="hotel" />
           <div className="popular_content">
             <div className="popular_card_header">
               <h4>Victoria Falls River Lodge</h4>
