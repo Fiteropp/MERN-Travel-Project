@@ -26,26 +26,9 @@ const HotelDetails = () => {
       </section>
       <section class="hotel-booking">
         <h2>Book Your Stay</h2>
-        <form action="booking.html" method="POST">
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="name" required />
-
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required />
-
-          <label for="checkin">Check-in Date:</label>
-          <input type="date" id="checkin" name="checkin" required />
-
-          <label for="checkout">Check-out Date:</label>
-          <input type="date" id="checkout" name="checkout" required />
-
-          <label for="guests">Number of Guests:</label>
-          <input type="number" id="guests" name="guests" min="1" required />
-
-          <button type="submit" class="booking-button">
-            Book Now
-          </button>
-        </form>
+        <button type="submit" class="booking-button">
+          Book Now
+        </button>
       </section>
     </div>
   );
