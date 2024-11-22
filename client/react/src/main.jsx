@@ -8,8 +8,8 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import { HomePage } from "./components/HomePage.jsx";
-import { HotelDetails } from "./components/HotelDetails.jsx";
+import { HomePage } from "./pages/HomePage.jsx";
+import { HotelDetails } from "./pages/HotelDetails.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

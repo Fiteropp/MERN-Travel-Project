@@ -1,7 +1,10 @@
 import "./HotelDetails.css";
+import image1 from "../assets/images/image1.jpg";
+import image2 from "../assets/images/image2.jpg";
+import image3 from "../assets/images/image3.jpg";
 const HotelDetails = () => {
   return (
-    <div>
+    <div class="hotel-details">
       <h4>Hotel Kämp</h4>
       <section class="hotel-description">
         <h2>5-star</h2>
@@ -19,9 +22,9 @@ const HotelDetails = () => {
       <section class="hotel-images">
         <h2>Images</h2>
         <div class="image-gallery">
-          <img src="image1.jpg" alt="Hotel Image 1" />
-          <img src="image2.jpg" alt="Hotel Image 2" />
-          <img src="image3.jpg" alt="Hotel Image 3" />
+          <img src={image1} alt="Hotel Image 1" />
+          <img src={image2} alt="Hotel Image 2" />
+          <img src={image3} alt="Hotel Image 3" />
         </div>
       </section>
       <section class="hotel-booking">

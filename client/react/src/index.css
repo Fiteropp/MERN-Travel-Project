@@ -3,6 +3,7 @@
 :root {
   --primary-color: #2c3855;
   --primary-color: #435681;
+  --primary-color-green: rgb(0, 128, 111);
   --text-dark: #333333;
   --text-light: #767268;
   --extra-light: #f3f4f6;
@@ -216,7 +217,8 @@ nav {
 }
 
 .footer {
-  background-color: var(--primary-color-dark);
+  background-color: var(--primary-color-green);
+  color: #ffffff;
 }
 
 .footer_container {
@@ -229,25 +231,25 @@ nav {
   margin-bottom: 1rem;
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--text-dark);
+  color: white;
 }
 
 .footer_col h4 {
   margin-bottom: 1rem;
   font-size: 1.2rem;
   font-weight: 600;
-  color: var(--text-dark);
+  color: white;
 }
 
 .footer_col p {
   margin-bottom: 1rem;
-  color: var(--text-light);
+  color: white;
   cursor: pointer;
   transition: 0.3s;
 }
 
 .footer_col p:hover {
-  color: var(--text-dark);
+  color: white;
 }
 
 .footer_bar {
@@ -257,7 +259,7 @@ nav {
   padding: 1rem;
   font-size: 0.9rem;
   font-weight: 500;
-  color: var(--text-light);
+  color: white;
   text-align: right;
   overflow: hidden;
 }
@@ -270,7 +272,7 @@ nav {
   transform: translateY(-50%);
   width: 20rem;
   height: 2px;
-  background-color: var(--text-light);
+  background-color: white;
 }
 
 @media (width < 900px) {

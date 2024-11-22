@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import hotel from "../assets/images/hotel.jpg";
 const FeaturedHotels = () => {
   return (
@@ -12,6 +13,7 @@ const FeaturedHotels = () => {
               <h4>280 euro</h4>
             </div>
             <p>Helsinki, Finland</p>
+            <Link to="/details">View</Link>
           </div>
         </div>
         <div className="popular_card">
@@ -32,16 +34,6 @@ const FeaturedHotels = () => {
               <h4>1,010 pounds</h4>
             </div>
             <p>London, UK</p>
-          </div>
-        </div>
-        <div className="popular_card">
-          <img src={hotel} alt="hotel" />
-          <div className="popular_content">
-            <div className="popular_card_header">
-              <h4>Hotel Splendide Royal Lugano</h4>
-              <h4>315 euros</h4>
-            </div>
-            <p>Lugano, Switzerland</p>
           </div>
         </div>
         <div className="popular_card">
