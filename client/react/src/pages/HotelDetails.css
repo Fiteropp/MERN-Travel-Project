@@ -1,0 +1,51 @@
+.hotel-description h2,
+.hotel-price h2,
+.hotel-images h2,
+.hotel-booking h2 {
+  color: #000;
+  border-bottom: 2px solid #000000;
+  padding-bottom: 5px;
+}
+
+.hotel-details {
+  padding: 90px;
+}
+
+.hotel-description p,
+.hotel-price p {
+  font-size: 1.1em;
+  line-height: 1.6;
+}
+
+.image-gallery {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.image-gallery img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+.booking-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 1.2em;
+  color: #ffffff;
+  background-color: #21075f;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.booking-button:hover {
+  background-color: #7071bd;
+}
+
+.hotel-images img {
+  width: 30%;
+  margin: 0%;
+}
