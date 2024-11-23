@@ -1,6 +1,7 @@
 import client from "../assets/images/client.jpg";
 import { FeaturedHotels } from "../components/FeaturedHotels";
 import { Header } from "../components/Header";
+import "../styles/HomePage.css";
 function HomePage() {
   return (
     <>
