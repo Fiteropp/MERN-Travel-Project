@@ -1,3 +1,4 @@
+
 import mongoose from "mongoose";
 import city from "./city.js";
 const {Schema, model} = mongoose;
@@ -46,6 +47,9 @@ const hotelSchema = new Schema ({
         type: [String]
     }
 });
-
+// The term Hotel in mongoose.model('Hotel', hotelSchema) is the name of the collection that Mongoose
+// uses when storing documents in MongoDB, 
+// while hotel is the variable that references the model. 
 const hotel = model('Hotel', hotelSchema);  
 export default hotel;
+*/

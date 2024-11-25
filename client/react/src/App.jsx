@@ -1,17 +1,21 @@
+import { Footer } from "./components/Footer";
+import { Navigation } from "./components/Navigation";
+import { Outlet } from "react-router-dom";
 import { useState } from 'react'
 import './App.css'
 import ModDash from './pages/ModDash'
 import Header from './components/Header'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
-    <div>
-      <Header />
-      <ModDash />
-    </div>
-  )
-}
+    <>
+      <Navigation />
+      <Outlet />
+      <section>
+        <Footer />
+      </section>
+    </>
+  );
+};
 
-export default App
+export default App;
