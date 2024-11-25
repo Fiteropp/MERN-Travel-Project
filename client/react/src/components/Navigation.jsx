@@ -1,3 +1,4 @@
+import "../styles/Navigation.css";
 const Navigation = () => {
   return (
     <nav>
