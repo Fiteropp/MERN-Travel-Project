@@ -10,12 +10,14 @@ import {
 } from "react-router-dom";
 import { HomePage } from "./pages/HomePage.jsx";
 import { HotelDetails } from "./pages/HotelDetails.jsx";
+import ModDash from "./pages/ModDash.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<HomePage />} />
       <Route path="/details" element={<HotelDetails />} />
+      <Route path="/moderator" element={<ModDash />} />
     </Route>
   )
 );

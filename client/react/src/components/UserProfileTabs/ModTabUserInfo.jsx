@@ -10,7 +10,12 @@ function ModTabUserInfo() {
     useEffect(() => {
         const fetchUserData = async () => {
         try {
-            const response = await fetch(`http://localhost:8080/api/auth/getuserdata`);
+            const response = await fetch(`http://localhost:8080/api/auth/getuserdata`,{
+                method: 'GET',
+                credentials: 'include'
+            }
+                
+            );
             const data = await response.json();
             setUser(data);
         } catch (error) {

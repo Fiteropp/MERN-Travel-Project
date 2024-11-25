@@ -12,7 +12,7 @@ export const signup = async (req, res) => {
   try {
     // Create a new user object
     const user = new User({
-      username: req.body.username,
+      fullName: req.body.fullName,
       email: req.body.email,
       password: bcrypt.hashSync(req.body.password, 8),
     });
@@ -37,7 +37,7 @@ export const signup = async (req, res) => {
 
 export const signin = async (req, res) => {
   try {
-    const user = await User.findOne({ username: req.body.username }).populate("roles", "-__v");
+    const user = await User.findOne({ email: req.body.email }).populate("roles", "-__v");
 
     if (!user) {
       return res.status(404).send({ message: "User Not found." });
