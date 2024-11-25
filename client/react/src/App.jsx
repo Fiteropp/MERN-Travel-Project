@@ -4,7 +4,6 @@ import { Outlet } from "react-router-dom";
 import { useState } from 'react'
 import './App.css'
 import ModDash from './pages/ModDash'
-import Header from './components/Header'
 
 const App = () => {
   return (
