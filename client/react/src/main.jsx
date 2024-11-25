@@ -12,6 +12,7 @@ import { HomePage } from "./pages/HomePage.jsx";
 import  SignupForm  from "./pages/SignupForm.jsx";
 import  LoginForm  from "./pages/LoginForm.jsx";
 import { HotelDetails } from "./pages/HotelDetails.jsx";
+import ModDash from "./pages/ModDash.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +21,7 @@ const router = createBrowserRouter(
       <Route path="/login" element={<LoginForm />} />
       <Route path="/signup" element={<SignupForm />} />
       <Route path="/details" element={<HotelDetails />} />
+      <Route path="/moderator" element={<ModDash />} />
     </Route>
   )
 );

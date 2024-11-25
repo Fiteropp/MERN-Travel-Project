@@ -42,6 +42,9 @@ const hotelSchema = new Schema ({
         type: Number,
         required: true
     },
+    assignedModerators:{
+        type: [String]
+    }
 });
 // The term Hotel in mongoose.model('Hotel', hotelSchema) is the name of the collection that Mongoose
 // uses when storing documents in MongoDB, 

@@ -16,9 +16,9 @@ import db from "./models/index.js";
 const Role = db.role;
 
 var corsOptions = {
-  origin: "http://localhost:5173", // Update this to match your frontend
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+  origin: "http://localhost:5173",
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true
 };
 
 app.options('*', cors(corsOptions));

@@ -12,7 +12,7 @@ export const signup = async (req, res) => {
   try {
     // Create a new user object
     const user = new User({
-      username: req.body.username,
+      fullName: req.body.fullName,
       email: req.body.email,
       password: bcrypt.hashSync(req.body.password, 8),
     });
@@ -37,7 +37,7 @@ export const signup = async (req, res) => {
 
 export const signin = async (req, res) => {
   try {
-    const user = await User.findOne({ username: req.body.username }).populate("roles", "-__v");
+    const user = await User.findOne({ email: req.body.email }).populate("roles", "-__v");
 
     if (!user) {
       return res.status(404).send({ message: "User Not found." });
@@ -73,5 +73,38 @@ export const signin = async (req, res) => {
     });
   } catch (err) {
     res.status(500).send({ message: err.message });
+  }
+};
+
+
+//User data
+export const getUserData = async (req, res, next) => {
+  const userId = req.userId;
+  try {
+      const user = await User.findOne({_id: userId });
+      res.json({
+        id: user._id,
+        img: user.img,
+        email: user.email,
+        name: user.fullName,
+        surname: user.surname,
+        username: user.username,
+        phone: user.phone});
+  } catch (err) {
+      next(err);
+  }
+};
+
+export const updateUserData = async (req, res, next) => {
+  const userId = req.userId;
+  try {
+      const updatedUser = await User.findByIdAndUpdate(
+          userId,
+          { $set: req.body },
+          { new: true }
+      );
+      res.status(200).send({message: "User Sucsessfully Updated!"})
+  } catch(err) {
+      next(err);
   }
 };
