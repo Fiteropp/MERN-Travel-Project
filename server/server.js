@@ -28,7 +28,7 @@ app.use(cookieParser())
 
 app.use(express.urlencoded({ extended: true }));
 
-const db_url = process.env.CONNECTION_STRING;
+const db_url = process.env.DB_STRING;
 
 db.mongoose
   .connect(db_url, {
