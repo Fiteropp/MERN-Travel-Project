@@ -1,4 +1,5 @@
 import "../styles/Navigation.css";
+
 const Navigation = () => {
   return (
     <nav>
@@ -21,8 +22,8 @@ const Navigation = () => {
         </li>
       </ul>
       <div className="buttons">
-        <button>LogIn</button>
-        <button>SignUp</button>
+        <button> <a href="/login">LogIn</a></button>
+        <button> <a href="/signup">SignUp</a></button>
       </div>
     </nav>
   );

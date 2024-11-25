@@ -9,8 +9,8 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { HomePage } from "./pages/HomePage.jsx";
-import { SignupForm } from "./pages/SignupForm.jsx";
-import { LoginForm } from "./pages/LoginForm.jsx";
+import  SignupForm  from "./pages/SignupForm.jsx";
+import  LoginForm  from "./pages/LoginForm.jsx";
 import { HotelDetails } from "./pages/HotelDetails.jsx";
 
 const router = createBrowserRouter(
@@ -29,3 +29,5 @@ createRoot(document.getElementById("root")).render(
     <RouterProvider router={router} />
   </StrictMode>
 );
+
+
