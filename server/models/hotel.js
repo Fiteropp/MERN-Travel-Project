@@ -1,4 +1,3 @@
-
 import mongoose from "mongoose";
 import city from "./city.js";
 const {Schema, model} = mongoose;

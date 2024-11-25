@@ -9,6 +9,8 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { HomePage } from "./pages/HomePage.jsx";
+import  SignupForm  from "./pages/SignupForm.jsx";
+import  LoginForm  from "./pages/LoginForm.jsx";
 import { HotelDetails } from "./pages/HotelDetails.jsx";
 import ModDash from "./pages/ModDash.jsx";
 
@@ -16,6 +18,8 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<HomePage />} />
+      <Route path="/login" element={<LoginForm />} />
+      <Route path="/signup" element={<SignupForm />} />
       <Route path="/details" element={<HotelDetails />} />
       <Route path="/moderator" element={<ModDash />} />
     </Route>
@@ -27,3 +31,5 @@ createRoot(document.getElementById("root")).render(
     <RouterProvider router={router} />
   </StrictMode>
 );
+
+
