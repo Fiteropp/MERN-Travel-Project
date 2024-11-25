@@ -6,10 +6,10 @@ const Navigation = () => {
       <div className="nav_logo">Mern Hotel Booking</div>
       <ul className="nav_links">
         <li className="link">
-          <a href="#">Home</a>{" "}
+          <a href="/">Home</a>{" "}
         </li>
         <li className="link">
-          <a href="#">Hotel</a>{" "}
+          <a href="/details">Hotel</a>{" "}
         </li>
         <li className="link">
           <a href="#">Discover</a>{" "}
