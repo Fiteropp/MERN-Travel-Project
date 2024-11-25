@@ -1,7 +1,6 @@
-//
 import express from 'express';
 import connectToDB from './config/db.js';
-import hotelRoutes from './routes/hotelRoutes';
+import hotelRoutes from './routes/hotelsRoute.js';
 
 // Set up the Express app
 const app = express();
