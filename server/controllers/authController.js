@@ -86,7 +86,7 @@ export const getUserData = async (req, res, next) => {
         id: user._id,
         img: user.img,
         email: user.email,
-        name: user.name,
+        name: user.fullName,
         surname: user.surname,
         username: user.username,
         phone: user.phone});

@@ -36,7 +36,7 @@ function ModTabUserInfo() {
                 <div className="account-tab-element">
                     <div>
                         <span className="account-small-label">Email</span><br />
-                        <span className="account-info-line">email{user?.name}</span>
+                        <span className="account-info-line">{user?.email}</span>
                     </div>
                     <div>
                     <Button className="edit-button" variant="outlined"><i className='bx bxs-edit bx-sm' ></i>  <span className="edit-button-text">Edit</span></Button>
@@ -45,23 +45,14 @@ function ModTabUserInfo() {
 
                 <div className="account-tab-element">
                     <div>
-                        <span className="account-small-label">Name</span><br />
-                        <span className="account-info-line">Test</span>
+                        <span className="account-small-label">Full Name</span><br />
+                        <span className="account-info-line">{user?.name}</span>
                     </div>
                     <div>
                     <Button className="edit-button" variant="outlined"><i className='bx bxs-edit bx-sm' ></i>  <span className="edit-button-text">Edit</span></Button>
                     </div>
                 </div>
 
-                <div className="account-tab-element">
-                    <div>
-                        <span className="account-small-label">Surname</span><br />
-                        <span className="account-info-line">User</span>
-                    </div>
-                    <div>
-                    <Button className="edit-button" variant="outlined"><i className='bx bxs-edit bx-sm' ></i>  <span className="edit-button-text">Edit</span></Button>
-                    </div>
-                </div>
             </div>
         </div>
      );

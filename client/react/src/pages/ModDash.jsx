@@ -1,11 +1,37 @@
 import React from 'react';
 import '../styles/moddash.css';
+import { useEffect, useState } from 'react';
 
 import ModTabs from '../components/ModTabs';
 
 
 
 function ModDash() {
+
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+        try {
+            const response = await fetch(`http://localhost:8080/api/auth/getuserdata`,{
+                method: 'GET',
+                credentials: 'include'
+            }
+                
+            );
+            const data = await response.json();
+            setUser(data);
+        } catch (error) {
+            console.error("Error fetching user data:", error);
+        } finally {
+            setLoading(false);
+        }
+        };
+
+        fetchUserData();
+    }, []);
+
     return (
         <div>
             <div className='header-section'>
@@ -19,7 +45,7 @@ function ModDash() {
                         
                         <div className='profile-card-info'>
                             <h3 className='card-username'>Test User</h3>
-                            <p className='card-user-email'>test.user@mail.com</p>
+                            <p className='card-user-email'>{user?.email}</p>
                         </div>
                     </div>
             </div>

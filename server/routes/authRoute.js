@@ -17,7 +17,7 @@ export default (app) => {
   app.post(
     "/api/auth/signup",
     [
-      VerifySignUp.checkDuplicateUsernameOrEmail,
+      VerifySignUp.checkDuplicateEmail,
       VerifySignUp.checkRolesExisted,
     ],
     controller.signup
