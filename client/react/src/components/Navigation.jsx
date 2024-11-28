@@ -1,4 +1,5 @@
 import "../styles/Navigation.css";
+import Button from '@mui/material/Button';
 
 const Navigation = () => {
   return (
@@ -22,8 +23,8 @@ const Navigation = () => {
         </li>
       </ul>
       <div className="buttons">
-        <button> <a href="/login">LogIn</a></button>
-        <button> <a href="/signup">SignUp</a></button>
+        <Button variant="outlined" className="button"> <a href="/login"></a> LogIn </Button>
+        <Button variant="outlined" className="button"> <a href="/signup"></a> SignUp </Button>
       </div>
     </nav>
   );
