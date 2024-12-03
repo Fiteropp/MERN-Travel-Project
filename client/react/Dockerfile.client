@@ -1,0 +1,11 @@
+# Fetching the latest node image on alpine linux
+FROM node
+# Setting up the work directory
+WORKDIR /react
+# Installing dependencies
+COPY package*.json /react
+RUN npm install
+# Copying all the files in react folder
+COPY . /react
+# Starting our application
+CMD ["npm","run","dev"]
