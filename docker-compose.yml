@@ -5,7 +5,7 @@ services:
       context: ./server
       dockerfile: Dockerfile.server
     ports:
-      - "5000:5000"
+      - "8080:8080"
     environment:
       - MONGO_URI=mongodb://mongo:27017/travelagency
       - JWT_SECRET=your_jwt_secret
@@ -20,7 +20,7 @@ services:
       context: ./client
       dockerfile: Dockerfile.client
     ports:
-      - "3000:3000"
+      - "5173:5173"
     volumes:
       - ./client:/app
     stdin_open: true
