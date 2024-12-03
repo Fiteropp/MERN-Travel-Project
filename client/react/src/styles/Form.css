@@ -1,0 +1,255 @@
+.app-container {
+    width: 100vw;
+    height: 150vh;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../assets/pexels-matei-andrei-712208084-26888408.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  .background-layout {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  
+  .inner-layout {
+    width: 627px;
+    height: 848px;
+    background-color: #ffffff;
+    border-radius: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    box-sizing: border-box;
+    margin-right: 40px;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .form-box {
+    width: 512px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .form-box h2 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+  
+  .form-box p {
+    color: #606770;
+    margin-bottom: 30px;
+  }
+  
+  .desc {
+    text-align: left;
+    color: #606770;
+    margin-bottom: 30px;
+    font-size: 16px;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  .password-field {
+    position: relative;
+    width: 100%;
+  }
+  
+  .password-field input {
+    width: 100%;
+    padding-right: 40px;
+  }
+  
+  .eye-icon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #ffffff;
+    padding: 5px;
+    border-radius: 30%;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .row label,
+  .row span {
+    font-size: 14px;
+    color: #606770;
+    cursor: pointer;
+  }
+  
+  .terms {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    margin: 20px 0;
+  }
+  
+  .terms input {
+    margin-right: 8px;
+  }
+  
+  .terms span {
+    color: #aa7a14;
+    cursor: pointer;
+  }
+  
+  button[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    background-color: #276968;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #338583;
+  }
+  
+  .login-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #606770;
+  }
+  
+  .social-login {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .social-login span {
+    font-size: 14px;
+    color: #606770;
+  }
+  
+  .social-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .social-buttons .google {
+    background-color: white;
+    color: #5d6464;
+    padding: 10px 20px;
+    border: 2px solid #338583;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .social-buttons .google:hover {
+    background-color: #338583;
+    color: white;
+  }
+  
+  .gsi-material-button {
+    background-color: white;
+    background-image: none;
+    border: 1px solid #286968;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #338583;
+    cursor: pointer;
+    font-family: 'Roboto', arial, sans-serif;
+    font-size: 16px;
+    height: 50px;
+    letter-spacing: 0.25px;
+    outline: none;
+    padding: 0;
+    position: relative;
+    text-align: center;
+    transition: background-color .218s, border-color .218s, box-shadow .218s;
+    width: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .gsi-material-button .gsi-material-button-icon {
+    height: 24px;
+    width: 24px;
+    margin-right: 8px;
+  }
+  
+  .gsi-material-button .gsi-material-button-content-wrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+  }
+  
+  .gsi-material-button:not(:disabled):active .gsi-material-button-state,
+  .gsi-material-button:not(:disabled):focus .gsi-material-button-state {
+    background-color: #338583;
+    opacity: 12%;
+  }
+  
+  .gsi-material-button:not(:disabled):hover {
+    box-shadow: 0 1px 2px 0 #338583, 0 1px 3px 1px #338583;
+  }
+  
+  .gsi-material-button:not(:disabled):hover .gsi-material-button-state {
+    background-color: #338583;
+    opacity: 8%;
+  }
+
+
+.login-link span {
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .login-link span::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #aa7a14;
+    transition: width 0.3s;
+  }
+  
+  .login-link span:hover::after {
+    width: 100%;
+  }

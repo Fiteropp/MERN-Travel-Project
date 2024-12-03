@@ -3,7 +3,8 @@ import {
     createHotel,
     updateHotel,
     deleteHotel,
-    getHotel
+    getHotel,
+    getAllHotels
 } from "../controllers/hotelController.js"
 import authJwt from '../middleware/authJwt.js';
 
@@ -36,4 +37,6 @@ export default (app) => {
     //Get
     //Replace :id with ObjectId of Hotel
     app.get("/api/findhotel/:id", getHotel)
+    //Get all hotels
+    app.get("/api/hotels", getAllHotels)
 }
