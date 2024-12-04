@@ -7,10 +7,8 @@ services:
     ports:
       - "8080:8080"
     env_file: ".env"
-    depends_on:
-      - mongo
     volumes:
-      - ./server:/app
+      - server_side:./server
     command: ["node", "server.js"]
 
   frontend:
@@ -20,18 +18,11 @@ services:
     ports:
       - "5173:5173"
     volumes:
-      - ./client/react:/app
+      - client_side:./client/react
     stdin_open: true
     tty: true
     command: ["npm", "run", "dev"]
-
-  mongo:
-    image: mongo:latest
-    container_name: mongo
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo_data:/data/db
-
-volumes:
-  mongo_data:
+    
+networks:
+  app-network:
+    driver: bridge

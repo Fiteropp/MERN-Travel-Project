@@ -1,5 +1,5 @@
 # Build Stage
-FROM node:latest
+FROM node:22-slim
 # Setting up the work directory. 
 # It is the folder where our application will be placed in container, not in github repository
 WORKDIR /server
