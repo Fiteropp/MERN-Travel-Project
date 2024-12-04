@@ -4,7 +4,7 @@ FROM node:22-slim
 # It is the folder where our application will be placed in container, not in github repository
 WORKDIR /react
 # Installing dependencies
-COPY package.json /react
+COPY package.json package-lock.json /react/
 RUN npm install
 RUN npm install -g vite
 RUN npm install -g @vitejs/plugin-react

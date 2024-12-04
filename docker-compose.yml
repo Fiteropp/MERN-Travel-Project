@@ -6,9 +6,10 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
-    env_file: ".env"
+    env_file: "./server/.env"
+    image: mern_project/server:1.0
     volumes:
-      - server_side:./server
+      - ./server:/server
     command: ["node", "server.js"]
 
   frontend:
@@ -18,11 +19,14 @@ services:
     ports:
       - "5173:5173"
     volumes:
-      - client_side:./client/react
+      - ./client/react:/react
     stdin_open: true
+    environment:
+      - VITE_API_BASE_URL=http://backend:8080
+    image: mern_project/client:1.0
     tty: true
     command: ["npm", "run", "dev"]
-    
+
 networks:
   app-network:
     driver: bridge
