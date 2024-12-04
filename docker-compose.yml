@@ -3,7 +3,7 @@ services:
   backend:
     build:
       context: ./server
-      dockerfile: Dockerfile.server
+      dockerfile: Dockerfile
     ports:
       - "8080:8080"
     env_file: ".env"
@@ -11,16 +11,16 @@ services:
       - mongo
     volumes:
       - ./server:/app
-    command: ["npm", "run", "start"]
+    command: ["node", "server.js"]
 
   frontend:
     build:
-      context: ./client
-      dockerfile: Dockerfile.client
+      context: ./client/react
+      dockerfile: Dockerfile
     ports:
       - "5173:5173"
     volumes:
-      - ./client:/app
+      - ./client/react:/app
     stdin_open: true
     tty: true
     command: ["npm", "run", "dev"]
