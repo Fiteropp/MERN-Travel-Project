@@ -4,11 +4,14 @@ FROM node:latest
 # It is the folder where our application will be placed in container, not in github repository
 WORKDIR /react
 # Installing dependencies
-COPY package*.json /react
+COPY package.json /react
 RUN npm install
-RUN npm run build
+RUN npm install -g vite
+RUN npm install -g @vitejs/plugin-react
+RUN npm install axios
 # Copying all the files in react folder
 COPY . /react
+RUN npm run build
 # Specifies the port of client, which the container will be listening
 EXPOSE 5173
 # Starting our application
