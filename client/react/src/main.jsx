@@ -10,7 +10,7 @@ import {
 } from "react-router-dom";
 import { HomePage } from "./pages/HomePage.jsx";
 import  SignupForm  from "./pages/SignupForm.jsx";
-import BookingForm from "./components/bookingForm.jsx";
+import BookingForm from "./components/bookingform";
 import  LoginForm  from "./pages/LoginForm.jsx";
 import { HotelDetails } from "./pages/HotelDetails.jsx";
 import ModDash from "./pages/ModDash.jsx";
