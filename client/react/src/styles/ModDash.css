@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
+
+.wide-header-image{
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    object-position: 50%, 80%;
+}
+
+.header-section{
+    display: flex;
+    text-align: center;
+    margin-bottom: 275px;
+}
+
+.page-tabs-section{
+    max-width: 95%;
+    margin: 0px auto;
+}
+
+.profile-card {
+    width: 200px;
+    position: absolute;
+    margin-top: 300px;
+    left: 0; 
+    right: 0; 
+    margin-inline: auto; 
+    width: fit-content;
+    justify-content: center
+}
+
+.profile-pic-frame{
+    border: 0.5px solid white;
+    border-radius: 50%;
+    
+}
+
+.card {
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+}
+
+.profile-pic {
+    height: 200px;
+    width: 200px;
+    object-fit: scale-down;
+}
+
+.card-username{
+    font-weight: 500;
+    font-family: Karla;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1px;
+    text-align: center;
+}
+
+.card-user-email{
+    font-family: Karla;
+}
+
+
+
+/*Account Tab*/
+.account-tab{
+    display: flex;
+    padding: 54px 40px 54px 40px;
+    border-radius: 30px;
+    background-color: #FAFBFC;
+    flex-direction: column;
+}
+
+.account-tab-element{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.account-small-label{
+    font-family: Karla;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 18.7px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #37454D;
+}
+
+.account-info-line{
+    font-family: Karla;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28.06px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    color: #051721;
+}
+
+.edit-button{
+    color: #276968 !important;
+    border-color: #276968 !important;
+    font-family: Karla !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    text-transform: capitalize !important;
+}
+
+.edit-button-text{
+    margin-left: 6px;
+}
+
+
+/*Hotels Tab*/
+.HotelElement{
+    display: flex;
+    flex-direction: row;
+    background-color: #d3e7e7;
+    border-radius: 30px;
+    padding: 25px;
+}
+
+.HotelImage{
+    border-radius: 15px;
+}
+
+.HotelElementText{
+    width: 100%;
+    text-align: right;
+    align-content:space-around;
+}
+
+
+/*Tabs MUI*/
+.tabs-sp-bw{
+    background-color: #fafbfc;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.tab-style{
+    font-family: Karla !important;
+    font-size: 20px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.005em !important;
+    text-align: left !important;
+    text-transform: capitalize !important;
+
+}
+
+.Mui-selected {
+    color: #276968 !important;
+}
+
+	
+.MuiTabs-indicator{
+  background: #276968 !important;
+} 
+
+
+

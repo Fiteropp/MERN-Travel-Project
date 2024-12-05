@@ -1,19 +1,20 @@
-//import * from 'react'
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import BookingForm from './components/bookingform'
-import './App.css';
+import { Footer } from "./components/Footer";
+import { Navigation } from "./components/Navigation";
+import { Outlet } from "react-router-dom";
+import { useState } from 'react'
+import './App.css'
+import ModDash from './pages/ModDash'
 
-function App() {
-
+const App = () => {
   return (
-    <Router>
-    <Routes>
-      <Route path="/booking-form" element={<BookingForm />} />
-      <Route path="/booking-history" element={<div>Booking history</div>} />
-    </Routes>
-  </Router>
-  )
-}
+    <>
+      <Navigation />
+      <Outlet />
+      <section>
+        <Footer />
+      </section>
+    </>
+  );
+};
 
-export default App
-
+export default App;
