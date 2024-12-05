@@ -5,7 +5,7 @@ FROM node:alpine
 WORKDIR /react
 # Installing dependencies
 RUN rm -rf node_modules package-lock.json 
-COPY package.json /react
+COPY package*.json ./react
 #RUN rm -rf node_modules package-lock.json
 #RUN npm install -g @rollup/rollup-linux-x64-glibs
 RUN npm i
@@ -14,7 +14,7 @@ RUN npm i
 #RUN npm install axios
 #RUN npm i
 # Copying all the files in react folder
-COPY . /react
+COPY . ./react
 RUN npm run build
 # Specifies the port of client, which the container will be listening
 EXPOSE 5173
