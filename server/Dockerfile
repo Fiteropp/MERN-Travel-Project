@@ -1,10 +1,10 @@
 # Build Stage
-FROM node:22-slim
+FROM node:alpine
 # Setting up the work directory. 
 # It is the folder where our application will be placed in container, not in github repository
 WORKDIR /server
 # Copy package.json and package-lock.json to the working directory
-COPY package.json package-lock.json /server/
+COPY package*.json /server
 # Install dependencies
 RUN npm install
 # Copies the entire application code to the working directory.
