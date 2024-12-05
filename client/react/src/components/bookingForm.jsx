@@ -25,9 +25,10 @@ const BookingForm = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post("/api/booking", data);
+      const response = await axios.post("/api/bookings", data);
       setConfirmation(response.data.message);
-      navigate("/booking-history");
+      //navigate("/booking-history");
+      navigate("/");
     } catch (error) {
       console.error("Error booking:", error);
     }
