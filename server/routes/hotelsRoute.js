@@ -4,7 +4,8 @@ import {
     updateHotel,
     deleteHotel,
     getHotel,
-    getAssignedHotels
+    getAssignedHotels,
+    getAllHotels
 } from "../controllers/hotelController.js"
 import authJwt from '../middleware/authJwt.js';
 
@@ -40,4 +41,7 @@ export default (app) => {
 
     //Get for assigned hotels | used for mod panel
     app.get("/api/getassignedhotels", authJwt.verifyToken, getAssignedHotels)
+
+    //Get all hotels
+    app.get("/api/gethotels", getAllHotels)
 }

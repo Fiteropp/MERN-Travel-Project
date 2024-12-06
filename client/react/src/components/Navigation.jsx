@@ -23,8 +23,8 @@ const Navigation = () => {
         </li>
       </ul>
       <div className="buttons">
-        <Button variant="outlined" className="button"> <a href="/login"></a> LogIn </Button>
-        <Button variant="outlined" className="button"> <a href="/signup"></a> SignUp </Button>
+        <Button variant="outlined" className="button" href="/login">  LogIn </Button>
+        <Button variant="outlined" className="button" href="/signup"> SignUp </Button>
       </div>
     </nav>
   );

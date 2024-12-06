@@ -36,6 +36,8 @@
   flex-direction: row;
   max-width: var(--max-width);
   margin: auto;
+  margin-bottom: 120px;
+  margin-top: 50px;
 }
 
 .feature-photo{

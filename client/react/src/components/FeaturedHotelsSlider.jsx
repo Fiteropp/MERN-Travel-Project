@@ -1,42 +1,52 @@
-import React, { Component } from "react";
-import Slider from "react-slick";
-import "../styles/FeaturedHotelsSlider.css"
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import "../styles/HotelsSlider.css";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
-function HotelsSlider() {
-  const settings = {
-    className: "center",
-    infinite: true,
-    centerPadding: "60px",
-    slidesToShow: 3,
-    speed: 500
-  };
+import { useEffect, useState } from 'react';
+import { responsive } from "./responsive";
+
+
+
+
+
+export default function FeaturedHotelsSlider() {
+  
+  const [hotelData, setHotelData] = useState([])
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+    try {
+        const response = await fetch(`http://localhost:8080/api/gethotels`,{
+            method: 'GET'
+        }
+            
+        );
+        const data = await response.json();
+        setHotelData(data);
+    } catch (error) {
+        console.error("Error fetching user data:", error);
+    }
+    };
+
+    fetchUserData();
+}, []);
+  
+const hotels = hotelData.map((hotel) => (
+  <div key={hotel._id} className="card1">
+      <img className="product--image" src={hotel.image} alt="product image" />
+      <h2 className="header">{hotel.name}</h2>
+      <p className="price">{hotel.price}</p>
+      <p>{hotel.desc}</p>
+      <button>View Hotel</button>
+    </div>
+  ));
+
   return (
-    <div className="slider-container">
-      <Slider {...settings}>
-        <div>
-          <h3>1</h3>
-        </div>
-        <div>
-          <h3>2</h3>
-        </div>
-        <div>
-          <h3>3</h3>
-        </div>
-        <div>
-          <h3>4</h3>
-        </div>
-        <div>
-          <h3>5</h3>
-        </div>
-        <div>
-          <h3>6</h3>
-        </div>
-      </Slider>
+    <div className="Slider">
+      <h1>Popular Hotels</h1>
+      <Carousel infinite={true} responsive={responsive}>
+        {hotels}
+      </Carousel>
     </div>
   );
 }
-
-export default HotelsSlider;
-
