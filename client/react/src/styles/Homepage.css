@@ -30,6 +30,24 @@
   color: var(--extra-light);
 }
 
+/* About Us*/
+.about-us-container{
+  display: flex;
+  flex-direction: row;
+  max-width: var(--max-width);
+  margin: auto;
+}
+
+.feature-photo{
+  flex: 2;
+}
+
+.about-section{
+  flex:3;
+  padding: 15px;
+}
+
+
 .popular_grid {
   margin-top: 4rem;
   display: grid;
