@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import ModTabUserInfo from "./UserProfileTabs/ModTabUserInfo";
 import ModTabHotels from "./UserProfileTabs/ModTabHotels";
 
-import '../styles/moddash.css';
+import '../styles/ModDash.css';
 
 
 

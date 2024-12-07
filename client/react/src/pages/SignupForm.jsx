@@ -40,7 +40,7 @@ function SignupForm() {
       const { token } = response.data;
       console.log(response);
       setAuthToken(token);
-      navigate("/dashboard");
+      navigate("/");
     } catch (error) {
       alert("Signup failed. Please try again.");
       console.error(error);

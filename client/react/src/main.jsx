@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import { HomePage } from "./pages/HomePage.jsx";
 import SignupForm from "./pages/SignupForm.jsx";
+import BookingForm from "./components/bookingform";
 import LoginForm from "./pages/LoginForm.jsx";
 import { HotelDetails } from "./pages/HotelDetails.jsx";
 import ModDash from "./pages/ModDash.jsx";
@@ -22,6 +23,8 @@ const router = createBrowserRouter(
       <Route path="/signup" element={<SignupForm />} />
       <Route path="/details/:id" element={<HotelDetails />} />
       <Route path="/moderator" element={<ModDash />} />
+      <Route path="/booking-form" element={<BookingForm />} />
+      <Route path="/booking-history" element={<div>Booking history</div>} />
     </Route>
   )
 );

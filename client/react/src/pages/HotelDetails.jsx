@@ -50,7 +50,9 @@ const HotelDetails = () => {
       <section class="hotel-booking">
         <h2>Book Your Stay</h2>
         <button type="submit" class="booking-button">
+        <a href="/booking-form">
           Book Now
+          </a>
         </button>
       </section>
     </div>
