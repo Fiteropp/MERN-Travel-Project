@@ -1,71 +1,49 @@
 import { Link } from "react-router-dom";
 import hotel from "../assets/images/hotel.jpg";
+import { useEffect, useState } from "react";
 const FeaturedHotels = () => {
+  /*fetch hotels from backend api*/
+  const [hotels, setHotels] = useState([]);
+
+  useEffect(() => {
+    const getHotels = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}api/hotels`
+        );
+
+        if (!response.ok) {
+          throw new Error("Error fetching the requests");
+        }
+
+        const hotels = await response.json();
+
+        setHotels(hotels);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    getHotels();
+  }, []);
+
   return (
     <section className="section_container popular_container">
       <h2 className="section_header">Popular Hotels</h2>
       <div className="popular_grid">
-        <div className="popular_card">
-          <img src={hotel} alt="hotel" />
-          <div className="popular_content">
-            <div className="popular_card_header">
-              <h4>Hotel Kämp</h4>
-              <h4>280 euro</h4>
+        {/* render the list of hotels */}
+        {hotels.map((hotel, i) => (
+          <div className="popular_card">
+            <img src={hotel.image} alt="hotel" />
+            <div className="popular_content">
+              <div className="popular_card_header">
+                <h4>{hotel.name}</h4>
+                <h4>{hotel.price} euro</h4>
+              </div>
+              <p>{hotel.address}</p>
+              <Link to={`/details/${hotel._id}`}>View</Link>
             </div>
-            <p>Helsinki, Finland</p>
-            <Link to="/details">View</Link>
           </div>
-        </div>
-        <div className="popular_card">
-          <img src={hotel} alt="hotel" />
-          <div className="popular_content">
-            <div className="popular_card_header">
-              <h4>Marriot</h4>
-              <h4>657 euro</h4>
-            </div>
-            <p>Frankfurt, Germany</p>
-          </div>
-        </div>
-        <div className="popular_card">
-          <img src={hotel} alt="hotel" />
-          <div className="popular_content">
-            <div className="popular_card_header">
-              <h4>The Ritz London</h4>
-              <h4>1,010 pounds</h4>
-            </div>
-            <p>London, UK</p>
-          </div>
-        </div>
-        <div className="popular_card">
-          <img src={hotel} alt="hotel" />
-          <div className="popular_content">
-            <div className="popular_card_header">
-              <h4>Hotel Splendide Royal Lugano</h4>
-              <h4>315 euros</h4>
-            </div>
-            <p>Lugano, Switzerland</p>
-          </div>
-        </div>
-        <div className="popular_card">
-          <img src={hotel} alt="hotel" />
-          <div className="popular_content">
-            <div className="popular_card_header">
-              <h4>Atlantis, The Palm</h4>
-              <h4>586 euros</h4>
-            </div>
-            <p>The Palm Jumeirah, Dubai</p>
-          </div>
-        </div>
-        <div className="popular_card">
-          <img src={hotel} alt="hotel" />
-          <div className="popular_content">
-            <div className="popular_card_header">
-              <h4>Victoria Falls River Lodge</h4>
-              <h4>1317 euros</h4>
-            </div>
-            <p>Victoria Falls, Zimbabwe</p>
-          </div>
-        </div>
+        ))}
       </div>
     </section>
   );
