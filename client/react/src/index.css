@@ -8,7 +8,8 @@
   --text-light: #767268;
   --extra-light: #f3f4f6;
   --white: #ffffff;
-  --max-width: 1200px;
+  --max-width: calc(100% - 15px);
+  --content-max-wd: 90%;
 }
 
 
@@ -37,6 +38,7 @@ img {
 
 body {
   font-family: "Poppins", sans-serif;
+  margin: 0px;
 }
 
 @media (width < 900px) {

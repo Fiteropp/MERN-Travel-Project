@@ -35,15 +35,20 @@ const hotels = hotelData.map((hotel) => (
   <div key={hotel._id} className="card1">
       <img className="product--image" src={hotel.image} alt="product image" />
       <h2 className="header">{hotel.name}</h2>
-      <p className="price">{hotel.price}</p>
       <p>{hotel.desc}</p>
+      <div className="smllcnt">
+      <h3 className="city">{hotel.city}</h3>
+      <h3 className="price">{hotel.price} €</h3>
+      </div>
+    
       <button>View Hotel</button>
     </div>
   ));
 
   return (
     <div className="Slider">
-      <h1>Popular Hotels</h1>
+      <h5>Popular Hotels</h5>
+      <h1>Find the best</h1>
       <Carousel infinite={true} responsive={responsive}>
         {hotels}
       </Carousel>

@@ -101,8 +101,8 @@ function ModTabUserInfo() {
                 <div className="edit-popup" id='popupEl'>
                     <h2>Edit {currentField}</h2>
                     <input className="edit-input" type="text" id="field-input" placeholder="Enter new value" value={currentValue} onChange={(e) => setCurrentValue(e.target.value)} />
-                    <button onClick={handleClose}>Close</button>
-                    <button onClick={handleSubmit}>Submit</button>
+                    <Button variant="outlined" onClick={handleClose}>Close</Button>
+                    <Button variant="contained" onClick={handleSubmit}>Submit</Button>
                 </div>}
             </div>
         
