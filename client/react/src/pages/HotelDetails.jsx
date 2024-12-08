@@ -1,8 +1,14 @@
 import "../styles/HotelDetails.css";
+import { useNavigate } from "react-router-dom";
 import image1 from "../assets/images/image1.jpg";
 import image2 from "../assets/images/image2.jpg";
 import image3 from "../assets/images/image3.jpg";
 const HotelDetails = () => {
+  const navigate = useNavigate();
+  const handleBookingClick = () => {
+    navigate(`/booking-form/${hotel._id}`); // Redirect to booking form with hotel ID
+};
+
   return (
     <div class="hotel-details">
       <h4>Hotel Kämp</h4>
@@ -29,10 +35,8 @@ const HotelDetails = () => {
       </section>
       <section class="hotel-booking">
         <h2>Book Your Stay</h2>
-        <button type="submit" class="booking-button">
-        <a href="/booking-form">
+        <button type="submit" class="booking-button" onClick={handleBookingClick}>
           Book Now
-          </a>
         </button>
       </section>
     </div>

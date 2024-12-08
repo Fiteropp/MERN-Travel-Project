@@ -30,10 +30,7 @@ const Navigation = () => {
           <a href="/">Home</a>{" "}
         </li>
         <li className="link">
-          <a href="/details">Hotel</a>{" "}
-        </li>
-        <li className="link">
-          <a href="#">Discover</a>{" "}
+          <a href="/discover">Discover</a>{" "}
         </li>
         <li className="link">
           <a href="#">About Us</a>{" "}

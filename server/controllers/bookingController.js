@@ -1,24 +1,30 @@
-
+import Hotel from "../models/hotel.js";
 import Booking from "../models/booking.js";
 
 export const createBooking = async (req, res, next) => {
-    const { hotel, checkIn, checkOut, room } = req.body; 
-    const userId = req.userId; 
-    
-    const newBooking = new Booking({
-        user: userId, 
-        hotel: hotel,
-        checkIn: new Date(checkIn),
-        checkOut: new Date(checkOut),
-        room: room
-    });
+    const { hotel, checkIn, checkOut, room } = req.body;
+    const userId = req.userId;
 
     try {
-        // Save the booking to the database
+        // Validate that the hotel exists
+        const hotelExists = await Hotel.findById(hotel);
+        if (!hotelExists) {
+            return res.status(404).json({ message: "Hotel not found" });
+        }
+
+        const newBooking = new Booking({
+            user: userId,
+            hotel: hotel,
+            checkIn: new Date(checkIn),
+            checkOut: new Date(checkOut),
+            room: room,
+        });
+
+        // Save the booking
         const savedBooking = await newBooking.save();
-        res.status(200).json(savedBooking);
+        res.status(201).json(savedBooking);
     } catch (err) {
-        next(err); 
+        next(err);
     }
 };
 
