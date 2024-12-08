@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import {
   TextField,
@@ -49,6 +50,7 @@ const HotelSearch = () => {
       const response = await axios.get("http://localhost:8080/api/hotels", { params });
       // fail-safe check if response won't get data from server
       setHotels(response.data.hotels || []);
+      console.log(response.data.hotels);
       setTotalPages(response.data.totalPages);
       setTotalHotels(response.data.totalHotels);
     } catch (err) {
@@ -75,6 +77,10 @@ const HotelSearch = () => {
     setMinRating("");
     setMaxRating("");
     setPage(1);
+  };
+
+  const handleHotelClick = (hotelId) => {
+    navigate(`/hotel/${hotelId}`);
   };
 
   return (
@@ -227,7 +233,8 @@ const HotelSearch = () => {
       <Grid container spacing={3} sx={{ mt: 4 }}>
         {/*check if hotels is an array of objects. Just for my sake + another fail-safe*/}
         {(Array.isArray(hotels) ? hotels : []).map((hotel) => (
-          <Grid item xs={12} sm={6} md={4} key={hotel._id}>
+          <Grid item xs={12} sm={6} md={4} key={hotel._id} 
+          onClick={() => handleHotelClick(hotel._id)} style={{ cursor: "pointer" }} >
             <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
               {hotel.image && (
                 <CardMedia
