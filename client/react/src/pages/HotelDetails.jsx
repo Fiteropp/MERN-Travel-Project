@@ -7,12 +7,12 @@ import image2 from "../assets/images/image2.jpg";
 import image3 from "../assets/images/image3.jpg";
 const HotelDetails = () => {
   const navigate = useNavigate();
-  const handleBookingClick = () => {
-    navigate(`/booking-form/${hotel._id}`); // Redirect to booking form with hotel ID
-  };
-
   /* Get the id from the params */
   const { id } = useParams();
+  const handleBookingClick = () => {
+    navigate(`/booking-form/${id}`); // Redirect to booking form with hotel ID
+  };
+
   /* State to hold hotel details */
   const [hotelDetails, setHotelDetails] = useState(null);
   /* Fetch the details of the single hotel using the id */
