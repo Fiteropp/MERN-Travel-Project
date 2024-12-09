@@ -10,7 +10,7 @@
   
   /* Фоновое изображение */
   .background-image {
-    background-image: url('./assets/ozero.jpg');
+    background-image: url("../assets/ozero.jpg");
     background-size: cover;
     background-position: center;
     width: 100vw;
