@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { axiosInstance, setAuthToken } from '../services/authService.js';
 import '../styles/Form.css';
-import eyeOpen from '../assets/eye-open.png';
-import eyeClosed from '../assets/eye-closed.png';
+import eyeOpen from '../assets/Icons/eye-open.png';
+import eyeClosed from '../assets/Icons/eye-closed.png';
 
 function LoginForm() {
   const navigate = useNavigate();

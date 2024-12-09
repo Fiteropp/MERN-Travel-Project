@@ -1,6 +1,7 @@
 import "../styles/HotelsSlider.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import location_svg from "../assets/Icons/location-sign-svgrepo-com.svg"
 
 import { useEffect, useState } from 'react';
 import { responsive } from "./responsive";
@@ -37,7 +38,7 @@ const hotels = hotelData.map((hotel) => (
       <h2 className="header">{hotel.name}</h2>
       <p>{hotel.desc}</p>
       <div className="smllcnt">
-      <h3 className="city">{hotel.city}</h3>
+      <h3 className="city"><img className="city-logo" src={location_svg} alt="" />{hotel.city}</h3>
       <h3 className="price">{hotel.price} €</h3>
       </div>
     

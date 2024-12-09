@@ -35,7 +35,7 @@ function ModTabHotels() {
             <div className="HotelElementContainer">
               <img
                 className="HotelImage"
-                src={hotel.img || 'https://picsum.photos/id/164/300/200'}
+                src={hotel.image || 'https://picsum.photos/id/164/300/200'}
                 alt={hotel.name || 'Hotel Image'}
               />
             </div>
