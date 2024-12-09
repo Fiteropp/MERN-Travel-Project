@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { axiosInstance, setAuthToken } from '../services/authService.js';
-import '../styles/Form.css';
-import eyeOpen from '../assets/eye-open.png';
-import eyeClosed from '../assets/eye-closed.png';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { axiosInstance, setAuthToken } from "../services/authService.js";
+import "../styles/Form.css";
+import eyeOpen from "../assets/eye-open.png";
+import eyeClosed from "../assets/eye-closed.png";
 
 function SignupForm() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    phone: '',
-    password: '',
-    confirmPassword: '',
+    fullName: "",
+    email: "",
+    phone: "",
+    password: "",
+    confirmPassword: "",
+    role: "user",
     termsAccepted: false,
     showPassword: false,
     showConfirmPassword: false,
@@ -22,7 +23,7 @@ function SignupForm() {
     const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: type === "checkbox" ? checked : value,
     });
   };
 
@@ -30,18 +31,18 @@ function SignupForm() {
     e.preventDefault();
 
     if (formData.password !== formData.confirmPassword) {
-      alert('Something went wrong, please try again.');
+      alert("Something went wrong, please try again.");
       return;
     }
 
     try {
-      const response = await axiosInstance.post('api/auth/signup', formData);
+      const response = await axiosInstance.post("api/auth/signup", formData);
       const { token } = response.data;
-      //console.log(response)
+      console.log(response);
       setAuthToken(token);
-      navigate('/');
+      navigate("/");
     } catch (error) {
-      alert('Signup failed. Please try again.');
+      alert("Signup failed. Please try again.");
       console.error(error);
     }
   };
@@ -49,7 +50,9 @@ function SignupForm() {
   return (
     <form className="form-box" onSubmit={handleSubmit}>
       <h2>Sign Up</h2>
-      <p className="desc">Let’s get you all set up so you can access your personal account.</p>
+      <p className="desc">
+        Let’s get you all set up so you can access your personal account.
+      </p>
       <input
         type="text"
         name="fullName"
@@ -75,7 +78,7 @@ function SignupForm() {
       </div>
       <div className="password-field">
         <input
-          type={formData.showPassword ? 'text' : 'password'}
+          type={formData.showPassword ? "text" : "password"}
           name="password"
           placeholder="Password *"
           value={formData.password}
@@ -85,12 +88,14 @@ function SignupForm() {
           src={formData.showPassword ? eyeOpen : eyeClosed}
           alt="Toggle password visibility"
           className="eye-icon"
-          onClick={() => setFormData({ ...formData, showPassword: !formData.showPassword })}
+          onClick={() =>
+            setFormData({ ...formData, showPassword: !formData.showPassword })
+          }
         />
       </div>
       <div className="password-field">
         <input
-          type={formData.showConfirmPassword ? 'text' : 'password'}
+          type={formData.showConfirmPassword ? "text" : "password"}
           name="confirmPassword"
           placeholder="Confirm Password *"
           value={formData.confirmPassword}
@@ -101,7 +106,10 @@ function SignupForm() {
           alt="Toggle confirm password visibility"
           className="eye-icon"
           onClick={() =>
-            setFormData({ ...formData, showConfirmPassword: !formData.showConfirmPassword })
+            setFormData({
+              ...formData,
+              showConfirmPassword: !formData.showConfirmPassword,
+            })
           }
         />
       </div>
@@ -113,15 +121,16 @@ function SignupForm() {
           onChange={handleChange}
         />
         <label>
-          I agree to all the <span>Terms</span> and <span>Privacy Policies</span>
+          I agree to all the <span>Terms</span> and{" "}
+          <span>Privacy Policies</span>
         </label>
       </div>
       <button type="submit">Create account</button>
       <p className="login-link">
-        Already have an account?{' '}
+        Already have an account?{" "}
         <span
-          onClick={() => navigate('/login')}
-          style={{ color: '#276968', cursor: 'pointer', fontWeight: 'bold' }}
+          onClick={() => navigate("/login")}
+          style={{ color: "#276968", cursor: "pointer", fontWeight: "bold" }}
         >
           Login
         </span>
@@ -138,7 +147,7 @@ function SignupForm() {
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 48 48"
                   xmlnsXlink="http://www.w3.org/1999/xlink"
-                  style={{ display: 'block' }}
+                  style={{ display: "block" }}
                 >
                   <path
                     fill="#EA4335"
@@ -159,7 +168,7 @@ function SignupForm() {
                   <path fill="none" d="M0 0h48v48H0z"></path>
                 </svg>
               </div>
-              <span style={{ display: 'none' }}>Sign in with Google</span>
+              <span style={{ display: "none" }}>Sign in with Google</span>
             </div>
           </button>
         </div>
