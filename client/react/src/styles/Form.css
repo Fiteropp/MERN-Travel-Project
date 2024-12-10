@@ -38,6 +38,8 @@
   
   .form-box {
     width: 512px;
+    padding-top: 20rem;
+    padding-bottom: 20rem;
     margin: 0 auto;
     text-align: center;
   }

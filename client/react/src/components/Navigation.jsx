@@ -1,29 +1,32 @@
 import "../styles/Navigation.css";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-
+import Button from '@mui/material/Button';
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 const Navigation = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
+  const location = useLocation(); // Get the current route
+  const [scroll, setScroll] = useState(0);
+  const [className, setClassName] = useState("navbar");
 
-  const getCookie = (name) => {
-    const match = document.cookie.match(new RegExp(`(^| )${name}=([^;]+)`));
-    return match ? match[2] : null;
-  };
-
-  const checkLoginStatus = () => {
-    const jwt = getCookie("jwt");
-    console.log("JWT Cookie:", jwt); // Debugging
-    setIsLoggedIn(!!jwt);
-  };
+  const handleScroll = () => setScroll(window.scrollY);
 
   useEffect(() => {
-    checkLoginStatus();
-  }, []);
+    // Add scroll event listener
+    window.addEventListener("scroll", handleScroll);
 
+    // Set class name dynamically based on scroll and route
+    if (location.pathname === "/") {
+      setClassName(scroll > 540 ? "navbar navbar-home-scrolled" : "navbar navbar-home");
+    } else {
+      setClassName("navbar navbar-other");
+    }
+
+    return () => window.removeEventListener("scroll", handleScroll); // Cleanup
+  }, [scroll, location.pathname]); // Re-run on scroll or route change
 
   return (
-    <nav>
+    <nav className={className}>
       <div className="nav_logo">Mern Hotel Booking</div>
       <ul className="nav_links">
         <li className="link">
@@ -40,18 +43,8 @@ const Navigation = () => {
         </li>
       </ul>
       <div className="buttons">
-        {isLoggedIn ? (
-          <button><a href="/profile">Profile</a></button>
-        ) : (
-          <>
-            <button>
-              <a href="/login">LogIn</a>
-            </button>
-            <button>
-              <a href="/signup">SignUp</a>
-            </button>
-          </>
-        )}
+      <Button variant="text" className="button" href="/signup"> SignUp </Button>
+      <Button variant="outlined" className="button" href="/login">  LogIn </Button>
       </div>
     </nav>
   );

@@ -117,6 +117,28 @@
 }
 
 
+/*edit popup*/
+.edit-popup{
+    position: absolute;
+    z-index: 500;
+    left: 0; 
+    right: 0; 
+    margin-inline: auto; 
+    width: fit-content;
+    justify-content: center;
+    background-color: #FAFBFC;
+    border-radius: 10px;
+    padding: 20px 40px 20px 40px;
+    filter: none !important;
+    
+}
+
+#blur.active {
+    filter: blur(20px);
+    transition: 0.5s;
+  }
+
+
 /*Hotels Tab*/
 .HotelElement{
     display: flex;

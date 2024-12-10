@@ -1,16 +1,48 @@
-nav {
-  max-width: var(--max-width);
-  margin: auto;
-  padding: 2rem 1rem;
+.navbar {
+  max-width: calc(var(--max-width) - 50px);
+  margin: 0px;
+  padding: 0rem 4rem 0 4rem;
+  position: fixed;
+  background-color: rgba(0, 29, 29, 0.308) ;
+  backdrop-filter: blur(20px);
+  z-index: 100;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 2rem;
+  transition: background-color 0.5s ease-in-out, transform 0.5s ease-in-out; 
+}
+
+/* Half-transparent style for home page */
+.navbar-home {
+  background-color: rgba(0, 0, 0, 0); /* 50% transparency */
+  color: white;
+  backdrop-filter: none;
+  transform: translateY(0); 
+}
+
+/* Opaque style for other pages */
+.navbar-other {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  transform: translateY(0); 
+}
+
+/* Scrolled version of the home navbar */
+.navbar-home-scrolled {
+  background-color: rgba(0, 0, 0, 0.8); /* Slightly less transparent when scrolled */
+  color: white;
+  transform: translateY(0); 
 }
 
 .nav_logo {
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--text-dark);
+  color: var(--white);
 }
 
 .nav_links {
@@ -22,16 +54,20 @@ nav {
 
 .link a {
   font-weight: 500;
-  color: var(--text-light);
+  color: var(--extra-light);
   transition: 0.3s;
 }
 
 .link a:hover {
-  color: var(--primary-color);
+  color: var(--primary-color-green);
 }
 
-.buttons button {
-  padding: 10px 20px;
-  border-radius: 0.5rem;
-  margin-left: 20px;
+.button{
+  color: var(--extra-light) !important;
+  border-color: var(--extra-light) !important;
+  font-family: Karla !important;
+  font-size: 16px !important;
+  margin: 0px 5px 0px 5px !important;
 }
+
+
