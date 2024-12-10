@@ -58,7 +58,7 @@ const HotelDetails = () => {
         <button
           type="submit"
           class="booking-button"
-          onClick={handleBookingClick}
+          onClick={handleBookingClick(hotelDetails._id)}
         >
           Book Now
         </button>

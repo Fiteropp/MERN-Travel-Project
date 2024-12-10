@@ -1,7 +1,7 @@
 import "../styles/Navigation.css";
 import Button from '@mui/material/Button';
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 const Navigation = () => {
   
@@ -30,16 +30,16 @@ const Navigation = () => {
       <div className="nav_logo">Mern Hotel Booking</div>
       <ul className="nav_links">
         <li className="link">
-          <a href="/">Home</a>{" "}
+          <Link to="/">Home</Link>{" "}
         </li>
         <li className="link">
-          <a href="/discover">Discover</a>{" "}
+          <Link to="/discover">Discover</Link>{" "}
         </li>
         <li className="link">
-          <a href="#">About Us</a>{" "}
+          <Link to="#">About Us</Link>{" "}
         </li>
         <li className="link">
-          <a href="#">Contact</a>{" "}
+          <Link to="#">Contact</Link>{" "}
         </li>
       </ul>
       <div className="buttons">
