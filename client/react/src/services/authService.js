@@ -45,4 +45,4 @@ axiosInstance.interceptors.request.use((config) => {
   return config;
 });
 
-export { axiosInstance, setAuthToken };
+export { axiosInstance, setAuthToken, getAuthToken };

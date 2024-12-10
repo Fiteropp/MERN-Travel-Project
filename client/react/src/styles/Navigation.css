@@ -16,6 +16,11 @@
   margin-bottom: 2rem;
   transition: background-color 0.5s ease-in-out, transform 0.5s ease-in-out; 
 }
+.username {
+  margin-right: 1rem;
+  font-weight: bold;
+  color: #276968;
+}
 
 /* Half-transparent style for home page */
 .navbar-home {
