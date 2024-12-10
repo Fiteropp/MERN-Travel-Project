@@ -41,7 +41,7 @@ function SignupForm() {
       const { token } = response.data;
       console.log(response);
       setAuthToken(token);
-      navigate("/");
+      navigate(`/`);
     } catch (error) {
       alert("Signup failed. Please try again.");
       console.error(error);
@@ -126,9 +126,7 @@ function SignupForm() {
           <span>Privacy Policies</span>
         </label>
       </div>
-      <Link to="/userprofile/:id">
       <button type="submit">Create account</button>
-      </Link>
       <p className="login-link">
         Already have an account?{" "}
         <span
