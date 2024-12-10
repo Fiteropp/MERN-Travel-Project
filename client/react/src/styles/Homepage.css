@@ -6,20 +6,28 @@
   position: relative;
   min-height: 500px;
   background-image: linear-gradient(
-      to right,
-      rgba(44, 56, 85, 0.9),
-      rgba(100, 125, 187, 0.1)
+      180deg,
+      rgba(44, 56, 85, 0.836),
+      rgba(100, 125, 187, 0.027)
     ),
-    url("./assets/images/hero.png");
+    url("../assets/images/hero.jpg");
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
   border-radius: 2rem;
 }
 
+.hero-img {
+  object-fit: cover;
+}
+
 .header_content {
   max-width: 600px;
-  padding: 5rem 2rem;
+  padding: 10rem 2rem;
+}
+
+.header_content p {
+  color: var(--extra-light);
 }
 
 .header_content h1 {
@@ -29,6 +37,26 @@
   font-weight: 600;
   color: var(--extra-light);
 }
+
+/* About Us*/
+.about-us-container{
+  display: flex;
+  flex-direction: row;
+  max-width: var(--content-max-wd);
+  margin: auto;
+  margin-bottom: 120px;
+  margin-top: 50px;
+}
+
+.feature-photo{
+  flex: 2;
+}
+
+.about-section{
+  flex:3;
+  padding: 15px;
+}
+
 
 .popular_grid {
   margin-top: 4rem;
@@ -131,4 +159,28 @@
 
 .reward_btn:hover {
   background-color: var(--primary-color-dark);
+}
+
+/* Initial state for animation */
+.fly-in-child {
+  opacity: 0;
+  transform: translateY(30px); 
+  transition: all 0.6s ease-in-out;
+}
+
+/* When element is visible */
+.fly-in-child.fly-in-visible {
+  opacity: 1;
+  transform: translateY(0); 
+}
+
+/* Optional: Stagger effect for smoother animations */
+.fly-in-child:nth-child(1) {
+  transition-delay: 0s;
+}
+.fly-in-child:nth-child(2) {
+  transition-delay: 0.2s;
+}
+.fly-in-child:nth-child(3) {
+  transition-delay: 0.4s;
 }

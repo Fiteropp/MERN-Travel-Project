@@ -1,5 +1,6 @@
 import React from "react";
-const Header = () => {
+import hero from "../assets/images/hero.jpg";
+export const Hero = () => {
   return (
     <div>
       <header className="section_container header_container">
@@ -15,4 +16,3 @@ const Header = () => {
   );
 };
 
-export { Header };

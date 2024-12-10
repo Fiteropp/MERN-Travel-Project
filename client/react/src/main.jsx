@@ -23,9 +23,9 @@ const router = createBrowserRouter(
       <Route path="/login" element={<LoginForm />} />
       <Route path="/signup" element={<SignupForm />} />
       <Route path="/hotel/:id" element={<HotelDetails />} />
-      <Route path="/discover" element={<HotelSearch />}/>
+      <Route path="/discover" element={<HotelSearch />} />
       <Route path="/moderator" element={<ModDash />} />
-      <Route path="/booking-form" element={<BookingForm />} />
+      <Route path="/booking-form/:id" element={<BookingForm />} />
       <Route path="/booking-history" element={<div>Booking history</div>} />
     </Route>
   )
@@ -36,5 +36,3 @@ createRoot(document.getElementById("root")).render(
     <RouterProvider router={router} />
   </StrictMode>
 );
-
-

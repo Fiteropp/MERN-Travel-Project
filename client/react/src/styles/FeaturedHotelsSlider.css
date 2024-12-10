@@ -1,0 +1,6 @@
+.slick-slide{
+    display: flex !important;
+    width: 100%;
+    align-items: center !important;
+    box-shadow:3px 3px darkgray;
+}

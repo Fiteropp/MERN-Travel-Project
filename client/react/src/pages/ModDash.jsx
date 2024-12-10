@@ -8,7 +8,7 @@ import ModTabs from '../components/ModTabs';
 
 function ModDash() {
 
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -33,18 +33,18 @@ function ModDash() {
     }, []);
 
     return (
-        <div>
+        <div className='main-container' >
             <div className='header-section'>
                     <img className='wide-header-image' src="https://images.pexels.com/photos/2832061/pexels-photo-2832061.jpeg" alt="" />
                 
                     <div className='profile-card'>
                         
                         <div className='profile-pic-frame'>
-                            <img  src="https://picsum.photos/200/200" alt="" className='card' />
+                            <img  src={ user.img || "https://cdn-icons-png.flaticon.com/512/9385/9385289.png"} alt="" className='card' />
                         </div>
                         
                         <div className='profile-card-info'>
-                            <h3 className='card-username'>Test User</h3>
+                            <h3 className='card-username'>User</h3>
                             <p className='card-user-email'>{user?.email}</p>
                         </div>
                     </div>
