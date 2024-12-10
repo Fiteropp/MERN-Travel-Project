@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import {
   TextField,
@@ -233,8 +233,11 @@ const HotelSearch = () => {
       <Grid container spacing={3} sx={{ mt: 4 }}>
         {/*check if hotels is an array of objects. Just for my sake + another fail-safe*/}
         {(Array.isArray(hotels) ? hotels : []).map((hotel) => (
-          <Grid item xs={12} sm={6} md={4} key={hotel._id} 
-          onClick={() => handleHotelClick(hotel._id)} style={{ cursor: "pointer" }} >
+          <Grid item xs={12} sm={6} md={4} key={hotel._id} >
+            <Link 
+              to={`/hotel/${hotel._id}`} 
+              style={{ textDecoration: 'none', color: 'inherit' }} // Remove link styling
+            >
             <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
               {hotel.image && (
                 <CardMedia
@@ -253,6 +256,7 @@ const HotelSearch = () => {
                 <Typography variant="body2">{hotel.desc}</Typography>
               </CardContent>
             </Card>
+            </Link>
           </Grid>
         ))}
       </Grid>

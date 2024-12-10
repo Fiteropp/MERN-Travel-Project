@@ -9,9 +9,9 @@ const HotelDetails = () => {
   const navigate = useNavigate();
   /* Get the id from the params */
   const { id } = useParams();
-  const handleBookingClick = () => {
+  /*const handleBookingClick = () => {
     navigate(`/booking-form/${id}`); // Redirect to booking form with hotel ID
-  };
+  };*/
 
   /* State to hold hotel details */
   const [hotelDetails, setHotelDetails] = useState(null);
@@ -58,7 +58,6 @@ const HotelDetails = () => {
         <button
           type="submit"
           class="booking-button"
-          onClick={handleBookingClick(hotelDetails._id)}
         >
           Book Now
         </button>
