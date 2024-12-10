@@ -18,6 +18,7 @@ function LoginForm() {
       const response = await axiosInstance.post('api/auth/signin', { email, password });
       const { token } = response.data;
       setAuthToken(token);
+      navigate("/");
     } catch (error) {
       alert('Login failed. Please try again.');
       console.error(error);

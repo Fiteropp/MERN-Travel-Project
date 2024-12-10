@@ -11,7 +11,7 @@ function UserTabBookingHistory() {
     useEffect(() => {
         const fetchUserData = async () => {
         try {
-            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/getassignedhotels`,{
+            const response = await fetch("http://localhost:8080/api/getassignedhotels",{
                 method: 'GET',
                 credentials: 'include'
             }

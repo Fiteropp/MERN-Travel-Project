@@ -25,7 +25,7 @@ const BookingForm = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post("/api/bookings", data);
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/bookings`, data);
       setConfirmation(response.data.message);
       //navigate("/booking-history");
       navigate("/");
