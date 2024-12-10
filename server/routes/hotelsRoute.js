@@ -40,6 +40,6 @@ export default (app) => {
     app.get("/api/findhotel/:id", getHotel)
     //Get for assigned hotels | used for mod panel
     app.get("/api/getassignedhotels", authJwt.verifyToken, getAssignedHotels)
-    //Get all hotels
+    //Get all hotels during search
     app.get("/api/searchhotels", getAllSearchHotels)
 }
