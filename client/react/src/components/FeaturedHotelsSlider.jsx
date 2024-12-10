@@ -5,6 +5,7 @@ import location_svg from "../assets/Icons/location-sign-svgrepo-com.svg"
 
 import { useEffect, useState } from 'react';
 import { responsive } from "./responsive";
+import { Link } from "react-router-dom";
 
 
 
@@ -41,8 +42,11 @@ const hotels = hotelData.map((hotel) => (
       <h3 className="city"><img className="city-logo" src={location_svg} alt="" />{hotel.city}</h3>
       <h3 className="price">{hotel.price} €</h3>
       </div>
-    
+      <Link to={`/hotel/${hotel._id}`} 
+            style={{ textDecoration: 'none', color: 'inherit' }} // Remove link styling
+            >
       <button>View Hotel</button>
+      </Link>
     </div>
   ));
 
