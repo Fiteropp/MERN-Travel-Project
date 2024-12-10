@@ -5,7 +5,8 @@ import {
     deleteHotel,
     getHotel,
     getAssignedHotels,
-    getAllSearchHotels
+    getAllSearchHotels,
+    getAllHotels
 } from "../controllers/hotelController.js"
 import authJwt from '../middleware/authJwt.js';
 
@@ -42,4 +43,7 @@ export default (app) => {
     app.get("/api/getassignedhotels", authJwt.verifyToken, getAssignedHotels)
     //Get all hotels during search
     app.get("/api/searchhotels", getAllSearchHotels)
+
+    //Get all hotels
+    app.get("/api/getallhotels", getAllHotels)
 }

@@ -17,7 +17,7 @@ export default function FeaturedHotelsSlider() {
   useEffect(() => {
     const fetchUserData = async () => {
     try {
-        const response = await fetch(`http://localhost:8080/api/gethotels`,{
+        const response = await fetch(`http://localhost:8080/api/getallhotels`,{
             method: 'GET'
         }
             
