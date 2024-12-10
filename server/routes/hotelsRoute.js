@@ -5,7 +5,6 @@ import {
     deleteHotel,
     getHotel,
     getAssignedHotels,
-    main,
     getAllHotels
 } from "../controllers/hotelController.js"
 import authJwt from '../middleware/authJwt.js';
