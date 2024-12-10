@@ -86,9 +86,7 @@ export const getUserData = async (req, res, next) => {
         id: user._id,
         img: user.img,
         email: user.email,
-        name: user.fullName,
-        surname: user.surname,
-        username: user.username,
+        fullName: user.fullName,
         phone: user.phone});
   } catch (err) {
       next(err);

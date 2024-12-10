@@ -25,7 +25,6 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll); // Cleanup
   }, [scroll, location.pathname]); // Re-run on scroll or route change
 
-  
   return (
     <nav className={className}>
       <div className="nav_logo">Mern Hotel Booking</div>
@@ -34,10 +33,7 @@ const Navigation = () => {
           <a href="/">Home</a>{" "}
         </li>
         <li className="link">
-          <a href="/details">Hotel</a>{" "}
-        </li>
-        <li className="link">
-          <a href="#">Discover</a>{" "}
+          <a href="/discover">Discover</a>{" "}
         </li>
         <li className="link">
           <a href="#">About Us</a>{" "}
@@ -49,7 +45,6 @@ const Navigation = () => {
       <div className="buttons">
       <Button variant="text" className="button" href="/signup"> SignUp </Button>
       <Button variant="outlined" className="button" href="/login">  LogIn </Button>
-        
       </div>
     </nav>
   );

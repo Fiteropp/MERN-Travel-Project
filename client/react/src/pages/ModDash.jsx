@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/moddash.css';
+import '../styles/ModDash.css';
 import { useEffect, useState } from 'react';
 
 import ModTabs from '../components/ModTabs';

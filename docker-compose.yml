@@ -1,0 +1,43 @@
+services:
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    env_file: "./server/.env"
+    image: mern_project/server:1.0
+    networks:
+      - app-network
+    depends_on: 
+      - mongodb
+    volumes:
+      - ./server:/server
+
+  frontend:
+    build:
+      context: ./client/react
+      dockerfile: Dockerfile
+    ports:
+      - "5173:8080"
+    volumes:
+      - ./client/react:/react
+      - ./client/react/node_modules:/react/node_modules
+    stdin_open: true
+    environment:
+      - API_URL=http://localhost:8080
+    image: mern_project/client:1.0
+    networks:
+      - app-network
+    tty: true
+
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

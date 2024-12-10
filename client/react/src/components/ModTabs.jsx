@@ -9,7 +9,7 @@ import ModTabUserInfo from "./UserProfileTabs/ModTabUserInfo";
 import ModTabHotels from "./UserProfileTabs/ModTabHotels";
 import { SettingsTab } from "./UserProfileTabs/SettingsTab";
 
-import '../styles/moddash.css';
+import '../styles/ModDash.css';
 
 
 
