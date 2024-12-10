@@ -47,7 +47,7 @@ const HotelSearch = () => {
         maxRating: maxRating || undefined
       };
       
-      const response = await axios.get("http://localhost:8080/api/hotels", { params });
+      const response = await axios.get("http://localhost:8080/api/searchhotels", { params });
       // fail-safe check if response won't get data from server
       setHotels(response.data.hotels || []);
       console.log(response.data.hotels);
