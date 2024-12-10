@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { axiosInstance, setAuthToken } from '../services/authService.js';
 import '../styles/Form.css';
 import eyeOpen from '../assets/Icons/eye-open.png';
@@ -18,7 +18,6 @@ function LoginForm() {
       const response = await axiosInstance.post('api/auth/signin', { email, password });
       const { token } = response.data;
       setAuthToken(token);
-      navigate('/');
     } catch (error) {
       alert('Login failed. Please try again.');
       console.error(error);
@@ -55,7 +54,9 @@ function LoginForm() {
         </label>
         <span>Forgot password?</span>
       </div>
+      <Link to="/userprofile/:id">
       <button type="submit">Login</button>
+      </Link>
       <p className="login-link">
         Don’t have an account?{' '}
         <span

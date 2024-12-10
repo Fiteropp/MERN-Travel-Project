@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/ModDash.css';
 import { useEffect, useState } from 'react';
 
-import ModTabs from '../components/UserTabs';
+import UserTabs from '../components/UserTabs';
 
 
 

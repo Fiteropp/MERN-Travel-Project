@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "../styles/HotelDetails.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import image1 from "../assets/images/image1.jpg";
 import image2 from "../assets/images/image2.jpg";
 import image3 from "../assets/images/image3.jpg";
@@ -35,30 +35,32 @@ const HotelDetails = () => {
   }
   /* Use the details of single hotel to populate the data below */
   return (
-    <div class="hotel-details">
+    <div className="hotel-details">
       <h4>{hotelDetails.name}</h4>
-      <section class="hotel-description">
+      <section className="hotel-description">
         <h2>{hotelDetails.rating}-rating</h2>
         <p>{hotelDetails.desc}</p>
       </section>
-      <section class="hotel-price">
+      <section className="hotel-price">
         <h2>Price</h2>
         <p>{hotelDetails.price} Euros</p>
       </section>
-      <section class="hotel-images">
+      <section className="hotel-images">
         <h2>Images</h2>
-        <div class="image-gallery">
+        <div className="image-gallery">
           <img src={hotelDetails.image} alt="Hotel Image 1" />
         </div>
       </section>
-      <section class="hotel-booking">
+      <section className="hotel-booking">
         <h2>Book Your Stay</h2>
+        <Link to={`/booking-form/${id}`}>
         <button
           type="submit"
           class="booking-button"
         >
           Book Now
         </button>
+        </Link>
       </section>
     </div>
   );
