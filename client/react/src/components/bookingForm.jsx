@@ -19,7 +19,7 @@ const BookingForm = () => {
   const navigate = useNavigate();
   const [confirmation, setConfirmation] = useState(null);
 
-  // Вычисляем дату через два года от текущего момента
+  // Calculate the maximum check-in date
   const maxDate = new Date();
   maxDate.setFullYear(maxDate.getFullYear() + 2);
 
@@ -36,14 +36,14 @@ const BookingForm = () => {
 
   const checkInDate = watch("checkInDate");
 
-  // Функция для обработки ввода имени
+  // Func to handle Name
   const handleNameChange = (e) => {
     const inputValue = e.target.value;
-    // Оставляем только английские буквы и пробелы
+    // keep only latin letters and spaces
     const sanitizedValue = inputValue.replace(/[^a-zA-Z\s]/g, "");
-    // Делаем первую букву заглавной
+    // Make the first letter uppercase
     const capitalizedValue = sanitizedValue.charAt(0).toUpperCase() + sanitizedValue.slice(1);
-    setValue("fullName", capitalizedValue); // Устанавливаем значение в форму
+    setValue("fullName", capitalizedValue); // Put value into the form
   };
 
   return (

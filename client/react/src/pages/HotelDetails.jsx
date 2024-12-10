@@ -56,7 +56,7 @@ const HotelDetails = () => {
         <Link to={`/booking-form/${id}`}>
         <button
           type="submit"
-          class="booking-button"
+          className="booking-button"
         >
           Book Now
         </button>
