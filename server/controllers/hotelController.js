@@ -52,6 +52,16 @@ export const getAssignedHotels = async (req, res, next) => {
   }
 };
 
+export const getAllHotels = async (req, res, next) => {
+  try {
+    const hotel = await Hotel.find();
+    res.status(200).json(hotel);
+  } catch (err) {
+    next(err);
+    res.status(500).send({ message: err.message });
+  }
+};
+
 export const getAllSearchHotels = async (req, res, next) => {
   try {
     const { 
