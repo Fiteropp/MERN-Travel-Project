@@ -1,13 +1,31 @@
 import "../styles/Navigation.css";
 import Button from '@mui/material/Button';
 import React, { useState, useEffect } from "react";
-import { useLocation, Link } from "react-router-dom";
-
+import { useLocation, Link, useNavigate } from "react-router-dom";
+import { getAuthToken } from "../services/authService";
+import { jwtDecode } from "jwt-decode";
 const Navigation = () => {
-  
+  const navigate = useNavigate();
   const location = useLocation(); // Get the current route
   const [scroll, setScroll] = useState(0);
   const [className, setClassName] = useState("navbar");
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+      const fetchUserData = async () => {
+          try {
+              const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/auth/getuserdata`,{
+                  method: 'GET',
+                  credentials: 'include'
+              }     
+              );
+              const data = await response.json();
+              setUser(data);
+          } catch (error) {
+              console.error("Error fetching user data:", error);
+          }
+      };fetchUserData();
+  },[]);
 
   const handleScroll = () => setScroll(window.scrollY);
 
@@ -25,6 +43,13 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll); // Cleanup
   }, [scroll, location.pathname]); // Re-run on scroll or route change
 
+
+  const handleLogout = () => {
+    document.cookie = "token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC"; // Clear cookie
+    setUser(null); // Clear user state
+    navigate("/"); // Redirect to home page
+  };
+
   return (
     <nav className={className}>
       <div className="nav_logo">Mern Hotel Booking</div>
@@ -41,13 +66,26 @@ const Navigation = () => {
         <li className="link">
           <Link to="#">Contact</Link>{" "}
         </li>
-        <li className="link">
-          <Link to="/userprofile">Profile</Link>{" "}
-        </li>
+        {user && (
+          <li className="link">
+            <Link to={`/userprofile/${user._id}`}>Profile</Link>{" "} 
+          </li>
+        )}
       </ul>
       <div className="buttons">
-      <Button variant="text" className="button" href="/signup"> SignUp </Button>
-      <Button variant="outlined" className="button" href="/login">  LogIn </Button>
+        {user ? (
+          <>
+            <span className="username">{user.fullName}</span> 
+            <Button variant="outlined" className="button" onClick={handleLogout}>
+              Logout
+            </Button>
+          </>
+        ) : (
+          <>
+            <Button variant="text" className="button" href="/signup">SignUp</Button>
+            <Button variant="outlined" className="button" href="/login">LogIn</Button>
+          </>
+        )}
       </div>
     </nav>
   );
