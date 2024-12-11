@@ -1,14 +1,37 @@
 /* General Styles */
 
-
+.hotelSearchPageContainer{
+    max-width: var(--content-max-wd);
+    margin: 0 auto;
+    padding-top: 2em;
+}
 
 .hotelsSearchContainer{
     display: flex;
     flex-direction: row;
+    padding-bottom: 5em;
+    
+}
+
+.hotelSearchHeaderCont{
+    margin-top: 1em;
+    margin-left: 1em;
+}
+
+.hotelSearchHeaderCont > h5{
+    font-weight: 300;
+    margin: 0px;
+}
+
+.hotelSearchHeader{
+    margin-top: 3px;
+    font-size: 2.5em;
+    font-weight: 400;
 }
 
 .topSection{
-    padding-top: 4em;
+    
+    padding-top: 2em;
 }
 
 .topSearch{
@@ -45,6 +68,12 @@
     border-radius: 10px;
     background-color: #e5eae9;
     margin-bottom: 1em;
+    text-decoration: none;
+    color: #1f1f1f;
+}
+
+.hotelCard > a{
+    text-decoration: none;
 }
 
 .hotelImgCont{
@@ -94,8 +123,8 @@
 }
 
 .hotelPrice{
-    font-weight: 500;
-    font-size: 1.2em;
+    font-weight: 400;
+    font-size: 1.5em;
 }
 
 .hotelRating{

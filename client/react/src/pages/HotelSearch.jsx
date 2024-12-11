@@ -91,15 +91,21 @@ const HotelSearch = () => {
 
   return (
     
-  <div >
+  <div className="hotelSearchPageContainer" >
      <section className="topSection">
-     <Typography variant="h4" gutterBottom>Hotel Search</Typography>
+      <div className="hotelSearchHeaderCont">
+        <h5>Find The Best Hotel For You</h5>
+        <h1 className="hotelSearchHeader"> Hotels Search </h1>
+      </div>
+      
      
     <div className="topFilters">
       
       <div className="topSearch">
         {/* Search by Name */}
-        <TextField sx={{ m: 1, minWidth: 305 }}
+        <TextField sx={{ m: 1 }}
+            fullWidth
+            className="topSearchBar"
             label="Search by Name"
             variant="outlined"
             value={search}
