@@ -52,6 +52,10 @@
   flex: 2;
 }
 
+.feature-img{
+  max-width: 100%;
+}
+
 .about-section{
   flex:3;
   padding: 15px;
@@ -105,6 +109,9 @@
 }
 
 .client_card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 2rem;
   background-color: var(--white);
   border-radius: 1rem;
@@ -121,6 +128,11 @@
 .client_card p {
   text-align: center;
   color: var(--text-dark);
+}
+
+.client-img{
+  align-items: center;
+  margin-top: 0px !important;
 }
 
 .reward_container {
