@@ -2,7 +2,7 @@ import React from "react";
 export function ClientsContainer({
   client
 }) {
-  return <div className="section_container client_container">
+  return <div className=" client_container">
         <h2 className="section_header">What our clients say</h2>
         <div className="client_grid">
           <div className="client_card">

@@ -108,6 +108,13 @@
   gap: 2rem;
 }
 
+.client_container{
+  padding-top: 12em;
+  padding-bottom: 10em;
+  margin: 0 auto;
+  max-width: var(--content-max-wd);
+}
+
 .client_card {
   display: flex;
   flex-direction: column;
@@ -135,43 +142,6 @@
   margin-top: 0px !important;
 }
 
-.reward_container {
-  padding: 2rem;
-  text-align: center;
-  border-radius: 2rem;
-  box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.1);
-}
-
-.reward_container p {
-  margin-bottom: 1rem;
-  font-weight: 600;
-  color: var(--text-light);
-}
-
-.reward_container h4 {
-  max-width: 500px;
-  margin: auto;
-  margin-bottom: 1rem;
-  font-size: 2rem;
-  font-weight: 600;
-  color: var(--text-dark);
-}
-
-.reward_btn {
-  padding: 1rem 3rem;
-  outline: none;
-  border: none;
-  font-size: 1rem;
-  color: var(--black);
-  background-color: var(--primary-color);
-  border-radius: 1rem;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.reward_btn:hover {
-  background-color: var(--primary-color-dark);
-}
 
 /* Initial state for animation */
 .fly-in-child {

@@ -51,29 +51,29 @@ const BookingForm = () => {
     <div className="booking-container">
       <h2 className="form-title">Booking Form</h2>
       <p className="form-subtitle">Personal booking</p>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form className="inputs-form" onSubmit={handleSubmit(onSubmit)}>
         {/* Full Name */}
         <div className="input-group">
-  <label className="input-label">Full Name</label>
-  <div className="input-container">
-    <input
-      type="text"
-      className="input-field with-counter"
-      placeholder="Ann Pine"
-      maxLength="50"
-      {...register("fullName", {
-        required: "Field is required",
-        minLength: { value: 2, message: "At least two symbols" },
-        pattern: { value: /^[A-Za-z\s]+$/, message: "Only letters are allowed" },
-      })}
-      onChange={handleNameChange}
-    />
-    <span className="char-counter">
-      {watch("fullName")?.length || 0}/50
-    </span>
-  </div>
-  {errors.fullName && <p className="error-message">{errors.fullName.message}</p>}
-</div>
+        <label className="input-label">Full Name</label>
+        <div className="input-container">
+          <input
+            type="text"
+            className="input-field with-counter"
+            placeholder="Ann Pine"
+            maxLength="50"
+            {...register("fullName", {
+              required: "Field is required",
+              minLength: { value: 2, message: "At least two symbols" },
+              pattern: { value: /^[A-Za-z\s]+$/, message: "Only letters are allowed" },
+            })}
+            onChange={handleNameChange}
+          />
+          <span className="char-counter">
+            {watch("fullName")?.length || 0}/50
+          </span>
+        </div>
+        {errors.fullName && <p className="error-message">{errors.fullName.message}</p>}
+      </div>
 
 
         {/* Check-in Date */}

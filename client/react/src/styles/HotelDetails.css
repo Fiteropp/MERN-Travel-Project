@@ -1,32 +1,123 @@
-.hotel-description h2,
-.hotel-price h2,
-.hotel-images h2,
-.hotel-booking h2 {
-  color: #000;
-  border-bottom: 2px solid #000000;
-  padding-bottom: 5px;
-}
+
+
+
 
 .hotel-details {
+  max-width: var(--content-max-wd);
   padding: 90px;
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
 }
 
-.hotel-description p,
-.hotel-price p {
-  font-size: 1.1em;
-  line-height: 1.6;
-}
-
-.image-gallery {
+.hotel-images {
+  flex: 3;
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+  
 }
 
-.image-gallery img {
+.hotel-images img {
   max-width: 100%;
-  border-radius: 8px;
+  border-radius: 1.5em;
+  object-fit: cover;
 }
+
+
+.hotel-info {
+  flex: 4;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hotel-header{
+  font-size: 2em;
+  margin-bottom: 0.1em;
+  line-height: 0.5em;
+}
+
+.hotel-rating{
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  column-gap: 10px;
+  margin-top: 0.1em;
+}
+
+.hotel-city{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.hotel-city > p{
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+.hotel-description{
+  display: flex;
+  flex-direction: column;
+  background-color: #cfeae4;
+  padding: 1.3em;
+  border-radius: 1em;
+  margin-top: 1em;
+  gap: 1em;
+}
+
+.hotel-description > p{
+  font-size: 1.2em;
+}
+
+.hotel-element-header{
+  margin-top: 0.2em;
+  margin-bottom: 0.6em;
+  background: rgb(0,55,49);
+  background: linear-gradient(342deg, rgba(0,55,49,1) 0%, rgba(9,121,117,1) 57%, rgba(0,101,106,0.9457983877144608) 100%); 
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hotel-contacts > h5{
+  font-size: 1em;
+  margin: 2px;
+  margin-top: 7px;
+  font-weight: 300;
+  color: var(--text-light);
+}
+
+.hotel-contacts > span{
+  font-size: 1.2em;
+}
+
+.hotel-price > p{
+  font-size: 2em;
+  font-weight: 500;
+  margin: 0px;
+}
+
+.hotel-price > h5{
+  color: #666;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+
+.hotel-booking{
+  margin-top: 1em;
+  padding: 1.5em;
+  border-radius: 1em;
+  border: 1px solid rgb(221, 221, 221);
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+}
+
+.hotel-booking > h2{
+  margin: 0px;
+}
+
 
 .booking-button {
   display: block;
@@ -46,6 +137,13 @@
 }
 
 .hotel-images img {
-  width: 30%;
+  padding: 10px;
+  width: 100%;
   margin: 0%;
+}
+
+@media (max-width: 1250px) {
+  .hotel-details{
+    flex-direction: column;
+  }
 }

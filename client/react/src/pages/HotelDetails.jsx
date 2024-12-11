@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import "../styles/HotelDetails.css";
 import { useNavigate, Link } from "react-router-dom";
-import image1 from "../assets/images/image1.jpg";
-import image2 from "../assets/images/image2.jpg";
-import image3 from "../assets/images/image3.jpg";
+
+import { Rating } from "@mui/material";
+
+import location_svg from "../assets/Icons/location-sign-svgrepo-com.svg"
+import "../styles/HotelDetails.css";
+
+
+
 const HotelDetails = () => {
   const navigate = useNavigate();
   /* Get the id from the params */
@@ -35,34 +39,77 @@ const HotelDetails = () => {
   }
   /* Use the details of single hotel to populate the data below */
   return (
-    <div className="hotel-details">
-      <h4>{hotelDetails.name}</h4>
-      <section className="hotel-description">
-        <h2>{hotelDetails.rating}-rating</h2>
-        <p>{hotelDetails.desc}</p>
+    <div>
+        <div className="hotel-details">
+      
+          <section className="hotel-images">
+            <img src={hotelDetails.image} alt="Hotel Image 1" />
+          </section>
+          
+          <section className="hotel-info">
+            
+            <div>
+              <h1 className="hotel-header">{hotelDetails.name}</h1>
+              
+              <div className="hotel-rating-cont">
+                <div className="hotel-rating">
+                  <Rating
+                  precision={0.25}
+                  value={hotelDetails.rating}
+                  readOnly
+                />
+                
+                <p>{hotelDetails.rating} /5</p>
+                </div>
+
+                <div className="hotel-city">
+                <img className="city-logo" src={location_svg} alt="" />
+                  <p>{hotelDetails.city}</p>
+                </div>
+              </div>
+              
+
+            </div>
+
+            <section className="hotel-description">
+                <div>
+                  <h2 className="hotel-element-header">Description:</h2>
+                  <p>{hotelDetails.desc}</p>
+                </div>
+                
+                <div className="hotel-contacts">
+                    <h2 className="hotel-element-header">Contact Information</h2>
+                    <h5>Hotel Phone Number:   </h5> 
+                    <span> +{hotelDetails.phoneNumber}</span>
+                    <h5>Address:  </h5>
+                    <span> {hotelDetails.address}</span>
+                </div>
+
+
+              </section>
+            
+
+            <section className="hotel-booking">
+              <h2>Book Your Stay</h2>
+              <section className="hotel-price">
+              <h5>Price per night</h5>
+              <p>{hotelDetails.price} €</p>
+            
+            </section>
+              <Link to={`/booking-form/${id}`}>
+              <button
+                type="submit"
+                className="booking-button"
+              >
+                Book Now
+              </button>
+              </Link>
+            </section>
+
       </section>
-      <section className="hotel-price">
-        <h2>Price</h2>
-        <p>{hotelDetails.price} Euros</p>
-      </section>
-      <section className="hotel-images">
-        <h2>Images</h2>
-        <div className="image-gallery">
-          <img src={hotelDetails.image} alt="Hotel Image 1" />
-        </div>
-      </section>
-      <section className="hotel-booking">
-        <h2>Book Your Stay</h2>
-        <Link to={`/booking-form/${id}`}>
-        <button
-          type="submit"
-          className="booking-button"
-        >
-          Book Now
-        </button>
-        </Link>
-      </section>
+      </div>
     </div>
+    
   );
 };
 

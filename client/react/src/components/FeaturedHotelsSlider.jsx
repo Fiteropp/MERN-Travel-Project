@@ -43,9 +43,9 @@ const hotels = hotelData.map((hotel) => (
       <h3 className="price">{hotel.price} €</h3>
       </div>
       <Link to={`/hotel/${hotel._id}`} 
-            style={{ textDecoration: 'none', color: 'inherit' }} // Remove link styling
+            style={{ textDecoration: 'none', color: 'inherit', width: '100%' }} // Remove link styling
             >
-      <button>View Hotel</button>
+      <button href={`/hotel/${hotel._id}`}>View Hotel</button>
       </Link>
     </div>
   ));
