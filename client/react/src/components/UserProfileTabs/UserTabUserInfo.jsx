@@ -123,7 +123,7 @@ function UserTabUserInfo() {
                 <div className="account-tab-element">
                     <div>
                         <span className="account-small-label">Full Name</span><br />
-                        <span className="account-info-line">{fields.name || 'N/A'}</span>
+                        <span className="account-info-line">{fields.fullName || 'N/A'}</span>
                     </div>
                     <div>
                     <Button onClick={() => handleEditClick('fullName')} className="edit-button" variant="outlined"><i className='bx bxs-edit bx-sm' ></i>  <span className="edit-button-text">Edit</span></Button>

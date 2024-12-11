@@ -1,32 +1,31 @@
 import "../styles/Navigation.css";
 import Button from '@mui/material/Button';
 import React, { useState, useEffect } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import { getAuthToken } from "../services/authService";
 import { jwtDecode } from "jwt-decode";
 const Navigation = () => {
-  
+  const navigate = useNavigate();
   const location = useLocation(); // Get the current route
   const [scroll, setScroll] = useState(0);
   const [className, setClassName] = useState("navbar");
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
 
-// Check for token and decode user info
-useEffect(() => {
-  const token = getAuthToken(); // Get token from cookies
-  if (token) {
-    try {
-      const decoded = jwtDecode(token); // Decode JWT to get user info
-      setUser(decoded); // Set user info (e.g., name, ID)
-      console.log(user);
-    } catch (error) {
-      console.error("Failed to decode token:", error);
-      setUser(null); // Clear user state if token is invalid
-    }
-  } else {
-    setUser(null); // Clear user state if no token
-  }
-}, []);
+  useEffect(() => {
+      const fetchUserData = async () => {
+          try {
+              const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/auth/getuserdata`,{
+                  method: 'GET',
+                  credentials: 'include'
+              }     
+              );
+              const data = await response.json();
+              setUser(data);
+          } catch (error) {
+              console.error("Error fetching user data:", error);
+          }
+      }
+  },[]);
 
   const handleScroll = () => setScroll(window.scrollY);
 
@@ -76,7 +75,7 @@ useEffect(() => {
       <div className="buttons">
         {user ? (
           <>
-            <span className="username">Hello, {user.name}</span> 
+            <span className="username">{user.fullName}</span> 
             <Button variant="outlined" className="button" onClick={handleLogout}>
               Logout
             </Button>

@@ -19,7 +19,7 @@
 .username {
   margin-right: 1rem;
   font-weight: bold;
-  color: #276968;
+  color: var(--extra-light);
 }
 
 /* Half-transparent style for home page */
