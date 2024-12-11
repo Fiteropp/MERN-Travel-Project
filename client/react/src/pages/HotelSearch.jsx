@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import location_svg from "../assets/Icons/location-sign-svgrepo-com.svg"
 import axios from "axios";
 import {
   TextField,
@@ -8,14 +9,17 @@ import {
   FormControl,
   InputLabel,
   Button,
-  Grid,
+  Slider,
   Card,
   CardContent,
   Typography,
   Box,
   Pagination,
-  CardMedia
+  CardMedia,
+  Rating
 } from "@mui/material";
+
+import "../styles/HotelSearch.css"
 
 const HotelSearch = () => {
   const [hotels, setHotels] = useState([]);
@@ -67,6 +71,8 @@ const HotelSearch = () => {
     setPage(value);
   };
 
+  
+
   const resetFilters = () => {
     setSearch("");
     setCity("");
@@ -84,28 +90,71 @@ const HotelSearch = () => {
   };
 
   return (
-    <Box p={4}>
-      <Typography variant="h4" gutterBottom>
-        Hotel Search
-      </Typography>
-
-      <Grid container spacing={3} alignItems="center">
+    
+  <div >
+     <section className="topSection">
+     <Typography variant="h4" gutterBottom>Hotel Search</Typography>
+     
+    <div className="topFilters">
+      
+      <div className="topSearch">
         {/* Search by Name */}
-        <Grid item xs={12} sm={6} md={3}>
-          <TextField
+        <TextField sx={{ m: 1, minWidth: 305 }}
             label="Search by Name"
             variant="outlined"
-            fullWidth
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-        </Grid>
+      </div>
+      
+      <div className="topSort">
+            
+            {/* Sort By */}
+            <FormControl sx={{ m: 1, minWidth: 150 }}>
+            <InputLabel>Sort By</InputLabel>
+              <Select 
+                label="Sort By"
+                value={sortBy} 
+                onChange={(e) => setSortBy(e.target.value)}
+              >
+                <MenuItem value="name">Name</MenuItem>
+                <MenuItem value="price">Price</MenuItem>
+                <MenuItem value="rating">Rating</MenuItem>
+              </Select>
+            </FormControl>
+          
+
+          {/* Order */}
+            <FormControl sx={{ m: 1, minWidth: 150 }}>
+              <InputLabel>Order</InputLabel>
+              <Select 
+                label="Order"
+                value={order} 
+                onChange={(e) => setOrder(e.target.value)}
+              >
+                <MenuItem value="asc">Ascending</MenuItem>
+                <MenuItem value="desc">Descending</MenuItem>
+              </Select>
+            </FormControl>
+      </div>
+    </div>
+
+    
+     
+     </section>
+    
+    <div className="hotelsSearchContainer">
+
+      <div className="filters">
+          
+        
 
         {/* City Filter */}
-        <Grid item xs={12} sm={6} md={3}>
-          <FormControl fullWidth>
+        
+          <FormControl className="search-input" fullWidth>
             <InputLabel>City</InputLabel>
             <Select 
+              label="City"
               value={city} 
               onChange={(e) => setCity(e.target.value)}
             >
@@ -117,149 +166,142 @@ const HotelSearch = () => {
               <MenuItem value="Cancún">Cancún</MenuItem>
             </Select>
           </FormControl>
-        </Grid>
+        
 
-        {/* Sort By */}
-        <Grid item xs={12} sm={6} md={2}>
-          <FormControl fullWidth>
-            <InputLabel>Sort By</InputLabel>
-            <Select 
-              value={sortBy} 
-              onChange={(e) => setSortBy(e.target.value)}
-            >
-              <MenuItem value="name">Name</MenuItem>
-              <MenuItem value="price">Price</MenuItem>
-              <MenuItem value="rating">Rating</MenuItem>
-            </Select>
-          </FormControl>
-        </Grid>
+        
+        
+        <div className="filterRow">
+            {/* Price Range*/}
 
-        {/* Order */}
-        <Grid item xs={12} sm={6} md={2}>
-          <FormControl fullWidth>
-            <InputLabel>Order</InputLabel>
-            <Select 
-              value={order} 
-              onChange={(e) => setOrder(e.target.value)}
-            >
-              <MenuItem value="asc">Ascending</MenuItem>
-              <MenuItem value="desc">Descending</MenuItem>
-            </Select>
-          </FormControl>
-        </Grid>
+            <TextField className="search-input"
+              label="Min Price"
+              type="number"
+              variant="outlined"
+              fullWidth
+              value={minPrice}
+              onChange={(e) => setMinPrice(e.target.value)}
+            />
+          
+          
+            <TextField className="search-input"
+              label="Max Price"
+              type="number"
+              variant="outlined"
+              fullWidth
+              value={maxPrice}
+              onChange={(e) => setMaxPrice(e.target.value)}
+            />
+        </div>
+        
+        <div className="filterRow">
+          { /* Rating Range */}
+          
+            <TextField className="search-input"
+              label="Min Rating"
+              type="number"
+              variant="outlined"
+              fullWidth
+              inputProps={{ min: 0, max: 5, step: 0.1 }}
+              value={minRating}
+              onChange={(e) => setMinRating(e.target.value)}
+            />
+          
+            <TextField className="search-input"
+              label="Max Rating"
+              type="number"
+              variant="outlined"
+              fullWidth
+              inputProps={{ min: 0, max: 5, step: 0.1 }}
+              value={maxRating}
+              onChange={(e) => setMaxRating(e.target.value)}
+            />
+        </div>
 
-        {/* Price Range */}
-        <Grid item xs={12} sm={6} md={2}>
-          <TextField
-            label="Min Price"
-            type="number"
-            variant="outlined"
-            fullWidth
-            value={minPrice}
-            onChange={(e) => setMinPrice(e.target.value)}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={2}>
-          <TextField
-            label="Max Price"
-            type="number"
-            variant="outlined"
-            fullWidth
-            value={maxPrice}
-            onChange={(e) => setMaxPrice(e.target.value)}
-          />
-        </Grid>
-
-        {/* Rating Range */}
-        <Grid item xs={12} sm={6} md={2}>
-          <TextField
-            label="Min Rating"
-            type="number"
-            variant="outlined"
-            fullWidth
-            inputProps={{ min: 0, max: 5, step: 0.1 }}
-            value={minRating}
-            onChange={(e) => setMinRating(e.target.value)}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={2}>
-          <TextField
-            label="Max Rating"
-            type="number"
-            variant="outlined"
-            fullWidth
-            inputProps={{ min: 0, max: 5, step: 0.1 }}
-            value={maxRating}
-            onChange={(e) => setMaxRating(e.target.value)}
-          />
-        </Grid>
-
+       
+        
+      <div className="filterRow">
         {/* Action Buttons */}
-        <Grid item xs={12} container spacing={2}>
-          <Grid item>
+          
             <Button 
+              className="edit-button-contained"
               variant="contained" 
               color="primary" 
               onClick={fetchHotels}
             >
               Search
             </Button>
-          </Grid>
-          <Grid item>
+          
             <Button 
+              className="edit-button"
               variant="outlined" 
               color="secondary" 
               onClick={resetFilters}
             >
               Reset Filters
             </Button>
-          </Grid>
-        </Grid>
-      </Grid>
 
-      {/* Total Hotels Information */}
-      <Typography variant="subtitle1" sx={{ mt: 2 }}>
-        Total Hotels Found: {totalHotels}
-      </Typography>
+      </div>
+        
+            {/* Total Hotels Information */}
+          <Typography variant="subtitle1" sx={{ mt: 2 }}>
+            Total Hotels Found: {totalHotels}
+          </Typography>
 
-      {/* Error Message */}
-      {error && (
-        <Typography color="error" sx={{ mt: 2 }}>
-          {error}
-        </Typography>
-      )}
+          {/* Error Message */}
+          {error && (
+            <Typography color="error" sx={{ mt: 2 }}>
+              {error}
+            </Typography>
+          )}
+      </div>
+        
 
-      {/* Hotels Grid */}
-      <Grid container spacing={3} sx={{ mt: 4 }}>
-        {/*check if hotels is an array of objects. Just for my sake + another fail-safe*/}
+        
+
+      
+      
+      
+      <div className="hotelsCards">
+        
+        {/* Hotels Grid2 */}
+        <div>
         {(Array.isArray(hotels) ? hotels : []).map((hotel) => (
-          <Grid item xs={12} sm={6} md={4} key={hotel._id} >
-            <Link 
-              to={`/hotel/${hotel._id}`} 
-              style={{ textDecoration: 'none', color: 'inherit' }} // Remove link styling
-            >
-            <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+        <div key={hotel._id} className="hotelCardDiv">
+          <Link to={`/hotel/${hotel._id}`} className="hotelCard">
+            <div className="hotelImgCont">
               {hotel.image && (
-                <CardMedia
-                  component="img"
-                  height="200"
-                  image={hotel.image}
-                  alt={hotel.name}
-                />
+                <img
+                  className="hotelImg"
+                  src={hotel.image}
+                  alt={hotel.name}/>
               )}
-              <CardContent sx={{ flexGrow: 1 }}>
-                <Typography variant="h6">{hotel.name}</Typography>
-                <Typography>City: {hotel.city}</Typography>
-                <Typography>Location: {hotel.location}</Typography>
-                <Typography>Price: ${hotel.price}</Typography>
-                <Typography>Rating: {hotel.rating}/5</Typography>
-                <Typography variant="body2">{hotel.desc}</Typography>
-              </CardContent>
-            </Card>
-            </Link>
-          </Grid>
-        ))}
-      </Grid>
+
+            </div>
+            <div className="hotelInfo" >
+                <h3 className="hotelName" >{hotel.name}</h3>
+                <div className="hotelCityCont">
+                  <img className="city-logo" src={location_svg} alt="" />
+                  <p className="hotelCity"> {hotel.city}</p>
+                </div>
+                <div className="hotelPriceAndRating">
+                  <p className="hotelPrice"> {hotel.price} €</p>
+                  <div className="hotelRating">
+                    <Rating
+                      precision={0.25}
+                      value={hotel.rating}
+                      readOnly
+                    />
+                    <p > {hotel.rating}/5</p>
+                  </div>
+                </div>
+                
+                
+                <p className="hotelDescription" >{hotel.desc}</p>
+              </div>
+          </Link>
+        </div>
+      ))}
+    </div>
 
       {/* Pagination */}
       {totalPages > 1 && (
@@ -272,8 +314,12 @@ const HotelSearch = () => {
           />
         </Box>
       )}
-    </Box>
-  );
-};
+
+      </div>
+      </div>
+      
+
+  </div>  
+  )}
 
 export { HotelSearch };

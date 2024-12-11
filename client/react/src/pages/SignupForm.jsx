@@ -55,30 +55,24 @@ function SignupForm() {
         Let’s get you all set up so you can access your personal account.
       </p>
       <input
+        className='loginInput'
         type="text"
         name="fullName"
         placeholder="Full Name *"
         value={formData.fullName}
         onChange={handleChange}
       />
-      <div className="row">
-        <input
+      <input
+          className='loginInput'
           type="email"
           name="email"
           placeholder="Email *"
           value={formData.email}
           onChange={handleChange}
         />
-        <input
-          type="text"
-          name="phone"
-          placeholder="Phone Number"
-          value={formData.phone}
-          onChange={handleChange}
-        />
-      </div>
       <div className="password-field">
         <input
+          className='loginInput'
           type={formData.showPassword ? "text" : "password"}
           name="password"
           placeholder="Password *"
@@ -96,6 +90,7 @@ function SignupForm() {
       </div>
       <div className="password-field">
         <input
+          className='loginInput'
           type={formData.showConfirmPassword ? "text" : "password"}
           name="confirmPassword"
           placeholder="Confirm Password *"

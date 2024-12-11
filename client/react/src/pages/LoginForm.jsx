@@ -33,6 +33,7 @@ function LoginForm() {
       <h2>Login</h2>
       <p className="desc">Login to access your MERN TRAVEL account.</p>
       <input
+        className='loginInput'
         type="email"
         placeholder="Email *"
         value={email}
@@ -40,6 +41,7 @@ function LoginForm() {
       />
       <div className="password-field">
         <input
+        className='loginInput'
           type={passwordVisible ? 'text' : 'password'}
           placeholder="Password *"
           value={password}
