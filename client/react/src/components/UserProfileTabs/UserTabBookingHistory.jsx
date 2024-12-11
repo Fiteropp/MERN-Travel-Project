@@ -30,7 +30,7 @@ function UserTabBookingHistory() {
 
     return (
         <div>
-            <h2>My Hotels</h2>
+            <h2>My Bookings</h2>
             {hotelData.length > 0 ? (
         hotelData.map((hotel) => (
           <div key={hotel._id} className="HotelElement">
@@ -52,7 +52,7 @@ function UserTabBookingHistory() {
           </div>
         ))
       ) : (
-        <p>No hotels assigned yet.</p>
+        <p>No bookings assigned yet.</p>
       )}
         </div>
     )

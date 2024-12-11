@@ -9,7 +9,7 @@ const Navigation = () => {
   const location = useLocation(); // Get the current route
   const [scroll, setScroll] = useState(0);
   const [className, setClassName] = useState("navbar");
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState([]);
 
   useEffect(() => {
       const fetchUserData = async () => {

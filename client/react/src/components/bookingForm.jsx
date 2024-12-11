@@ -17,7 +17,6 @@ import { Link } from "react-router-dom";
 const BookingForm = () => {
   const { register, handleSubmit, watch, formState: { errors }, setValue } = useForm();
   const navigate = useNavigate();
-  const [confirmation, setConfirmation] = useState(null);
 
   // Calculate the maximum check-in date
   const maxDate = new Date();
@@ -26,8 +25,7 @@ const BookingForm = () => {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/bookings`, data);
-      setConfirmation(response.data.message);
-      //navigate("/booking-history");
+      navigate("/booking-history");
       navigate("/");
     } catch (error) {
       console.error("Error booking:", error);
@@ -54,29 +52,26 @@ const BookingForm = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Full Name */}
         <div className="input-group">
-  <label className="input-label">Full Name</label>
-  <div className="input-container">
-    <input
-      type="text"
-      className="input-field with-counter"
-      placeholder="Ann Pine"
-      maxLength="50"
-      {...register("fullName", {
-        required: "Field is required",
-        minLength: { value: 2, message: "At least two symbols" },
-        pattern: { value: /^[A-Za-z\s]+$/, message: "Only letters are allowed" },
-      })}
-      onChange={handleNameChange}
-    />
-    <span className="char-counter">
-      {watch("fullName")?.length || 0}/50
-    </span>
-  </div>
-  {errors.fullName && <p className="error-message">{errors.fullName.message}</p>}
-</div>
-
-
-        {/* Check-in Date */}
+        <label className="input-label">Full Name</label>
+        <div className="input-container">
+          <input
+            type="text"
+            className="input-field with-counter"
+            placeholder="Ann Pine"
+            maxLength="50"
+            {...register("fullName", {
+              required: "Field is required",
+              minLength: { value: 2, message: "At least two symbols" },
+              pattern: { value: /^[A-Za-z\s]+$/, message: "Only letters are allowed" },
+            })}
+            onChange={handleNameChange}
+          />
+          <span className="char-counter">
+            {watch("fullName")?.length || 0}/50
+          </span>
+        </div>
+            {errors.fullName && <p className="error-message">{errors.fullName.message}</p>}
+        </div>
         <div className="input-group">
           <label htmlFor="checkInDate" className="input-label">Check-in Date</label>
           <input
@@ -90,7 +85,6 @@ const BookingForm = () => {
           {errors.checkInDate && <p className="error-message">{errors.checkInDate.message}</p>}
         </div>
 
-        {/* Check-out Date */}
         <div className="input-group">
           <label htmlFor="checkOutDate" className="input-label">Check-out Date</label>
           
@@ -109,7 +103,6 @@ const BookingForm = () => {
           {errors.checkOutDate && <p className="error-message">{errors.checkOutDate.message}</p>}
         </div>
 
-        {/* Guests */}
         <div className="input-group">
           <label className="input-label">Guests</label>
           <input
@@ -130,8 +123,6 @@ const BookingForm = () => {
 
         <button type="submit" className="submit-button">Submit</button>
       </form>
-
-      {confirmation && <p className="confirmation-message">{confirmation}</p>}
     </div>
     </div>
   );
