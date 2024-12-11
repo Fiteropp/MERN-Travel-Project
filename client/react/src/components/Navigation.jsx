@@ -24,7 +24,7 @@ const Navigation = () => {
           } catch (error) {
               console.error("Error fetching user data:", error);
           }
-      }
+      };fetchUserData();
   },[]);
 
   const handleScroll = () => setScroll(window.scrollY);
