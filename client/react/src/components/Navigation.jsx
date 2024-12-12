@@ -1,5 +1,5 @@
 import "../styles/Navigation.css";
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 import React, { useState, useEffect } from "react";
 
 import axios from "axios";
@@ -34,6 +34,7 @@ const Navigation = () => {
     }; fetchUserData();
   },[]);
 
+
   const handleScroll = () => setScroll(window.scrollY);
 
   useEffect(() => {
@@ -42,13 +43,16 @@ const Navigation = () => {
 
     // Set class name dynamically based on scroll and route
     if (location.pathname === "/") {
-      setClassName(scroll > 540 ? "navbar navbar-home-scrolled" : "navbar navbar-home");
+      setClassName(
+        scroll > 540 ? "navbar navbar-home-scrolled" : "navbar navbar-home"
+      );
     } else {
       setClassName("navbar navbar-other");
     }
 
     return () => window.removeEventListener("scroll", handleScroll); // Cleanup
   }, [scroll, location.pathname]); // Re-run on scroll or route change
+
 
   
   const handleLogout = async () => {
@@ -92,7 +96,7 @@ const Navigation = () => {
 
   return (
     <nav className={className}>
-      <div className="nav_logo">Mern Hotel Booking</div>
+      <div className="nav_logo">Mern Travel Booking</div>
       <ul className="nav_links">
         <li className="link">
           <Link to="/">Home</Link>{" "}
@@ -108,22 +112,30 @@ const Navigation = () => {
         </li>
         {user && (
           <li className="link">
-            <Link to={`/userprofile/${user._id}`}>Profile</Link>{" "} 
+            <Link to={`/userprofile/${user._id}`}>Profile</Link>{" "}
           </li>
         )}
       </ul>
       <div className="buttons">
         {user ? (
           <>
-            <span className="username">{user.fullName}</span> 
-            <Button variant="outlined" className="button" onClick={handleLogout}>
+            <span className="username">{user.fullName}</span>
+            <Button
+              variant="outlined"
+              className="button"
+              onClick={handleLogout}
+            >
               Logout
             </Button>
           </>
         ) : (
           <>
-            <Button variant="text" className="button" href="/signup">SignUp</Button>
-            <Button variant="outlined" className="button" href="/login">LogIn</Button>
+            <Button variant="text" className="button" href="/signup">
+              SignUp
+            </Button>
+            <Button variant="outlined" className="button" href="/login">
+              LogIn
+            </Button>
           </>
         )}
       </div>
