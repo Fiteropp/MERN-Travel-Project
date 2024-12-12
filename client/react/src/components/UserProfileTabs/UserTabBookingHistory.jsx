@@ -6,19 +6,17 @@ import { useEffect, useState } from 'react';
 // need to redo whole file after deployment
 function UserTabBookingHistory() {
 
-    const [hotelData, setHotelData] = useState([])
+    const [bookingData, setBookingData] = useState([])
 
     useEffect(() => {
         const fetchUserData = async () => {
         try {
-            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/getassignedhotels`,{
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/bookings`,{
                 method: 'GET',
                 credentials: 'include'
-            }
-                
-            );
+            });
             const data = await response.json();
-            setHotelData(data);
+            setBookingData(data);
         } catch (error) {
             console.error("Error fetching user data:", error);
         }
@@ -30,29 +28,26 @@ function UserTabBookingHistory() {
 
     return (
         <div>
-            <h2>My Hotels</h2>
-            {hotelData.length > 0 ? (
-        hotelData.map((hotel) => (
-          <div key={hotel._id} className="HotelElement">
+            <h2>My Bookings</h2>
+            {bookingData.length > 0 ? (
+        bookingData.map((bookings) => (
+          <div key={bookings._id} className="HotelElement">
             <div className="HotelElementContainer">
               <img
                 className="HotelImage"
-                src={hotel.image || 'https://picsum.photos/id/164/300/200'}
-                alt={hotel.name || 'Hotel Image'}
+                src={bookings.hotel || 'Hotel Image'}
               />
             </div>
             <div className="HotelElementText">
-              <h2>{hotel.name || 'N/A'}</h2>
-              <p>{hotel.location || 'N/A'}</p>
-              <p>Description: <br /> {hotel.desc || 'N/A'}</p>
-              <Button className="edit-button" variant="outlined">
-                <i className="bx bxs-edit bx-sm"></i> <span className="edit-button-text">Edit</span>
-              </Button>
+              <h2>{bookings.checkIn || 'N/A'}</h2>
+              <p>{bookings.checkOut || 'N/A'}</p>
+              <p>Room: <br /> {bookings.room || 'N/A'}</p>
+
             </div>
           </div>
         ))
       ) : (
-        <p>No hotels assigned yet.</p>
+        <p>No bookings assigned yet.</p>
       )}
         </div>
     )

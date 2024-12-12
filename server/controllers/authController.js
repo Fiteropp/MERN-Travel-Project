@@ -76,6 +76,17 @@ export const signin = async (req, res) => {
   }
 };
 
+export const logout = async (req, res ) => {
+  res.cookie('jwt', '', {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production', // Match original
+    sameSite: 'Strict', // Match original
+    path: '/', // Match original path
+    expires: new Date(0), // Expire the cookie
+  });
+  res.status(200).json({ message: 'Logged out successfully' });
+}
+
 
 //User data
 export const getUserData = async (req, res, next) => {

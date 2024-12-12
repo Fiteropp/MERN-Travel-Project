@@ -27,8 +27,7 @@ const router = createBrowserRouter(
       <Route path="/discover" element={<HotelSearch />} />
       <Route path="/userprofile/:id" element={<UserDash />} />
       <Route path="/moderator" element={<ModDash />} />
-      <Route path="/booking-form/:id" element={<BookingForm />} />
-      <Route path="/booking-history" element={<div>Bookinghistory</div>} />
+      <Route path="/booking-form" element={<BookingForm />} />
     </Route>
   )
 );

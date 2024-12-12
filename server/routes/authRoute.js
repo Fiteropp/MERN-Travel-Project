@@ -27,6 +27,8 @@ export default (app) => {
   //Login Requires "username" and "password"
   app.post("/api/auth/signin", controller.signin);
 
+  //Logout route
+  app.post("/api/auth/logout", controller.logout);
 
   //Get user data
   app.get("/api/auth/getuserdata", authJwt.verifyToken, controller.getUserData )
