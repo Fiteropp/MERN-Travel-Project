@@ -50,6 +50,12 @@ const Navigation = () => {
     navigate("/"); // Redirect to home page
   };
 
+  useEffect(() => {
+    if (handleLogout) {
+      document.cookie = 'jwt=; Max-Age=0;secure;path=/';
+    }
+    }, []);
+
   return (
     <nav className={className}>
       <div className="nav_logo">Mern Hotel Booking</div>

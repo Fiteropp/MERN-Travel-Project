@@ -1,129 +1,194 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-//import DatePicker from "react-datepicker";
-//import "react-datepicker/dist/react-datepicker.css";
 import "../styles/bookingForm.css";
 
-import { Link } from "react-router-dom";
-
-<div className="link-container">
-  <Link to="/profile" className="profile-link">
-    Go to Profile
-  </Link>
-</div>
- 
+/**
+ * The BookingForm component renders a form for booking a room.
+ * It fetches the room details from the backend API and displays them in the form.
+ * The form takes the check-in date, check-out date, and number of guests as input.
+ * When the form is submitted, it sends a booking request to the backend API.
+ * If the request is successful, it navigates to the home page with a success message
+ * and booking ID. If there is an error, it sets a submission error message.
+ * 
+ * @param {string} hotelId - The ID of the hotel that the room belongs to.
+ * @param {string} roomId - The ID of the room being booked.
+ * @returns {JSX.Element} The BookingForm component.
+ */
 const BookingForm = () => {
-  const { register, handleSubmit, watch, formState: { errors }, setValue } = useForm();
-  const navigate = useNavigate();
-
-  // Calculate the maximum check-in date
-  const maxDate = new Date();
-  maxDate.setFullYear(maxDate.getFullYear() + 2);
-
-  const onSubmit = async (data) => {
-    try {
-      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/bookings`, data);
-      navigate("/booking-history");
-      navigate("/");
-    } catch (error) {
-      console.error("Error booking:", error);
+ // const { hotelId, roomId } = useParams(); // Assuming room ID is also in the route
+  const { 
+    register, 
+    handleSubmit, 
+    watch, 
+    setValue,
+    formState: { errors } 
+  } = useForm({
+    defaultValues: {
+      hotel: hotelId,
+      room: roomId,
+      guests: 1 // Default to 1 guest
     }
-  };
+  });
+  const navigate = useNavigate();
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
+  const [roomDetails, setRoomDetails] = useState(null);
+
+  // Fetch room details when component mounts
+  useEffect(() => {
+    const fetchRoomDetails = async () => {
+      try {
+        axios.defaults.withCredentials = true;
+        const response = await axios.get(
+          `${import.meta.env.VITE_BACKEND_URL}/api/getroom/${roomId}`
+        );
+        setRoomDetails(response.data);
+      } catch (error) {
+        console.error("Error fetching room details:", error);
+        setSubmitError("Could not load room details");
+      }
+    };
+
+    if (roomId) {
+      fetchRoomDetails();
+    }
+  }, [roomId]);
 
   const checkInDate = watch("checkInDate");
 
-  // Func to handle Name
-  const handleNameChange = (e) => {
-    const inputValue = e.target.value;
-    // keep only latin letters and spaces
-    const sanitizedValue = inputValue.replace(/[^a-zA-Z\s]/g, "");
-    // Make the first letter uppercase
-    const capitalizedValue = sanitizedValue.charAt(0).toUpperCase() + sanitizedValue.slice(1);
-    setValue("fullName", capitalizedValue); // Put value into the form
+/**
+ * Handles the form submission for booking a room.
+ * 
+ * This function takes form data, constructs a booking request, 
+ * and sends it to the backend API. It manages the submission state 
+ * and handles any errors that occur during the process.
+ * 
+ * @param {Object} data - The form data containing booking details.
+ * @param {Date} data.checkInDate - The check-in date.
+ * @param {Date} data.checkOutDate - The check-out date.
+ * @param {number} data.maxPeople - The maximum number of guests.
+ * 
+ * On success, navigates to the home page with a success message 
+ * and booking ID. On error, sets a submission error message.
+ */
+  const onSubmit = async (data) => {
+    setSubmitError(null);
+    
+    if (isSubmitting) return;
+
+    try {
+      setIsSubmitting(true);
+      axios.defaults.withCredentials = true;
+
+      const bookingData = {
+        hotel: hotelId,
+        room: roomId,
+        checkIn: data.checkInDate,
+        checkOut: data.checkOutDate,
+        guests: data.maxPeople,
+      };
+
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/bookings`, 
+        bookingData
+      );
+
+      navigate("/", {
+        state: { 
+          message: "Booking created successfully!",
+          bookingId: response.data._id 
+        }
+      });
+
+    } catch (error) {
+      console.error("Error booking:", error);
+      
+      setSubmitError(
+        error.response?.data?.message || 
+        "Failed to create booking. Please try again."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <div className="background-image">
-    <div className="booking-container">
-      <h2 className="form-title">Booking Form</h2>
-      <p className="form-subtitle">Personal booking</p>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        {/* Full Name */}
-        <div className="input-group">
-        <label className="input-label">Full Name</label>
-        <div className="input-container">
-          <input
-            type="text"
-            className="input-field with-counter"
-            placeholder="Ann Pine"
-            maxLength="50"
-            {...register("fullName", {
-              required: "Field is required",
-              minLength: { value: 2, message: "At least two symbols" },
-              pattern: { value: /^[A-Za-z\s]+$/, message: "Only letters are allowed" },
-            })}
-            onChange={handleNameChange}
-          />
-          <span className="char-counter">
-            {watch("fullName")?.length || 0}/50
-          </span>
-        </div>
-            {errors.fullName && <p className="error-message">{errors.fullName.message}</p>}
-        </div>
-        <div className="input-group">
-          <label htmlFor="checkInDate" className="input-label">Check-in Date</label>
-          <input
-            type="date"
-            className="input-field"
-            placeholder="dd/mm/yyyy"
-            {...register("checkInDate", {
-              required: "Check-in date is required",
-            })}
-          />
-          {errors.checkInDate && <p className="error-message">{errors.checkInDate.message}</p>}
-        </div>
+      <div className="booking-container">
+        <h2 className="form-title">Booking Form</h2>
+        
+        {submitError && (
+          <div className="error-banner">
+            {submitError}
+          </div>
+        )}
 
-        <div className="input-group">
-          <label htmlFor="checkOutDate" className="input-label">Check-out Date</label>
-          
-          <input
-          
-            type="date"
-            className="input-field"
-            placeholder="dd/mm/yyyy"
-            
-            {...register("checkOutDate", {
-              required: "Check-out date is required",
-              validate: value =>
-                value > checkInDate || "Check-out date must be after check-in date",
-            })}
-          />
-          {errors.checkOutDate && <p className="error-message">{errors.checkOutDate.message}</p>}
-        </div>
-
-        <div className="input-group">
-          <label className="input-label">Guests</label>
-          <input
-            type="number"
-            className="input-field"
-            placeholder="0"
-            min="1"
-            max="30"
-            step="1"
-            {...register("guests", {
-              required: "Guest's number is required",
-              min: { value: 1, message: "At least one guest is required" },
-              max: { value: 30, message: "The maximum number of guests is 30" },
-            })}
-          />
-          {errors.guests && <p className="error-message">{errors.guests.message}</p>}
-        </div>
-
-        <button type="submit" className="submit-button">Submit</button>
-      </form>
-    </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          {/* Room Details (if fetched) */}
+          {roomDetails && (
+            <div className="room-info">
+              <p>Room: {roomDetails.roomNumber}</p>
+              <p>Room Type: {roomDetails.type}</p>
+            </div>
+          )}
+          <div className="input-group">
+            <label htmlFor="checkInDate" className="input-label">Check-in Date</label>
+            <input
+              type="date"
+              className="input-field"
+              {...register("checkInDate", {
+                required: "Check-in date is required",
+              })}
+            />
+            {errors.checkInDate && <p className="error-message">{errors.checkInDate.message}</p>}
+          </div>
+          <div className="input-group">
+            <label htmlFor="checkOutDate" className="input-label">Check-out Date</label>
+            <input
+              type="date"
+              className="input-field"
+              {...register("checkOutDate", {
+                required: "Check-out date is required",
+                validate: value =>
+                  value > checkInDate || "Check-out date must be after check-in date",
+              })}
+            />
+            {errors.checkOutDate && <p className="error-message">{errors.checkOutDate.message}</p>}
+          </div>
+          <div className="input-group">
+            <label className="input-label">Number of Guests</label>
+            <input
+              type="number"
+              className="input-field"
+              min="1"
+              max={roomDetails ? roomDetails.maxPeople : 10}
+              {...register("guests", {
+                required: "Number of guests is required",
+                min: { 
+                  value: 1, 
+                  message: "At least 1 guest is required" 
+                },
+                max: { 
+                  value: roomDetails ? roomDetails.maxPeople : 10, 
+                  message: `Maximum ${roomDetails?.maxPeople || 10} guests for this room` 
+                },
+                valueAsNumber: true
+              })}
+            />
+            {errors.guests && <p className="error-message">{errors.guests.message}</p>}
+          </div>
+          <button 
+            type="submit" 
+            className="submit-button"
+            disabled={isSubmitting || !roomDetails}
+          >
+            {isSubmitting ? "Creating Booking..." : "Book Now"}
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
