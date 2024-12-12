@@ -53,7 +53,7 @@ const HotelDetails = () => {
       </section>
       <section className="hotel-booking">
         <h2>Book Your Stay</h2>
-        <Link to={`/booking-form/${id}`}>
+        <Link to={`/booking-form`}>
         <button
           type="submit"
           className="booking-button"

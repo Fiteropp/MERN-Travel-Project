@@ -17,7 +17,6 @@ import "../styles/bookingForm.css";
  * @returns {JSX.Element} The BookingForm component.
  */
 const BookingForm = () => {
- // const { hotelId, roomId } = useParams(); // Assuming room ID is also in the route
   const { 
     register, 
     handleSubmit, 
@@ -26,8 +25,8 @@ const BookingForm = () => {
     formState: { errors } 
   } = useForm({
     defaultValues: {
-      hotel: hotelId,
-      room: roomId,
+      hotel: null,
+      room: null,
       guests: 1 // Default to 1 guest
     }
   });
@@ -43,19 +42,16 @@ const BookingForm = () => {
       try {
         axios.defaults.withCredentials = true;
         const response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/api/getroom/${roomId}`
+          `${import.meta.env.VITE_BACKEND_URL}api/getrooms`
         );
         setRoomDetails(response.data);
       } catch (error) {
         console.error("Error fetching room details:", error);
-        setSubmitError("Could not load room details");
+        setSubmitError("Could not  load room details");
       }
     };
-
-    if (roomId) {
-      fetchRoomDetails();
-    }
-  }, [roomId]);
+    fetchRoomDetails();
+  });
 
   const checkInDate = watch("checkInDate");
 
@@ -84,17 +80,19 @@ const BookingForm = () => {
       axios.defaults.withCredentials = true;
 
       const bookingData = {
-        hotel: hotelId,
-        room: roomId,
+        user: data.user,
+        hotel: data.hotel,
+        room: data.room,
         checkIn: data.checkInDate,
         checkOut: data.checkOutDate,
         guests: data.maxPeople,
       };
-
+      console.log(bookingData);
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/bookings`, 
+        `${import.meta.env.VITE_BACKEND_URL}api/bookings`, 
         bookingData
       );
+      console.log(response.data);
 
       navigate("/", {
         state: { 
