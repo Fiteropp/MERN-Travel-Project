@@ -1,6 +1,8 @@
 import "../styles/Navigation.css";
 import Button from '@mui/material/Button';
 import React, { useState, useEffect } from "react";
+
+import axios from "axios";
 import { useLocation, Link, useNavigate } from "react-router-dom";
 import { getAuthToken } from "../services/authService";
 import { jwtDecode } from "jwt-decode";
@@ -12,19 +14,24 @@ const Navigation = () => {
   const [user, setUser] = useState([]);
 
   useEffect(() => {
-      const fetchUserData = async () => {
-          try {
-              const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/auth/getuserdata`,{
-                  method: 'GET',
-                  credentials: 'include'
-              }     
-              );
-              const data = await response.json();
-              setUser(data);
-          } catch (error) {
-              console.error("Error fetching user data:", error);
-          }
-      };fetchUserData();
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/auth/getuserdata`, {
+          method: 'GET',
+          credentials: 'include',
+        });
+  
+        if (!response.ok) {
+          throw new Error('Unauthorized');
+        }
+  
+        const data = await response.json();
+        setUser(data);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+        setUser(null); // Clear user state if unauthorized
+      }
+    }; fetchUserData();
   },[]);
 
   const handleScroll = () => setScroll(window.scrollY);
@@ -43,12 +50,39 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll); // Cleanup
   }, [scroll, location.pathname]); // Re-run on scroll or route change
 
+  
+  const handleLogout = async () => {
+    try {
+      // Send logout request to the backend
+      await axios.post(`${import.meta.env.VITE_BACKEND_URL}api/auth/logout`, {}, { withCredentials: true });
 
-  const handleLogout = () => {
-    document.cookie = "token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC"; // Clear cookie
-    setUser(null); // Clear user state
-    navigate("/"); // Redirect to home page
+      // Clear user state
+      setUser(null);
+
+      // Navigate to the homepage
+      navigate('/');
+      console.log('Logged out successfully');
+    } catch (error) {
+      console.error('Error during logout:', error);
+    }
   };
+  
+
+  /*
+  const logout = async () => {
+    try {
+      const response = await axios.post('/api/logout', {}, {
+        withCredentials: true, // Include cookies in the request
+      });
+      if (response.status === 200) {
+        console.log('Logged out successfully');
+        // Optionally redirect to login page or clear frontend state
+      }
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
+  };
+  */
 
   useEffect(() => {
     if (handleLogout) {
