@@ -1,6 +1,6 @@
 /* General Slider Styling */
 .Slider {
-  max-width: var(--max-width);
+  max-width: var(--content-max-wd);
   margin: 0 auto;
   text-align: center;
   box-sizing: border-box;
@@ -10,6 +10,7 @@
   color-scheme: light dark;
   color: rgba(19, 19, 19, 0.87);
   font-family: "Poppins", sans-serif;
+  padding-top: 10em;
 }
 
 .Slider h5{
@@ -36,7 +37,7 @@
   justify-content: space-between; 
   align-items: center; 
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: calc(var(--max-width / 4));
+  max-width: calc(var(--content-max-wd / 3));
   min-height: 460px; 
   margin: 0 10px;
   padding: 1rem;
@@ -96,7 +97,7 @@
 }
 
 /* Description Styling */
-p {
+.card1 p {
   font-size: 0.9rem;
   line-height: 1.4;
   color: #666; 
