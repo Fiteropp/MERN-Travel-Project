@@ -79,8 +79,8 @@ export const signin = async (req, res) => {
 export const logout = async (req, res ) => {
   res.cookie('jwt', '', {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production', // Match original
-    sameSite: 'Strict', // Match original
+    secure: true, // Match original
+    sameSite: "none", // Match original
     path: '/', // Match original path
     expires: new Date(0), // Expire the cookie
   });
