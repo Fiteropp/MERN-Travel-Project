@@ -58,7 +58,7 @@ export const signin = async (req, res) => {
 
     res.cookie('jwt', token, {
       httpOnly: true, // Prevents access via JavaScript
-      secure: process.env.NODE_ENV === 'production', // Use Secure in production
+      secure: true, 
       maxAge: 3600000 // 1 hour in milliseconds
     });
 
