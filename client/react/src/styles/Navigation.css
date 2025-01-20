@@ -24,9 +24,9 @@
 
 /* Half-transparent style for home page */
 .navbar-home {
-  background-color: rgba(0, 0, 0, 0); /* 50% transparency */
+  background-color: rgba(0, 0, 0, 0.288); /* 50% transparency */
   color: white;
-  backdrop-filter: none;
+  backdrop-filter: blur(5px);
   transform: translateY(0); 
 }
 
