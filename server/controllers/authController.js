@@ -60,7 +60,7 @@ export const signin = async (req, res) => {
       httpOnly: true, // Prevents access via JavaScript
       secure: true, 
       maxAge: 3600000, // 1 hour in milliseconds
-      sameSite:'none'
+      sameSite: "none"
     });
 
     res.status(200).send({
