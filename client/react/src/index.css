@@ -36,6 +36,7 @@ a {
 body {
   font-family: "Poppins", sans-serif;
   margin: 0px;
+  overflow-x: hidden;
 }
 
 @media (width < 900px) {

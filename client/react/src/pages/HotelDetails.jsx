@@ -39,7 +39,7 @@ const HotelDetails = () => {
   }
   /* Use the details of single hotel to populate the data below */
   return (
-    <div>
+    <div className="hotel-details-container">
         <div className="hotel-details">
       
           <section className="hotel-images">

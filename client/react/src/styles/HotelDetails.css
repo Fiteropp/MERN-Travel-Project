@@ -1,4 +1,7 @@
-
+.hotel-details-container{
+  display: flex;
+  justify-content: center;
+}
 
 
 
@@ -35,7 +38,7 @@
 .hotel-header{
   font-size: 2em;
   margin-bottom: 0.1em;
-  line-height: 0.5em;
+  line-height: 1em;
 }
 
 .hotel-rating{
@@ -145,5 +148,11 @@
 @media (max-width: 1250px) {
   .hotel-details{
     flex-direction: column;
+  }
+}
+
+@media (max-width: 650px) {
+  .hotel-details{
+    padding: 70px 0 70px 0;
   }
 }
