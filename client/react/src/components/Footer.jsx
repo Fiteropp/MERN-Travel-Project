@@ -3,7 +3,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="section_container footer_container">
-        <div className="footer_col">
+        <div className="footer_section">
           <h3>Mern Hotel Booking</h3>
           <p>
             Mern is a premier hotel booking website that offers a seamless and
@@ -29,12 +29,7 @@ const Footer = () => {
           <p>Terms & Conditions</p>
           <p>Privacy Policy</p>
         </div>
-        <div className="footer_col">
-          <h4>Resources</h4>
-          <p>Social Media</p>
-          <p>Help Center</p>
-          <p>Partnerships</p>
-        </div>
+        
       </div>
       <div className="footer_bar">
         Copyright @ 2024 Mern Hotel Booking. All rights reserved.

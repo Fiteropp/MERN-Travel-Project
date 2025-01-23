@@ -4,9 +4,17 @@
 }
 
 .footer_container {
-  display: grid;
-  grid-template-columns: 2fr repeat(3, 1fr);
+  display: flex;
+  flex-direction: row;
   gap: 5rem;
+}
+
+.footer_section{
+  flex: 3;
+}
+
+.footer_col{
+  flex: 2;
 }
 
 .footer_col h3 {
@@ -55,4 +63,10 @@
   width: 20rem;
   height: 2px;
   background-color: white;
+}
+
+@media(max-width:850px){
+  .footer_container{
+    flex-direction: column;
+  }
 }

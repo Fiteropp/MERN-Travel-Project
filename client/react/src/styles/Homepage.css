@@ -103,8 +103,8 @@
 
 .client_grid {
   margin-top: 4rem;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-direction: row;
   gap: 2rem;
 }
 
@@ -165,4 +165,16 @@
 }
 .fly-in-child:nth-child(3) {
   transition-delay: 0.4s;
+}
+
+@media(max-width:910px){
+  .client_grid{
+    flex-direction: column;
+  }
+}
+
+@media(max-width:410px){
+  .about-us-container{
+    flex-direction: column;
+  }
 }

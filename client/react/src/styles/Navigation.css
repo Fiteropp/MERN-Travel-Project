@@ -1,47 +1,68 @@
-.navbar {
-  max-width: calc(var(--max-width) - 50px);
-  margin: 0px;
-  padding: 0rem 4rem 0 4rem;
-  position: fixed;
-  background-color: rgba(0, 29, 29, 0.308) ;
-  backdrop-filter: blur(20px);
-  z-index: 100;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
+.nav-header {
+  background: #4D4DDB;
+  color: white;
+
+  padding: .2rem 0;
+}
+
+.navbar{
+  top: 0px;
+  position:sticky;
+  z-index: 22;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+}
+
+.nav-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 2rem;
-  transition: background-color 0.5s ease-in-out, transform 0.5s ease-in-out; 
+
+  width: 90%;
+  margin: 0 auto;
+}
+
+.desktop-menu-links{
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
 }
 .username {
-  margin-right: 1rem;
+  
   font-weight: bold;
   color: var(--extra-light);
 }
 
 /* Half-transparent style for home page */
 .navbar-home {
-  background-color: rgba(0, 0, 0, 0.288); /* 50% transparency */
+  background-color: rgba(0, 0, 0, 0.8); /* Slightly less transparent when scrolled */
   color: white;
-  backdrop-filter: blur(5px);
-  transform: translateY(0); 
+  backdrop-filter: blur(10px);
+  
+  padding: .5rem 0;
 }
 
 /* Opaque style for other pages */
 .navbar-other {
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
-  transform: translateY(0); 
+   
+  padding: .5rem 0;
 }
 
 /* Scrolled version of the home navbar */
 .navbar-home-scrolled {
   background-color: rgba(0, 0, 0, 0.8); /* Slightly less transparent when scrolled */
   color: white;
-  transform: translateY(0); 
+  
+  padding: .5rem 0;
+}
+
+.menu-toggle-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
 }
 
 .nav_logo {
@@ -49,6 +70,7 @@
   font-weight: 600;
   color: var(--white);
 }
+
 
 .nav_links {
   list-style: none;
@@ -75,4 +97,20 @@
   margin: 0px 5px 0px 5px !important;
 }
 
+@media (max-width: 930px) {
+  .desktop-menu-links{
+    display: none;
+  }
+
+  .buttons{
+    display: none;
+  }
+  
+}
+
+@media (min-width: 930px) {
+  .mobile-menu {
+    display: none; /* Ensure mobile menu is hidden on larger screens */
+  }
+}
 
