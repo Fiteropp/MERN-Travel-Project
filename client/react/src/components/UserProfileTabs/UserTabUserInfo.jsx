@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 
 function UserTabUserInfo() {
     
@@ -99,10 +100,14 @@ function UserTabUserInfo() {
             <div>
                 {isPopupOpen && 
                 <div className="edit-popup" id='popupEl'>
-                    <h2>Edit {currentField}</h2>
-                    <input className="edit-input" type="text" id="field-input" placeholder="Enter new value" value={currentValue} onChange={(e) => setCurrentValue(e.target.value)} />
-                    <Button variant="outlined" onClick={handleClose}>Close</Button>
-                    <Button variant="contained" onClick={handleSubmit}>Submit</Button>
+                    <div id="edit-user-textfield">
+                        <h2 style={{ textTransform: 'capitalize' }}>Edit {currentField} </h2>
+                        <TextField id="outlined-basic" variant="outlined" placeholder="Enter new value" value={currentValue} onChange={(e) => setCurrentValue(e.target.value)} />
+                    </div>
+                    <div id="edit-user-textbuttons">
+                        <Button variant="outlined" className="edit-button" onClick={handleClose}>Close</Button>
+                        <Button variant="contained" className="edit-button-contained" onClick={handleSubmit}>Submit</Button>
+                    </div>
                 </div>}
             </div>
         

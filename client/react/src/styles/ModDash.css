@@ -130,17 +130,27 @@
 /*edit popup*/
 .edit-popup{
     position: absolute;
-    z-index: 500;
+    z-index: 5;
     left: 0; 
     right: 0; 
     margin-inline: auto; 
     width: fit-content;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    background-color: #FAFBFC;
+    align-items: center;
+    background-color: #eaecef;
     border-radius: 10px;
     padding: 20px 40px 20px 40px;
     filter: none !important;
     
+}
+
+#edit-user-textbuttons{
+    display: flex;
+    flex-direction: row;
+    margin-top: 0.5em;
+    column-gap: 0.5em;
 }
 
 #blur.active {

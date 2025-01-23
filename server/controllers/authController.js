@@ -58,8 +58,9 @@ export const signin = async (req, res) => {
 
     res.cookie('jwt', token, {
       httpOnly: true, // Prevents access via JavaScript
-      secure: process.env.NODE_ENV === 'production', // Use Secure in production
-      maxAge: 3600000 // 1 hour in milliseconds
+      secure: true, 
+      maxAge: 3600000, // 1 hour in milliseconds
+      sameSite: "none"
     });
 
     res.status(200).send({
@@ -78,8 +79,8 @@ export const signin = async (req, res) => {
 export const logout = async (req, res ) => {
   res.cookie('jwt', '', {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production', // Match original
-    sameSite: 'Strict', // Match original
+    secure: true, // Match original
+    sameSite: "none", // Match original
     path: '/', // Match original path
     expires: new Date(0), // Expire the cookie
   });
