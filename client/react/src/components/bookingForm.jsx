@@ -51,7 +51,7 @@ const BookingForm = () => {
       }
     };
     fetchRoomDetails();
-  });
+  }, []);
 
   const checkInDate = watch("checkInDate");
 
