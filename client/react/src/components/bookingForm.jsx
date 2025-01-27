@@ -51,7 +51,8 @@ const BookingForm = () => {
       }
     };
     fetchRoomDetails();
-  }, []);
+  }, []//the empty array will cause the function to only be called once when the app loads since it is not dependent on any other variables.
+ );
 
   const checkInDate = watch("checkInDate");
 
