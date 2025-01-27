@@ -36,6 +36,8 @@ const BookingForm = () => {
   const [submitError, setSubmitError] = useState(null);
   const [roomDetails, setRoomDetails] = useState(null);
 
+const { id: hotelId } = useParams();
+
   // Fetch room details when component mounts
   useEffect(() => {
     const fetchRoomDetails = async () => {
@@ -82,7 +84,7 @@ const BookingForm = () => {
 
       const bookingData = {
         user: data.user,
-        hotel: data.hotel,
+        hotel: hotelId,
         room: data.room,
         checkIn: data.checkInDate,
         checkOut: data.checkOutDate,
