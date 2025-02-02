@@ -47,11 +47,10 @@ const HotelDetails = () => {
             <img src={hotelDetails.image} alt="Hotel Image 1" />
           </section>
           
-          <section className="hotel-info">
-
-            <section className="hotel-rating-and-desc">
+          <section className="hotel-rating-and-desc">
               <div>
                 <h1 className="hotel-header">{hotelDetails.name}</h1>
+                
                 <div className="hotel-rating-cont">
                   <div className="hotel-rating">
                     <Rating
@@ -63,12 +62,15 @@ const HotelDetails = () => {
                   <p>{hotelDetails.rating} /5</p>
                   </div>
 
-                  <div className="hotel-city">
-                  <img className="city-logo" src={location_svg} alt="" />
-                    <p>{hotelDetails.city}</p>
-                  </div>
+                    <div className="hotel-city">
+                      <img className="city-logo" src={location_svg} alt="" />
+                        <p>{hotelDetails.city}</p>
+                    </div>
                 </div>
               </div>
+          </section>
+
+          <section className="hotel-info">
 
               <section className="hotel-description">
                   <div>
@@ -83,22 +85,17 @@ const HotelDetails = () => {
                       <h5>Address:  </h5>
                       <span> {hotelDetails.address}</span>
                   </div>
-              </section>
             </section>
 
             <section className="hotel-booking">
               <h2>Book Your Stay</h2>
               <BookingComponent />
-              
-              
             </section>
             
-            </section> 
-            
-          
-            
-      </div>
+          </section>
+        </div> 
     </div>
+    
     
   );
 };

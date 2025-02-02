@@ -24,6 +24,17 @@ function UserTabBookingHistory() {
         fetchBookingsData();
     }, []);
 
+    const DeleteBooking = async (bookingID) => {
+      try {
+          const response = await axios.delete(`${import.meta.env.VITE_BACKEND_URL}api/delbooking/${bookingID}`, { withCredentials: true });
+          console.log(response.data);
+          // Remove the deleted booking from the state
+          setBookingData(bookingData.filter(booking => booking._id !== bookingID));
+      } catch (error) {
+          console.error("Error deleting booking:", error);
+      }
+  }
+
 
     return (
         <div>
@@ -45,6 +56,9 @@ function UserTabBookingHistory() {
                 <p>Check-Out: {new Date(bookings.checkOut).toLocaleDateString()}</p>
                 
                 <h3>Price: ${bookings.room?.price || 'N/A'}</h3>
+                <Button variant="outlined" color="primary" onClick={() => DeleteBooking(bookings._id)}>
+                                Delete Booking
+                </Button>
             </div>
         </div>
     ))

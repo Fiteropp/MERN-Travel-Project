@@ -78,7 +78,7 @@ export const BookingComponent = () => {
                 price: price
             };
             const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}api/bookings`, bookingData, { withCredentials: true });
-            navigate("/", { state: { message: "Booking created successfully!", bookingId: response.data._id } });
+            navigate("/userprofile", { state: { message: "Booking created successfully!", bookingId: response.data._id } });
         } catch (error) {
             console.error("Error creating booking:", error);
         }
@@ -88,7 +88,7 @@ export const BookingComponent = () => {
         <div>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <div className="booking-date-pickers">
-                    <Box sx={{ width: 1 }}>
+                    <Box sx={{ width: 1 , marginTop:2}}>
                         <FormControl fullWidth>
                             <InputLabel id="demo-simple-select-label">Room</InputLabel>
                             <Select
@@ -104,15 +104,19 @@ export const BookingComponent = () => {
                             </Select>
                         </FormControl>
                     </Box>
-                    <DatePicker label="Check In" sx={{ width: '50%' }} value={checkInDate} onChange={(newValue) => setCheckInDate(newValue)} />
-                    <DatePicker label="Check Out" sx={{ width: '50%' }} value={checkOutDate} onChange={(newValue) => setCheckOutDate(newValue)} />
+
+                    <Box sx={{ width: 1, marginTop: 2, marginBottom: 2, columnGap: 2, display: 'flex', justifyContent: 'space-between' }}>
+                        <DatePicker label="Check In" sx={{ width: '50%' }} value={checkInDate} onChange={(newValue) => setCheckInDate(newValue)} />
+                        <DatePicker label="Check Out" sx={{ width: '50%' }} value={checkOutDate} onChange={(newValue) => setCheckOutDate(newValue)} />
+                    </Box>
+                    
                     <TextField
                         label="Max Guests"
                         type="number"
                         value={maxGuests}
                         onChange={(e) => setMaxGuests(e.target.value)}
                         inputProps={{ min: 1, max: maxGuests }}
-                        sx={{ width: '50%' }}
+                        sx={{ width: 1, marginBottom: 2 }}
                     />
                     <section className="hotel-price">
                                   <h5>Price per night</h5>
