@@ -1,28 +1,27 @@
 import React from "react";
 import Button from '@mui/material/Button';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 
 // need to redo whole file after deployment
 function UserTabBookingHistory() {
 
-    const [bookingData, setBookingData] = useState([])
+    const [bookingData, setBookingData] = useState([]);
+  
 
     useEffect(() => {
-        const fetchUserData = async () => {
+        const fetchBookingsData = async () => {
         try {
-            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/bookings`,{
-                method: 'GET',
-                credentials: 'include'
-            });
-            const data = await response.json();
-            setBookingData(data);
+            const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}api/bookings`, { withCredentials: true });
+      
+            setBookingData(response.data);
         } catch (error) {
             console.error("Error fetching user data:", error);
         }
         };
 
-        fetchUserData();
+        fetchBookingsData();
     }, []);
 
 
@@ -30,25 +29,28 @@ function UserTabBookingHistory() {
         <div>
             <h2>My Bookings</h2>
             {bookingData.length > 0 ? (
-        bookingData.map((bookings) => (
-          <div key={bookings._id} className="HotelElement">
+    bookingData.map((bookings) => (
+        <div key={bookings._id} className="HotelElement">
             <div className="HotelElementContainer">
-              <img
-                className="HotelImage"
-                src={bookings.hotel || 'Hotel Image'}
-              />
+                <img
+                    className="HotelImage"
+                    src={bookings.hotel?.image || 'default-hotel.jpg'}
+                    alt={bookings.hotel?.name || 'Hotel'}
+                />
             </div>
             <div className="HotelElementText">
-              <h2>{bookings.checkIn || 'N/A'}</h2>
-              <p>{bookings.checkOut || 'N/A'}</p>
-              <p>Room: <br /> {bookings.room || 'N/A'}</p>
-
+                <h2>Hotel: {bookings.hotel?.name || 'N/A'}</h2>
+                <h4>Room: {bookings.room?.title || 'N/A'}</h4>
+                <p>Check-In: {new Date(bookings.checkIn).toLocaleDateString()}</p>
+                <p>Check-Out: {new Date(bookings.checkOut).toLocaleDateString()}</p>
+                
+                <h3>Price: ${bookings.room?.price || 'N/A'}</h3>
             </div>
-          </div>
-        ))
-      ) : (
-        <p>No bookings assigned yet.</p>
-      )}
+        </div>
+    ))
+) : (
+    <p>No bookings assigned yet.</p>
+)}
         </div>
     )
 }

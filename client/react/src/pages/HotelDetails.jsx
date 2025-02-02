@@ -90,18 +90,7 @@ const HotelDetails = () => {
               <h2>Book Your Stay</h2>
               <BookingComponent />
               
-              <section className="hotel-price">
-              <h5>Price per night</h5>
-              <p>{hotelDetails.price} €</p>
-              <Link to={`/booking-form/${id}`}>
-              <button
-                type="submit"
-                className="booking-button"
-              >
-                Book Now
-              </button>
-              </Link>
-               </section>
+              
             </section>
             
             </section> 

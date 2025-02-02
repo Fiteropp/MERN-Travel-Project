@@ -163,13 +163,18 @@
 .HotelElement{
     display: flex;
     flex-direction: row;
+    align-items: center;
     background-color: #d3e7e7;
     border-radius: 30px;
     padding: 25px;
 }
 
+
 .HotelImage{
     border-radius: 15px;
+    align-self: center;
+    max-width: 100%;
+    overflow: auto;
 }
 
 .HotelElementText{
