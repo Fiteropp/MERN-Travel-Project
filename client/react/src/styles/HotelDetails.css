@@ -3,13 +3,15 @@
   justify-content: center;
 }
 
-
+.hotel-rating-and-desc{
+  flex: 4;
+}
 
 .hotel-details {
   max-width: var(--content-max-wd);
   padding: 90px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   column-gap: 10px;
 }
 
@@ -29,10 +31,9 @@
 
 
 .hotel-info {
-  flex: 4;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-direction: row;
+  box-sizing: border-box;
 }
 
 .hotel-header{
@@ -110,7 +111,7 @@
 
 
 .hotel-booking{
-  margin-top: 1em;
+  flex: 2;
   padding: 1.5em;
   border-radius: 1em;
   border: 1px solid rgb(221, 221, 221);

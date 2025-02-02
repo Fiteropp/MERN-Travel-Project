@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate, Link } from "react-router-dom";
 
 import { Rating } from "@mui/material";
+import { BookingComponent } from "../components/BookingForm/BookingComponent";
 
 import location_svg from "../assets/Icons/location-sign-svgrepo-com.svg"
 import "../styles/HotelDetails.css";
@@ -47,55 +48,51 @@ const HotelDetails = () => {
           </section>
           
           <section className="hotel-info">
-            
-            <div>
-              <h1 className="hotel-header">{hotelDetails.name}</h1>
-              
-              <div className="hotel-rating-cont">
-                <div className="hotel-rating">
-                  <Rating
-                  precision={0.25}
-                  value={hotelDetails.rating}
-                  readOnly
-                />
-                
-                <p>{hotelDetails.rating} /5</p>
-                </div>
 
-                <div className="hotel-city">
-                <img className="city-logo" src={location_svg} alt="" />
-                  <p>{hotelDetails.city}</p>
+            <section className="hotel-rating-and-desc">
+              <div>
+                <h1 className="hotel-header">{hotelDetails.name}</h1>
+                <div className="hotel-rating-cont">
+                  <div className="hotel-rating">
+                    <Rating
+                    precision={0.25}
+                    value={hotelDetails.rating}
+                    readOnly
+                  />
+              
+                  <p>{hotelDetails.rating} /5</p>
+                  </div>
+
+                  <div className="hotel-city">
+                  <img className="city-logo" src={location_svg} alt="" />
+                    <p>{hotelDetails.city}</p>
+                  </div>
                 </div>
               </div>
-              
 
-            </div>
-
-            <section className="hotel-description">
-                <div>
-                  <h2 className="hotel-element-header">Description:</h2>
-                  <p>{hotelDetails.desc}</p>
-                </div>
-                
-                <div className="hotel-contacts">
-                    <h2 className="hotel-element-header">Contact Information</h2>
-                    <h5>Hotel Phone Number:   </h5> 
-                    <span> +{hotelDetails.phoneNumber}</span>
-                    <h5>Address:  </h5>
-                    <span> {hotelDetails.address}</span>
-                </div>
-
-
+              <section className="hotel-description">
+                  <div>
+                    <h2 className="hotel-element-header">Description:</h2>
+                    <p>{hotelDetails.desc}</p>
+                  </div>
+                  
+                  <div className="hotel-contacts">
+                      <h2 className="hotel-element-header">Contact Information</h2>
+                      <h5>Hotel Phone Number:   </h5> 
+                      <span> +{hotelDetails.phoneNumber}</span>
+                      <h5>Address:  </h5>
+                      <span> {hotelDetails.address}</span>
+                  </div>
               </section>
-            
+            </section>
 
             <section className="hotel-booking">
               <h2>Book Your Stay</h2>
+              <BookingComponent />
+              
               <section className="hotel-price">
               <h5>Price per night</h5>
               <p>{hotelDetails.price} €</p>
-            
-            </section>
               <Link to={`/booking-form/${id}`}>
               <button
                 type="submit"
@@ -104,9 +101,13 @@ const HotelDetails = () => {
                 Book Now
               </button>
               </Link>
+               </section>
             </section>
-
-      </section>
+            
+            </section> 
+            
+          
+            
       </div>
     </div>
     
