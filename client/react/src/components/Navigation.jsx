@@ -36,7 +36,7 @@ const Navigation = () => {
           <a href="/discover">Discover</a>{" "}
         </li>
         <li className="link">
-          <a href="#">About Us</a>{" "}
+          <a href="/about-us">About Us</a>{" "}
         </li>
         <li className="link">
           <a href="#">Contact</a>{" "}
