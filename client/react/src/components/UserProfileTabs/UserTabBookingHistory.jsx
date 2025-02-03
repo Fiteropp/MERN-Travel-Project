@@ -55,7 +55,7 @@ function UserTabBookingHistory() {
                 <p>Check-In: {new Date(bookings.checkIn).toLocaleDateString()}</p>
                 <p>Check-Out: {new Date(bookings.checkOut).toLocaleDateString()}</p>
                 
-                <h3>Price: ${bookings.room?.price || 'N/A'}</h3>
+                <h3>Price: {bookings.price || 'N/A'} €</h3>
                 <Button variant="outlined" color="primary" onClick={() => DeleteBooking(bookings._id)}>
                                 Delete Booking
                 </Button>
@@ -63,7 +63,7 @@ function UserTabBookingHistory() {
         </div>
     ))
 ) : (
-    <p>No bookings assigned yet.</p>
+    <p>No bookings found.</p>
 )}
         </div>
     )

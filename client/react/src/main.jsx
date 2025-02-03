@@ -25,7 +25,7 @@ const router = createBrowserRouter(
       <Route path="/signup" element={<SignupForm />} />
       <Route path="/hotel/:id" element={<HotelDetails />} />
       <Route path="/discover" element={<HotelSearch />} />
-      <Route path="/userprofile/:id" element={<UserDash />} />
+      <Route path="/userprofile" element={<UserDash />} />
       <Route path="/moderator" element={<ModDash />} />
       <Route path="/booking-form/:id" element={<BookingForm />} />
     </Route>

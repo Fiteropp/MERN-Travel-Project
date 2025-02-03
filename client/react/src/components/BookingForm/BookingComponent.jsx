@@ -12,17 +12,21 @@ import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { use } from 'react';
 import './../../styles/HotelDetails.css';
+import dayjs from 'dayjs';
 
 
 
 export const BookingComponent = () => {
     const [room, setRoom] = useState('');
     const [rooms, setRooms] = useState([]);
-    const [checkInDate, setCheckInDate] = useState(null);
-    const [checkOutDate, setCheckOutDate] = useState(null);
+    const [checkInDate, setCheckInDate] = useState(dayjs());
+    const [checkOutDate, setCheckOutDate] = useState(dayjs().add(2, 'day'));
+    const [guests, setGuests] = useState(1);
     const [maxGuests, setMaxGuests] = useState(1);
     const [user, setUser] = useState(null);
-    const [price, setPrice] = useState(0);
+    const [pricePerNight, setPricePerNight] = useState(0);
+    const [calculatedPrice, setCalculatedPrice] = useState(0);
+    const [nightsCount, setNightsCount] = useState(0);
     const navigate = useNavigate();
     const { id } = useParams();
 
@@ -45,9 +49,10 @@ export const BookingComponent = () => {
                 setRooms(response.data);
 
                 if (response.data.length > 0) {
-                    setRoom(response.data[0]._id); // Set default room
-                    setMaxGuests(response.data[0].maxPeople);
-                    setPrice(response.data[0].price);
+                    const firstRoom = response.data[0];
+                    setRoom(firstRoom._id);
+                    setMaxGuests(firstRoom.maxPeople);
+                    setPricePerNight(firstRoom.price);
                 }
             } catch (error) {
                 console.error("Error fetching rooms:", error);
@@ -56,17 +61,52 @@ export const BookingComponent = () => {
         fetchRooms();
     }, [id]);
 
+    useEffect(() => {
+        if (checkInDate && checkOutDate && pricePerNight) {
+            const nights = checkOutDate.diff(checkInDate, 'day');
+            setNightsCount(nights);
+            setCalculatedPrice(pricePerNight * nights);
+        }
+    }, [checkInDate, checkOutDate, pricePerNight]); 
+
+    useEffect(() => {
+        if (guests < 1 || guests > maxGuests || !Number.isInteger(guests)){
+            setGuests(1);
+        }
+    }, [guests, maxGuests])
+
+    useEffect(() => {
+        if (!checkInDate.isBefore(checkOutDate)) {
+            setCheckInDate(dayjs());
+            setCheckOutDate(dayjs().add(2, 'day'));
+
+        }
+    })
+
     const handleChange = (event) => {
         const selectedRoomId = event.target.value;
         setRoom(selectedRoomId);
         const selectedRoom = rooms.find(r => r._id === selectedRoomId);
         if (selectedRoom) {
             setMaxGuests(selectedRoom.maxPeople);
-            setPrice(selectedRoom ? selectedRoom.price : 0);
+            setPricePerNight(selectedRoom.price);
+            setGuests(selectedRoom.maxPeople);
         }
     };
 
     const handleBooking = async () => {
+        if (!user) {
+            console.warn("User not logged in");
+            return;
+        }
+        if (!checkInDate.isBefore(checkOutDate)) {
+            console.warn("Check In Date must be before Check Out Date");
+            return;
+        }
+        if (!Number.isInteger(guests)) {
+            console.warn("Guests Value Should Be An Interger")
+            return
+        }
         try {
             const bookingData = {
                 user: user.id,
@@ -74,8 +114,9 @@ export const BookingComponent = () => {
                 room: room,
                 checkIn: checkInDate,
                 checkOut: checkOutDate,
-                maxGuests: maxGuests,
-                price: price
+                price: calculatedPrice,
+                guests: guests,
+                bookedDaysCount: nightsCount
             };
             const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}api/bookings`, bookingData, { withCredentials: true });
             navigate("/userprofile", { state: { message: "Booking created successfully!", bookingId: response.data._id } });
@@ -90,10 +131,10 @@ export const BookingComponent = () => {
                 <div className="booking-date-pickers">
                     <Box sx={{ width: 1 , marginTop:2}}>
                         <FormControl fullWidth>
-                            <InputLabel id="demo-simple-select-label">Room</InputLabel>
+                            <InputLabel id="room-select-label">Room</InputLabel>
                             <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
+                                labelId="room-select-label"
+                                id="room-select"
                                 value={room}
                                 label="Room"
                                 onChange={handleChange}
@@ -105,31 +146,31 @@ export const BookingComponent = () => {
                         </FormControl>
                     </Box>
 
-                    <Box sx={{ width: 1, marginTop: 2, marginBottom: 2, columnGap: 2, display: 'flex', justifyContent: 'space-between' }}>
-                        <DatePicker label="Check In" sx={{ width: '50%' }} value={checkInDate} onChange={(newValue) => setCheckInDate(newValue)} />
-                        <DatePicker label="Check Out" sx={{ width: '50%' }} value={checkOutDate} onChange={(newValue) => setCheckOutDate(newValue)} />
+                    <Box sx={{ width: 1, marginTop: 2, marginBottom: 2, display: 'flex', justifyContent: 'space-between' }}>
+                        <DatePicker label="Check In" sx={{ width: '50%' }} value={checkInDate} onChange={setCheckInDate} />
+                        <DatePicker label="Check Out" sx={{ width: '50%' }} value={checkOutDate} onChange={setCheckOutDate} />
                     </Box>
                     
                     <TextField
-                        label="Max Guests"
+                        label="Guests"
                         type="number"
-                        value={maxGuests}
-                        onChange={(e) => setMaxGuests(e.target.value)}
+                        value={guests}
+                        onChange={(e) => setGuests(Number(e.target.value))}
                         inputProps={{ min: 1, max: maxGuests }}
                         sx={{ width: 1, marginBottom: 2 }}
                     />
                     <section className="hotel-price">
-                                  <h5>Price per night</h5>
-                                  <p>{price} €</p>
-                                  
-                                  <button
-                                    type="submit"
-                                    className="booking-button"
-                                    onClick={handleBooking}
-                                  >
-                                    Book Now
-                                  </button>
-                                  
+                        <h5>Price per night</h5>
+                        <p>{pricePerNight}€ x {nightsCount} nights </p>
+                        <h5>Final Price</h5>
+                        <p>{calculatedPrice} €</p>
+                        <button
+                            type="submit"
+                            className="booking-button"
+                            onClick={handleBooking}
+                        >
+                            Book Now
+                        </button>
                     </section>
                 </div>
             </LocalizationProvider>

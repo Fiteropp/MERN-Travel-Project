@@ -3,7 +3,7 @@ import User from "../models/user.js";
 import Booking from "../models/booking.js";
 import mongoose from "mongoose";
 export const createBooking = async (req, res, next) => {
-    const { hotel, user, checkIn, checkOut, room } = req.body;
+    const { hotel, user, checkIn, checkOut, room, price, guests, bookedDaysCount } = req.body;
 
     try {
         // Validate that the hotel exists
@@ -37,6 +37,9 @@ export const createBooking = async (req, res, next) => {
             checkIn: new Date(checkIn),
             checkOut: new Date(checkOut),
             room: room,
+            price: price,
+            guests: guests,
+            bookedDaysCount, bookedDaysCount
         });
 
         // Save the booking
@@ -57,7 +60,6 @@ export const createBooking = async (req, res, next) => {
 
 export const getBooking = async (req, res, next) => {
     const userId = req.userId;
-    console.log(userId);
 
     try {
 
