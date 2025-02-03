@@ -1,8 +1,9 @@
 import Hotel from "../models/hotel.js";
 import User from "../models/user.js";
 import Booking from "../models/booking.js";
+import mongoose from "mongoose";
 export const createBooking = async (req, res, next) => {
-    const { hotel, user, checkIn, checkOut, room } = req.body;
+    const { hotel, user, checkIn, checkOut, room, price, guests, bookedDaysCount } = req.body;
 
     try {
         // Validate that the hotel exists
@@ -36,6 +37,9 @@ export const createBooking = async (req, res, next) => {
             checkIn: new Date(checkIn),
             checkOut: new Date(checkOut),
             room: room,
+            price: price,
+            guests: guests,
+            bookedDaysCount, bookedDaysCount
         });
 
         // Save the booking
@@ -55,26 +59,24 @@ export const createBooking = async (req, res, next) => {
 };
 
 export const getBooking = async (req, res, next) => {
-    const userId = req.user;
-    const hotelId = req.params.hotel; // Assuming you want to fetch bookings for a specific hotel
+    const userId = req.userId;
 
     try {
-        // If hotelId is provided, find bookings for the specific user and hotel
-        // Otherwise, find all bookings for the user
-        const query = hotelId 
-            ? { user: userId, hotel: hotelId }
-            : { user: userId };
 
-        const bookings = await Booking.find(query)
-
-        if (bookings.length === 0) {
+        const bookings = await Booking.find({user: userId})
+        .populate("hotel")  // Fetch hotel details
+        .populate("room") ;
+        
+        if (!bookings.length) {
             return res.status(404).json({ message: "No bookings found" });
         }
+        
         res.status(200).json(bookings);
     } catch (err) {
         next(err);
     }
 };
+
 
 export const updateBooking = async (req, res, next) => {
     const bookingid = req.params.bookingid;

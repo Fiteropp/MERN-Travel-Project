@@ -127,7 +127,7 @@ const Navigation = () => {
               </li>
               {user && (
                 <li className="link">
-                  <Link to={`/userprofile/${user._id}`}>Profile</Link>
+                  <Link to={`/userprofile`}>Profile</Link>
                 </li>
               )}
             </ul>

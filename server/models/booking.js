@@ -24,6 +24,18 @@ const bookingSchema = new Schema ({
         type: Schema.Types.ObjectId,
         ref: 'Room',
         required: true 
+    },
+    price: {
+        type: Number,
+        required: true
+    },
+    guests: {
+        type: Number,
+        required: true
+    },
+    bookedDaysCount: {
+        type: Number,
+        required: true
     }
 });
 
