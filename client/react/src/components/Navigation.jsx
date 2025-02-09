@@ -120,7 +120,7 @@ const Navigation = () => {
                 <Link to="/discover">Discover</Link>
               </li>
               <li className="link">
-                <Link to="#">About Us</Link>
+                <Link to="/our-team">Our Team</Link>
               </li>
               <li className="link">
                 <Link to="#">Contact</Link>
