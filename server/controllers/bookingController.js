@@ -2,6 +2,9 @@ import Hotel from "../models/hotel.js";
 import User from "../models/user.js";
 import Booking from "../models/booking.js";
 import mongoose from "mongoose";
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+
+
 export const createBooking = async (req, res, next) => {
     const { hotel, user, checkIn, checkOut, room, price, guests, bookedDaysCount } = req.body;
 
@@ -101,3 +104,28 @@ export const deleteBooking = async (req, res, next) => {
         next(err);
     }
 };
+
+export const confirmPayment = async (req, res, next) => {
+    const {bookingid, price} = req.body;
+    try {
+        if (!bookingid || !price) {
+            return res.status(400).json({ message: "Booking is required" });
+        }
+        const paymentIntent = await stripe.paymentIntents.create({
+            amount: Math.round(price),
+            currency: 'eur',
+            payment_method_types: ["card"],
+            confirm: true
+        });
+        const payedBooking = await Booking.findByIdAndUpdate(
+            bookingid,
+            { bookingPayed: true },
+            { new: true }
+        );
+        res.status(200).send(payedBooking, paymentIntent);
+    } catch (err) {
+        next(err);
+    }
+};
+
+

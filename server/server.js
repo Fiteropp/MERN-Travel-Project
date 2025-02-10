@@ -10,11 +10,10 @@ import bookingRoutes from "./routes/bookingRoute.js";
 dotenv.config();
 
 const app = express();
-
 import db from "./models/index.js";
 const Role = db.role;
 
-var corsOptions = {
+let corsOptions = {
   origin: process.env.FRONTEND_URL,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
@@ -50,6 +49,8 @@ userRoutes(app); // autorization test routes
 hotelsRoutes(app);
 roomsRoutes(app);
 bookingRoutes(app);
+
+
 
 async function initial() {
   try {
