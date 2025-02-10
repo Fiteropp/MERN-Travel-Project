@@ -4,33 +4,12 @@ import { MobileMenuContext } from './Navigation'; // Adjust the path if necessar
 import { Link } from 'react-router-dom';
 import "../styles/MobileMenu.css";
 import Button from "@mui/material/Button";
+import { useUser } from "../contexts/UserContext.jsx"; // Import UserContext
 
 const MobileMenu = () => {
     const { isMenuOpen, toggleMenu, stateChangeHandler } = useContext(MobileMenuContext);
-    const [user, setUser] = useState([]);
+    const { user, setUser, loading } = useUser(); // Use global user context
 
-    useEffect(() => {
-        const fetchUserData = async () => {
-          try {
-            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/auth/getuserdata`, {
-              method: "GET",
-              credentials: "include",
-            });
-    
-            if (!response.ok) {
-              throw new Error("Unauthorized");
-            }
-    
-            const data = await response.json();
-            setUser(data);
-          } catch (error) {
-            console.error("Error fetching user data:", error);
-            setUser(null);
-          }
-        };
-    
-        fetchUserData();
-      }, []);
 
       const handleLogout = async () => {
         try {
@@ -69,7 +48,7 @@ const MobileMenu = () => {
                   </li>
                   {user && (
                   <li className="link">
-                  <Link to={`/userprofile/${user._id}`}>Profile</Link>
+                  <Link to={`/userprofile`}>Profile</Link>
                   </li>)}
                 </ul>
 

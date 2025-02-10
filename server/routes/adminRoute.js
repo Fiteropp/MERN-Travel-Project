@@ -15,12 +15,12 @@ export default (app) => {
     [authJwt.verifyToken, authJwt.isAdmin],
     controller.getUserDataById
   );
-
+  
   //Edit User Data By Id
   app.post(
-    "/api/admin/edituser/:userid",
+    "/api/admin/edituserrole/:userid",
     [authJwt.verifyToken, authJwt.isAdmin],
-    controller.editUser
+    controller.editUserRole
   );
 
   //Add Moderator By Id

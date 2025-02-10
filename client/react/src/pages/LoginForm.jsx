@@ -4,6 +4,7 @@ import { axiosInstance, setAuthToken } from '../services/authService.js';
 import '../styles/Form.css';
 import eyeOpen from '../assets/Icons/eye-open.png';
 import eyeClosed from '../assets/Icons/eye-closed.png';
+import { useUser } from "../contexts/UserContext.jsx"; // Import UserContext
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ function LoginForm() {
   const [password, setPassword] = useState('');
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [wholedata, setWholeData] = useState([]);
+  const { user, setUser, loading } = useUser(); // Now using context
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,6 +23,7 @@ function LoginForm() {
       const data = response.data;
       setWholeData(data);
       setAuthToken(token);
+      setUser(data); // Update global user state (this rerenders Navbar)
       navigate(`/`);
     } catch (error) {
       alert('Login failed. Please try again.');

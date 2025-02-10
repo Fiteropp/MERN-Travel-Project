@@ -51,16 +51,17 @@ export const addModToHotel = async (req, res, next) => {
   }
 };
 
-export const editUser = async (req, res, next) => {
+export const editUserRole = async (req, res, next) => {
   try {
     const userId = req.params.userid;
+    const roleId = req.body.roleId
 
     const updatedUser = await User.findByIdAndUpdate(
       userId,
       { $set: req.body },
       { new: true }
     );
-    res.status(200).send({ message: "User Sucsessfully Updated!" });
+    res.status(200).send({ message: "User Role Sucsessfully Updated!" });
   } catch (err) {
     next(err);
   }
