@@ -1,0 +1,36 @@
+.client_slider_container {
+    padding: 40px 20px;
+    background-color: #f7fafc;
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  .client_slider {
+    display: flex;
+    width: max-content;
+  }
+  
+  .client_card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 0 10px;
+    width: 300px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  
+  .client-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+  }
+  
+  .client_feedback {
+    font-size: 14px;
+    color: #4a5568;
+    margin-bottom: 10px;
+  }
+  
