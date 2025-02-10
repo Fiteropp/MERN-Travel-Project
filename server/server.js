@@ -3,7 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/authRoute.js";
-import userRoutes from "./routes/mockuserRoute.js";
+import adminRoutes from "./routes/adminRoute.js";
 import hotelsRoutes from "./routes/hotelsRoute.js";
 import roomsRoutes from "./routes/roomsRoute.js";
 import bookingRoutes from "./routes/bookingRoute.js";
@@ -46,10 +46,10 @@ db.mongoose
   });
 
 authRoutes(app); // auth routes
-userRoutes(app); // autorization test routes
 hotelsRoutes(app);
 roomsRoutes(app);
 bookingRoutes(app);
+adminRoutes(app);
 
 async function initial() {
   try {
