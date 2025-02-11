@@ -1,0 +1,25 @@
+.ListUsersContainer{
+    width: 100%;
+}
+.listUsersElementContainer{
+    background-color: #fafbfc;
+    border-radius: 5px;
+    padding: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.listUsersElementColumnContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.listUsersButtonContainer{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+#UsersElementText {
+    margin: 0;
+}

@@ -92,13 +92,8 @@ export const logout = async (req, res ) => {
 export const getUserData = async (req, res, next) => {
   const userId = req.userId;
   try {
-      const user = await User.findOne({_id: userId });
-      res.json({
-        id: user._id,
-        img: user.img,
-        email: user.email,
-        fullName: user.fullName,
-        phone: user.phone});
+      const user = await User.findOne({_id: userId }).select('-password').populate("roles", "name");
+      res.json(user);
   } catch (err) {
       next(err);
   }

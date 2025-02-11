@@ -12,7 +12,10 @@ import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { use } from 'react';
 import './../../styles/HotelDetails.css';
+import { useUser } from "./../../contexts/UserContext"; // Import UserContext
+import { useAlert } from '../../contexts/AlertContext';
 import dayjs from 'dayjs';
+
 
 
 
@@ -23,24 +26,15 @@ export const BookingComponent = () => {
     const [checkOutDate, setCheckOutDate] = useState(dayjs().add(2, 'day'));
     const [guests, setGuests] = useState(1);
     const [maxGuests, setMaxGuests] = useState(1);
-    const [user, setUser] = useState(null);
+    const { user, setUser, loading } = useUser(); 
     const [pricePerNight, setPricePerNight] = useState(0);
     const [calculatedPrice, setCalculatedPrice] = useState(0);
     const [nightsCount, setNightsCount] = useState(0);
     const navigate = useNavigate();
     const { id } = useParams();
+    const { showAlert } = useAlert(); 
 
-    useEffect(() => {
-        const fetchUserData = async () => {
-            try {
-                const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}api/auth/getuserdata`, { withCredentials: true });
-                setUser(response.data);
-            } catch (error) {
-                console.error("Error fetching user data:", error);
-            }
-        };
-        fetchUserData();
-    }, []);
+    
 
     useEffect(() => {
         const fetchRooms = async () => {
@@ -56,6 +50,7 @@ export const BookingComponent = () => {
                 }
             } catch (error) {
                 console.error("Error fetching rooms:", error);
+                showAlert("Error fetching rooms", "error");
             }
         };
         fetchRooms();
@@ -75,14 +70,6 @@ export const BookingComponent = () => {
         }
     }, [guests, maxGuests])
 
-    useEffect(() => {
-        if (!checkInDate.isBefore(checkOutDate)) {
-            setCheckInDate(dayjs());
-            setCheckOutDate(dayjs().add(2, 'day'));
-
-        }
-    })
-
     const handleChange = (event) => {
         const selectedRoomId = event.target.value;
         setRoom(selectedRoomId);
@@ -97,10 +84,13 @@ export const BookingComponent = () => {
     const handleBooking = async () => {
         if (!user) {
             console.warn("User not logged in");
+            showAlert("Please Login Or Register", "warning");
             return;
         }
         if (!checkInDate.isBefore(checkOutDate)) {
+            showAlert("Check In Date must be before Check Out Date", "warning");
             console.warn("Check In Date must be before Check Out Date");
+            setCheckInDate(dayjs());
             return;
         }
         if (!Number.isInteger(guests)) {
@@ -109,7 +99,7 @@ export const BookingComponent = () => {
         }
         try {
             const bookingData = {
-                user: user.id,
+                user: user._id,
                 hotel: id,
                 room: room,
                 checkIn: checkInDate,
@@ -119,9 +109,11 @@ export const BookingComponent = () => {
                 bookedDaysCount: nightsCount
             };
             const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}api/bookings`, bookingData, { withCredentials: true });
-            navigate("/userprofile", { state: { message: "Booking created successfully!", bookingId: response.data._id } });
+            showAlert("Booking Succsessfully Created!", "succsess");
+            
         } catch (error) {
             console.error("Error creating booking:", error);
+            showAlert("Error creating booking", "error");
         }
     };
 
