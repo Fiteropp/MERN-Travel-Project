@@ -1,164 +1,135 @@
-import React from "react";
-import { useEffect, useState } from 'react';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
+import { useState } from "react";
+import { useUser } from "../../contexts/UserContext";
+import { Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField, Slide } from "@mui/material";
 
-function UserTabUserInfo() {
-    
-    
-    const [loading, setLoading] = useState(true);
-    const [popup, popupDisplay] = useState(false)
-    const [isPopupOpen, setIsPopupOpen] = useState(false);
+const Transition = Slide;
+
+export default function UserTabUserInfo() {
+    const { user, setUser, loading } = useUser();
+    const [open, setOpen] = useState(false);
     const [currentField, setCurrentField] = useState('');
     const [currentValue, setCurrentValue] = useState('');
-    const [fields, setFields] = useState({});
 
-    useEffect(() => {
-        const fetchUserData = async () => {
-        try {
-            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/auth/getuserdata`,{
-                method: 'GET',
-                credentials: 'include'
-            }
-                
-            );
-            const data = await response.json();
-            setFields(data);
-        } catch (error) {
-            console.error("Error fetching user data:", error);
-        } finally {
-            setLoading(false);
-        }
-        };
+    // Prevent rendering if user is null and loading is false (meaning no user data fetched yet)
+    if (loading) return <p>Loading...</p>;
+    if (!user) return <p>No user data available</p>;
 
-        fetchUserData();
-    }, []);
-
-   
-
-
-    const toggleBlur = () => {
-        const blurEl = document.getElementById("blur");
-        blurEl.classList.toggle("active");
+    const handleEditClick = (field) => {
+        setCurrentField(field);
+        setCurrentValue(user?.[field] || '');
+        setOpen(true);
     };
 
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const handleSubmit = async () => {
-        
         const payload = {
-            [currentField]: currentValue, 
-          };
+            [currentField]: currentValue,
+        };
 
         try {
-          const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/auth/edituserdata`, {
-            method: 'PUT',
-            credentials: 'include',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-          });
-    
-          if (response.ok) {
-            const updatedField = await response.json();
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/auth/edituserdata`, {
+                method: "PUT",
+                credentials: "include",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload),
+            });
 
-            
-            setFields((prevFields) => ({
-                ...prevFields,
-                ...updatedField, 
-            }));
-            alert(`${currentField} updated successfully!`);
-            setIsPopupOpen(false); 
-            toggleBlur()
-          
-        } else {
-            alert('Failed to update field.');
-          }
+            if (response.ok) {
+                const updatedField = await response.json();
+
+                // Update global user context
+                setUser((prevUser) => ({
+                    ...prevUser,
+                    ...updatedField,
+                }));
+
+                alert(`${currentField} updated successfully!`);
+                setOpen(false);
+            } else {
+                alert("Failed to update field.");
+            }
         } catch (error) {
-          console.error('Error updating field:', error);
+            console.error("Error updating field:", error);
         }
-      };
-
-      const handleEditClick = (field) => {
-        setCurrentField(field);
-        setCurrentValue(fields[field]);
-        setIsPopupOpen(true);
-        toggleBlur()
-      };
-    
-    
-    const handleClose = () => {
-        setIsPopupOpen(false);
-        toggleBlur()
     };
-    
-    
 
-    
+    return (
+        <div>
+            <Dialog
+                open={open}
+                TransitionComponent={Transition}
+                keepMounted
+                onClose={handleClose}
+                aria-describedby="alert-dialog-slide-description"
+                maxWidth="xs"
+                fullWidth={true}
+            >
+                <DialogTitle>{`Edit ${currentField}`}</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        fullWidth
+                        label={`New ${currentField}`}
+                        variant="outlined"
+                        value={currentValue}
+                        onChange={(e) => setCurrentValue(e.target.value)}
+                        sx={{ marginTop: "1em", marginBottom: "1em" }}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button variant="outlined" onClick={handleClose} className="edit-button">
+                        Close
+                    </Button>
+                    <Button variant="contained" onClick={handleSubmit} className="edit-button-contained">
+                        Confirm
+                    </Button>
+                </DialogActions>
+            </Dialog>
 
-    return ( 
-        <div >
-            
-            <div>
-                {isPopupOpen && 
-                <div className="edit-popup" id='popupEl'>
-                    <div id="edit-user-textfield">
-                        <h2 style={{ textTransform: 'capitalize' }}>Edit {currentField} </h2>
-                        <TextField id="outlined-basic" variant="outlined" placeholder="Enter new value" value={currentValue} onChange={(e) => setCurrentValue(e.target.value)} />
-                    </div>
-                    <div id="edit-user-textbuttons">
-                        <Button variant="outlined" className="edit-button" onClick={handleClose}>Close</Button>
-                        <Button variant="contained" className="edit-button-contained" onClick={handleSubmit}>Submit</Button>
-                    </div>
-                </div>}
-            </div>
-        
-        <div id='blur'>
-        <h2>Account</h2>
+            <h2>Account</h2>
             <div className="account-tab">
-                
                 <div className="account-tab-element">
                     <div>
                         <span className="account-small-label">Email</span><br />
-                        <span className="account-info-line">{fields.email || 'N/A'}</span>
+                        <span className="account-info-line">{user?.email || "N/A"}</span>
                     </div>
-                    <div>
-                    <Button onClick={() => handleEditClick('email')} className="edit-button" variant="outlined"><i className='bx bxs-edit bx-sm' ></i>  <span className="edit-button-text">Edit</span></Button>
-                    </div>
+                    <Button onClick={() => handleEditClick("email")} className="edit-button" variant="outlined">
+                        <i className="bx bxs-edit bx-sm"></i> <span className="edit-button-text">Edit</span>
+                    </Button>
                 </div>
 
                 <div className="account-tab-element">
                     <div>
                         <span className="account-small-label">Full Name</span><br />
-                        <span className="account-info-line">{fields.fullName || 'N/A'}</span>
+                        <span className="account-info-line">{user?.fullName || "N/A"}</span>
                     </div>
-                    <div>
-                    <Button onClick={() => handleEditClick('fullName')} className="edit-button" variant="outlined"><i className='bx bxs-edit bx-sm' ></i>  <span className="edit-button-text">Edit</span></Button>
-                    </div>
+                    <Button onClick={() => handleEditClick("fullName")} className="edit-button" variant="outlined">
+                        <i className="bx bxs-edit bx-sm"></i> <span className="edit-button-text">Edit</span>
+                    </Button>
                 </div>
 
                 <div className="account-tab-element">
                     <div>
                         <span className="account-small-label">Phone Number</span><br />
-                        <span className="account-info-line">{fields.phone || 'N/A'}</span>
+                        <span className="account-info-line">{user?.phone || "N/A"}</span>
                     </div>
-                    <div>
-                    <Button onClick={() => handleEditClick('phone')} className="edit-button" variant="outlined"><i className='bx bxs-edit bx-sm' ></i>  <span className="edit-button-text">Edit</span></Button>
-                    </div>
+                    <Button onClick={() => handleEditClick("phone")} className="edit-button" variant="outlined">
+                        <i className="bx bxs-edit bx-sm"></i> <span className="edit-button-text">Edit</span>
+                    </Button>
                 </div>
-                
+
                 <div className="account-tab-element">
                     <div>
                         <span className="account-small-label">Profile Picture</span><br />
-                        <span className="account-info-line"></span>
+                        <span className="account-info-line">{user?.img ? <img src={user.img} alt="Profile" width="50" /> : "N/A"}</span>
                     </div>
-                    <div>
-                    <Button onClick={() => handleEditClick('img')} className="edit-button" variant="outlined"><i className='bx bxs-edit bx-sm' ></i>  <span className="edit-button-text">Edit</span></Button>
-                    </div>
+                    <Button onClick={() => handleEditClick("img")} className="edit-button" variant="outlined">
+                        <i className="bx bxs-edit bx-sm"></i> <span className="edit-button-text">Edit</span>
+                    </Button>
                 </div>
             </div>
         </div>
-            
-        </div>
-     );
+    );
 }
-
-export default UserTabUserInfo;

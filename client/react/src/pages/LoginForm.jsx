@@ -11,8 +11,8 @@ function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const [wholedata, setWholeData] = useState([]);
-  const { user, setUser, loading } = useUser(); // Now using context
+ 
+  const { fetchUserData } = useUser(); // Access the context function
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,9 +21,7 @@ function LoginForm() {
       const response = await axiosInstance.post('api/auth/signin', { email, password });
       const { token } = response.data;
       const data = response.data;
-      setWholeData(data);
-      setAuthToken(token);
-      setUser(data); // Update global user state (this rerenders Navbar)
+      await fetchUserData();
       navigate(`/`);
     } catch (error) {
       alert('Login failed. Please try again.');

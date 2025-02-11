@@ -84,7 +84,7 @@ export const BookingComponent = () => {
     const handleBooking = async () => {
         if (!user) {
             console.warn("User not logged in");
-            showAlert("Please Login Or Register", "info");
+            showAlert("Please Login Or Register", "warning");
             return;
         }
         if (!checkInDate.isBefore(checkOutDate)) {
