@@ -61,7 +61,7 @@ export const editUserRole = async (req, res, next) => {
       { $set: req.body },
       { new: true }
     );
-    res.status(200).send({ message: "User Role Sucsessfully Updated!" });
+    res.status(200).send({ message: "User Role Succsessfully Updated!" });
   } catch (err) {
     next(err);
   }

@@ -3,7 +3,11 @@ import { createContext, useState, useEffect, useContext } from "react";
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(() => {
+    // Retrieve user from localStorage on initial load (if any)
+    const storedUser = localStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
   const [loading, setLoading] = useState(true);
 
   const fetchUserData = async () => {
@@ -19,6 +23,8 @@ export const UserProvider = ({ children }) => {
 
       const data = await response.json();
       setUser(data);
+      // Save user data to localStorage
+      localStorage.setItem("user", JSON.stringify(data));
     } catch (error) {
       console.error("Error fetching user data:", error);
       setUser(null);
@@ -28,8 +34,12 @@ export const UserProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    fetchUserData(); // Automatically fetch user data on initial mount
-  }, []); // Runs only on initial mount
+    if (!user) {
+      fetchUserData(); // Fetch user data only if not already in state
+    } else {
+      setLoading(false); // If user data is already in state, skip fetching
+    }
+  }, [user]); // Only fetch if `user` is null
 
   return (
     <UserContext.Provider value={{ user, setUser, loading, fetchUserData }}>
@@ -40,3 +50,4 @@ export const UserProvider = ({ children }) => {
 
 // Custom hook for easier usage
 export const useUser = () => useContext(UserContext);
+

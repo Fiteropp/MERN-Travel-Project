@@ -19,7 +19,7 @@ function UserDash() {
                     <div className='profile-card'>
                         
                         <div className='profile-pic-frame'>
-                            <img  src={ user.img || "https://cdn-icons-png.flaticon.com/512/9385/9385289.png"} alt="" className='card' />
+                            <img  src={ user?.img || "https://cdn-icons-png.flaticon.com/512/9385/9385289.png"} alt="" className='card' />
                         </div>
                         
                         <div className='profile-card-info'>

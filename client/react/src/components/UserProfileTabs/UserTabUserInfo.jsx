@@ -2,13 +2,16 @@ import { useState } from "react";
 import { useUser } from "../../contexts/UserContext";
 import { Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField, Slide } from "@mui/material";
 
+import { useAlert } from "../../contexts/AlertContext";
+
 const Transition = Slide;
 
 export default function UserTabUserInfo() {
-    const { user, setUser, loading } = useUser();
+    const { user, setUser, loading, fetchUserData } = useUser();
     const [open, setOpen] = useState(false);
     const [currentField, setCurrentField] = useState('');
     const [currentValue, setCurrentValue] = useState('');
+    const { showAlert } = useAlert();
 
     // Prevent rendering if user is null and loading is false (meaning no user data fetched yet)
     if (loading) return <p>Loading...</p>;
@@ -46,8 +49,9 @@ export default function UserTabUserInfo() {
                     ...updatedField,
                 }));
 
-                alert(`${currentField} updated successfully!`);
                 setOpen(false);
+                await fetchUserData();
+                showAlert("UserData Updated", "success");
             } else {
                 alert("Failed to update field.");
             }
