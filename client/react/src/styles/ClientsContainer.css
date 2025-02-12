@@ -1,3 +1,12 @@
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  } 
+} /**/
+
 .client_slider_container {
     padding: 40px 20px;
     background-color: #f7fafc;
@@ -8,6 +17,9 @@
   .client_slider {
     display: flex;
     width: max-content;
+    gap: 20px; /* Space between client cards */
+    padding: 10px 0; /* Space between client cards and slider */
+    animation: slide 18s linear infinite; /* Change the duration of the animation */
   }
   
   .client_card {
@@ -26,6 +38,9 @@
     height: 80px;
     border-radius: 50%;
     margin-bottom: 15px;
+    object-fit: cover; /* This property is used to fit the image inside the container*/
+    object-position: top; /* This property is used to position the image inside the container */
+    
   }
   
   .client_feedback {
