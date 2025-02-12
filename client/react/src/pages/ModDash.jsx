@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/ModDash.css';
 import { useEffect, useState } from 'react';
+import { useUser } from "../contexts/UserContext.jsx";
 
 import ModTabs from '../components/ModTabs';
 
@@ -8,29 +9,7 @@ import ModTabs from '../components/ModTabs';
 
 function ModDash() {
 
-    const [user, setUser] = useState({});
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        const fetchUserData = async () => {
-        try {
-            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/auth/getuserdata`,{
-                method: 'GET',
-                credentials: 'include'
-            }
-                
-            );
-            const data = await response.json();
-            setUser(data);
-        } catch (error) {
-            console.error("Error fetching user data:", error);
-        } finally {
-            setLoading(false);
-        }
-        };
-
-        fetchUserData();
-    }, []);
+    const { user, setUser, loading } = useUser();
 
     return (
         <div className='main-container' >

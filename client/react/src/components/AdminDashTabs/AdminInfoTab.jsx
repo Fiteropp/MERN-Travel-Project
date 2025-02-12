@@ -7,8 +7,7 @@ import { useAlert } from "../../contexts/AlertContext";
 
 const Transition = Slide;
 
-
-export default function ModTabUserInfo() {
+export default function AdminInfoTab() {
     const { user, setUser, loading, fetchUserData } = useUser();
     const [open, setOpen] = useState(false);
     const [currentField, setCurrentField] = useState('');

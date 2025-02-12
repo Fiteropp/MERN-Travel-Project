@@ -57,7 +57,7 @@ function UserTabBookingHistory() {
                 
                 <h3>Price: {bookings.price || 'N/A'} €</h3>
                 <Button variant="outlined" color="primary" onClick={() => DeleteBooking(bookings._id)}>
-                                Delete Booking
+                Delete Booking
                 </Button>
             </div>
         </div>
