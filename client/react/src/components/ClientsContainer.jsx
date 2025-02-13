@@ -78,18 +78,6 @@ export function ClientsContainer({ client }) {
           <img className="client-img" src={client9} alt="client" />
           <p className="client_feedback">The trip exceeded my expectations, and the website made the booking process effortless.</p>
         </div>
-        <div className="client_card">
-          <img className="client-img" src={client9} alt="client" />
-          <p className="client_feedback">The trip exceeded my expectations, and the website made the booking process effortless.</p>
-        </div>
-        <div className="client_card">
-          <img className="client-img" src={client9} alt="client" />
-          <p className="client_feedback">The trip exceeded my expectations, and the website made the booking process effortless.</p>
-        </div>
-        <div className="client_card">
-          <img className="client-img" src={client9} alt="client" />
-          <p className="client_feedback">The trip exceeded my expectations, and the website made the booking process effortless.</p>
-        </div>
       </div>
     </div>
   );

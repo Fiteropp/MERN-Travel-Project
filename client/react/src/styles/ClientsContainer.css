@@ -1,10 +1,10 @@
 @keyframes slide {
-  0% {
+  4% {
     transform: translateX(0);
   }
-  100% {
-    transform: translateX(-50%);
-  } 
+  50% {
+    transform: translateX(-65%);
+  }
 } /**/
 
 .client_slider_container {
@@ -19,7 +19,9 @@
     width: max-content;
     gap: 20px; /* Space between client cards */
     padding: 10px 0; /* Space between client cards and slider */
-    animation: slide 18s linear infinite; /* Change the duration of the animation */
+    /*animation: slide 36s linear infinite;*/ /* Change the duration of the animation */
+    animation: slide 36s ease-in-out infinite;
+
   }
   
   .client_card {
