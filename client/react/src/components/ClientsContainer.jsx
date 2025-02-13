@@ -5,11 +5,12 @@ import client0 from "../assets/images/client0.jpg"; //New pictures
 import client1 from "../assets/images/client1.jpg";
 import client2 from "../assets/images/client2.jpg";
 import client3 from "../assets/images/client3.jpg";
-import client4 from "../assets/images/client4.jpg";
+import client4 from "../assets/images/client.jpg";
 import client5 from "../assets/images/client5.jpg";
 import client6 from "../assets/images/client6.jpg";
 import client7 from "../assets/images/client7.jpg";
 import client8 from "../assets/images/client8.jpg";
+import client9 from "../assets/images/client9.jpg";
 
 export function ClientsContainer({ client }) {
   const sliderRef = useRef(null);
@@ -74,12 +75,20 @@ export function ClientsContainer({ client }) {
           <p className="client_feedback">The travel agency helped me plan a perfect vacation, and their staff was always there to answer my questions.</p>
         </div>
         <div className="client_card">
-          <img className="client-img" src={client8} alt="client" />
-          <p className="client_feedback">The travel agency helped me plan a perfect vacation, and their staff was always there to answer my questions.</p>
+          <img className="client-img" src={client9} alt="client" />
+          <p className="client_feedback">The trip exceeded my expectations, and the website made the booking process effortless.</p>
         </div>
         <div className="client_card">
-          <img className="client-img" src={client8} alt="client" />
-          <p className="client_feedback">The travel agency helped me plan a perfect vacation, and their staff was always there to answer my questions.</p>
+          <img className="client-img" src={client9} alt="client" />
+          <p className="client_feedback">The trip exceeded my expectations, and the website made the booking process effortless.</p>
+        </div>
+        <div className="client_card">
+          <img className="client-img" src={client9} alt="client" />
+          <p className="client_feedback">The trip exceeded my expectations, and the website made the booking process effortless.</p>
+        </div>
+        <div className="client_card">
+          <img className="client-img" src={client9} alt="client" />
+          <p className="client_feedback">The trip exceeded my expectations, and the website made the booking process effortless.</p>
         </div>
       </div>
     </div>
