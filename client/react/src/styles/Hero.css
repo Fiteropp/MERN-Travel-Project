@@ -1,0 +1,25 @@
+.header_container{
+    height: 60vh;
+    max-height: 800px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    transition: background-image 1s ease-in-out;    
+}
+
+.header_container.blur{
+    filter: blur(8px);
+    transition: filter 1s ease-in-out;
+}
+
+.header_content h1{
+ font-size: 48px;
+ margin: 0;
+}
+
+.header_content p{
+    font-size: 18px;
+    margin-top: 10px;
+}
