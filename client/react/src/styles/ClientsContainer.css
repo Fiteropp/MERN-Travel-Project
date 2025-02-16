@@ -10,8 +10,11 @@
 .client_slider_container {
     padding: 40px 20px;
     background-color: #eef1f3;
+    position: relative;
     text-align: center;
     overflow: hidden;
+    background: url("../assets/images/italy.jpg");
+    background-size: cover;
   }
   
   .client_slider {
@@ -25,7 +28,7 @@
   }
   
   .client_card {
-    background: #ffffff;
+    background: linear-gradient(135deg, #cefbf5, #dbdefd);
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -51,3 +54,28 @@
     margin-bottom: 10px;
   }
   
+  .client_slider_container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Затемнение */
+    z-index: 1;
+  }
+  
+  .client_slider {
+    position: relative;
+    z-index: 2; /* Чтобы контент был выше затемнения */
+  }
+
+  .section_header {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: rgb(237, 235, 235);
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 2;
+  }
