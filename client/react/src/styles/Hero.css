@@ -1,25 +1,73 @@
+@keyframes slideUp {
+    0% {
+        background-position: center top;
+    }
+    100% {
+        background-position: center bottom;
+    }
+} /**/
+
 .header_container{
     height: 60vh;
     max-height: 800px;
     background-size: cover;
-    background-position: center;
+    background-position: center top; /**/
     border-radius: 12px;
     position: relative;
     overflow: hidden;
     transition: background-image 1s ease-in-out;    
 }
 
+.header_container.animated {
+    animation: slideUp 4s ease-in-out;
+}
+
 .header_container.blur{
     filter: blur(8px);
     transition: filter 1s ease-in-out;
 }
+.header_contentHero {
+    max-width: 30%;
+    padding: 80px 100px;
+}
 
-.header_content h1{
- font-size: 48px;
+.header_contentHero {
+    display: inline-block; /* Компактная рамка */
+    padding: 40px 30px 12px 20px; /* Минимальные отступы */
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px); /*Background-bur*/
+    border-radius: 8px; /*Round borders*/
+    box-shadow: 0 2px 6px rgba(255, 255, 255, 0.2);
+    text-align: left;
+    color: white; /*Text*/
+    /*width: auto;*/
+    /*height: 5px;*/
+    /*margin: auto;*/
+    position: absolute;
+    top: 50%;
+    left: 5%; /* Отступ слева */
+    transform: translateY(-50%); /* Центрируем рамку по вертикали */
+    animation: fadeIn 1s ease-in-out;
+} /**/
+
+/* Анимация появления */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.header_contentHero h2{
+ font-size: 28px;
  margin: 0;
 }
 
-.header_content p{
+.header_contentHero p{
     font-size: 18px;
-    margin-top: 10px;
+    margin-top: 6px;
 }
