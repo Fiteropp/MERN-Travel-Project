@@ -41,42 +41,52 @@ export function ClientsContainer({ client }) {
         <div className="client_card">
           <img className="client-img" src={client0} alt="client" />
           <p className="client_feedback">The booking process was seamless, and the confirmation was instant. Highly recommend!</p>
+          <div class="client_rating" data-rating="5"></div>
         </div>
         <div className="client_card">
           <img className="client-img" src={client1} alt="client" />
           <p className="client_feedback">The website provided detailed hotel information, including amenities and photos.</p>
+          <div class="client_rating" data-rating="5"></div>
         </div>
         <div className="client_card">
           <img className="client-img" src={client2} alt="client" />
           <p className="client_feedback">I was able to book a room within minutes, and the hotel exceeded my expectations.</p>
+          <div class="client_rating" data-rating="5"></div>
         </div>
         <div className="client_card">
           <img className="client-img" src={client3} alt="client" />
           <p className="client_feedback">The service was excellent! I would definitely use this platform again for my bookings.</p>
+          <div class="client_rating" data-rating="5"></div>
         </div>
         <div className="client_card">
           <img className="client-img" src={client4} alt="client" />
           <p className="client_feedback">Fantastic platform with a user-friendly interface and reliable service.</p>
+          <div class="client_rating" data-rating="5"></div>
         </div>
         <div className="client_card">
           <img className="client-img" src={client5} alt="client" />
           <p className="client_feedback">I found website so easy to navigate and book my trip. The functionalities made my planning process smooth and enjoyable.</p>
+          <div class="client_rating" data-rating="5"></div>
         </div>
         <div className="client_card">
           <img className="client-img" src={client6} alt="client" />
           <p className="client_feedback">The website is incredibly user-friendly and visually appealing. </p>
+          <div class="client_rating" data-rating="5"></div>
         </div>
         <div className="client_card">
           <img className="client-img" src={client7} alt="client" />
           <p className="client_feedback">The trip was well-organized, and every detail was taken care of.</p>
+          <div class="client_rating" data-rating="5"></div>
         </div>
         <div className="client_card">
           <img className="client-img" src={client8} alt="client" />
           <p className="client_feedback">The travel agency helped me plan a perfect vacation, and their staff was always there to answer my questions.</p>
+          <div class="client_rating" data-rating="4"></div>
         </div>
         <div className="client_card">
           <img className="client-img" src={client9} alt="client" />
           <p className="client_feedback">The trip exceeded my expectations, and the website made the booking process effortless.</p>
+          <div class="client_rating" data-rating="4"></div>
         </div>
       </div>
     </div>

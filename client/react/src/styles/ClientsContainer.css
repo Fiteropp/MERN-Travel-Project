@@ -36,6 +36,7 @@
     width: 300px;
     text-align: center;
     flex-shrink: 0;
+    min-height: 200px;
   }
   
   .client-img {
@@ -79,3 +80,38 @@
     position: relative;
     z-index: 2;
   }
+
+  .client_rating {
+    margin-top: auto; /*Stars in the bottom*/
+    padding-top: 10px;
+}
+
+  .client_rating::before {
+    content: "★★★★★";
+    color: lightgray;
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+.client_rating[data-rating="5"]::before {
+  content: "★★★★★";
+  color: gold;
+}
+
+.client_rating[data-rating="4"]::before {
+    content: "★★★★☆";
+    color: gold;
+}
+
+.client_rating[data-rating="3"]::before {
+    content: "★★★☆☆";
+    color: gold;
+}
+.client_rating[data-rating="2"]::before {
+  content: "★★☆☆☆";
+  color: gold;
+}
+.client_rating[data-rating="1"]::before {
+  content: "★☆☆☆☆";
+  color: gold;
+}
