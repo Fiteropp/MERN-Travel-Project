@@ -11,11 +11,11 @@ const Footer = () => {
             Making the world a better place through seamless hotel booking and elegant experiences.
           </p>
           <div className="social_icons">
-            <a href="#"><i className="fab fa-facebook"></i></a>
-            <a href="#"><i className="fab fa-instagram"></i></a>
-            <a href="#"><i className="fab fa-twitter"></i></a>
-            <a href="#"><i className="fab fa-github"></i></a>
-            <a href="#"><i className="fab fa-youtube"></i></a>
+            <a href="https://www.facebook.com"><i className="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/vantaanvaria/"><i className="fab fa-instagram"></i></a>
+            <a href="https://twitter.com"><i className="fab fa-twitter"></i></a>
+            <a href="https://github.com/Fiteropp/MERN-Travel-Project"><i className="fab fa-github"></i></a>
+            <a href="https://www.youtube.com/"><i className="fab fa-youtube"></i></a>
           </div>
         </div>
         <div className="footer_col">
