@@ -2,7 +2,9 @@ import Hotel from "../models/hotel.js";
 import User from "../models/user.js";
 import Booking from "../models/booking.js";
 import mongoose from "mongoose";
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+import Stripe from "stripe";
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 
 export const createBooking = async (req, res, next) => {
@@ -105,24 +107,49 @@ export const deleteBooking = async (req, res, next) => {
     }
 };
 
-export const confirmPayment = async (req, res, next) => {
-    const {bookingid, price} = req.body;
+
+
+export const createPaymentIntent = async (req, res, next) =>{
+    const bookingid  = req.body.bookingid;
     try {
-        if (!bookingid || !price) {
-            return res.status(400).json({ message: "Booking is required" });
+          // Fetch the booking details
+        const booking = await Booking.findById(bookingid);
+        if (!bookingid) {
+            return res.status(400).json({ message: "Booking ID is required" });
         }
+        
+        if (!booking) {
+            return res.status(404).json({ message: "Booking not found" });
+        }
+
+        const amount = booking.price;
         const paymentIntent = await stripe.paymentIntents.create({
-            amount: Math.round(price),
+            amount: Math.round(amount * 100), // Stripe expects the amount in cents
             currency: 'eur',
             payment_method_types: ["card"],
-            confirm: true
         });
+        console.log("Generated Client Secret:", paymentIntent.client_secret)
+        res.status(200).json({ clientSecret: paymentIntent.client_secret });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+        next(err);
+    }
+};
+
+
+export const confirmPayment = async (req, res, next) => {
+    const bookingid = req.params.bookingid;
+    try {
+        if (!bookingid) {
+            return res.status(400).json({ message: "Booking is required" });
+        }
+        
         const payedBooking = await Booking.findByIdAndUpdate(
             bookingid,
             { bookingPayed: true },
             { new: true }
         );
-        res.status(200).send(payedBooking, paymentIntent);
+        res.status(200).send(payedBooking);
     } catch (err) {
         next(err);
     }

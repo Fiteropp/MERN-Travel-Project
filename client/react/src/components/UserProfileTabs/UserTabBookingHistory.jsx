@@ -2,13 +2,17 @@ import React from "react";
 import Button from '@mui/material/Button';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import PaymentForm from "../paymentForm";
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
 // need to redo whole file after deployment
 function UserTabBookingHistory() {
 
     const [bookingData, setBookingData] = useState([]);
-  
+    const [selectedBooking, setSelectedBooking] = useState({});
+    const [showPaymentForm, setShowPaymentForm] = useState(false);
 
     useEffect(() => {
         const fetchBookingsData = async () => {
@@ -34,6 +38,10 @@ function UserTabBookingHistory() {
           console.error("Error deleting booking:", error);
       }
   }
+    const handlePaymentForm = (booking) => {
+        setSelectedBooking(booking);
+        setShowPaymentForm(true);
+    };
 
 
     return (
@@ -56,7 +64,10 @@ function UserTabBookingHistory() {
                 <p>Check-Out: {new Date(bookings.checkOut).toLocaleDateString()}</p>
                 
                 <h3>Price: {bookings.price || 'N/A'} €</h3>
-                <Button variant="outlined" color="primary" onClick={() => DeleteBooking(bookings._id)}>
+                <Button variant="outlined" color="primary" onClick={() => handlePaymentForm(bookings)}>
+                Pay Now
+                </Button>
+                <Button variant="outlined" color="secondary" onClick={() => DeleteBooking(bookings._id)}>
                 Delete Booking
                 </Button>
             </div>
@@ -64,6 +75,11 @@ function UserTabBookingHistory() {
     ))
 ) : (
     <p>No bookings found.</p>
+)}
+{showPaymentForm && selectedBooking && (
+    <Elements stripe={stripePromise}>
+        <PaymentForm bookingId={selectedBooking._id} price={selectedBooking.price} />
+    </Elements>
 )}
         </div>
     )
