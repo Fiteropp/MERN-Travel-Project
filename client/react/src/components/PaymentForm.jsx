@@ -17,7 +17,6 @@ const PaymentForm = ({ bookingId, price }) => {
                     { bookingid: bookingId },
                     { withCredentials: true }
                 );
-                console.log("Payment Intent Response:", paymentIntentResponse.data); // Debugging
                 setClientSecret(paymentIntentResponse.data.clientSecret);
             } catch (error) {
                 console.error("Failed to create payment intent:", error); // Debugging
@@ -45,8 +44,6 @@ const PaymentForm = ({ bookingId, price }) => {
                 setError(paymentMethodError.message);
                 return;
             }
-
-            console.log("Client Secret:", clientSecret); // Debugging
             const { error: confirmationError, paymentIntent } = await stripe.confirmCardPayment(
                 clientSecret,
                 {

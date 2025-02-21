@@ -137,7 +137,7 @@ export const createPaymentIntent = async (req, res, next) =>{
 
 
 export const confirmPayment = async (req, res, next) => {
-    const bookingid = req.params.bookingid;
+    const bookingid = req.body.bookingid;
     try {
         if (!bookingid) {
             return res.status(400).json({ message: "Booking is required" });

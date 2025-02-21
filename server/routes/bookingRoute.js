@@ -28,5 +28,5 @@ export default (app) => {
     app.post("/api/createPaymentIntent", authJwt.verifyToken, createPaymentIntent);
 
     //CONFIRM PAYMENT
-    app.patch("/api/confirmPayment/:bookingid", authJwt.verifyToken, confirmPayment);
+    app.patch("/api/confirmPayment/", authJwt.verifyToken, confirmPayment);
 }
