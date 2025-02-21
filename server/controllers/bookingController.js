@@ -128,7 +128,6 @@ export const createPaymentIntent = async (req, res, next) =>{
             currency: 'eur',
             payment_method_types: ["card"],
         });
-        console.log("Generated Client Secret:", paymentIntent.client_secret)
         res.status(200).json({ clientSecret: paymentIntent.client_secret });
     } catch (err) {
         res.status(500).json({ message: err.message });
