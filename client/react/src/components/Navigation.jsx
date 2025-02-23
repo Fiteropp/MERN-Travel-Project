@@ -123,7 +123,7 @@ const Navigation = () => {
                 <Link to="/our-team">Our Team</Link>
               </li>
               <li className="link">
-                <Link to="#">Contact</Link>
+                <Link to="/contact">Contact</Link>
               </li>
               {user && (
                 <li className="link">

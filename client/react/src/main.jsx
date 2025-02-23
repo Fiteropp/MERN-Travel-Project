@@ -17,6 +17,7 @@ import { HotelSearch } from "./pages/HotelSearch.jsx";
 import ModDash from "./pages/ModDash.jsx";
 import UserDash from "./pages/UserDash.jsx";
 import {OurTeam} from "./pages/OurTeam.jsx";
+import Contacts from "./pages/Contact.jsx"
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,6 +31,7 @@ const router = createBrowserRouter(
       <Route path="/moderator" element={<ModDash />} />
       <Route path="/booking-form/:id" element={<BookingForm />} />
       <Route path="/our-team" element={<OurTeam />} />
+      <Route path="/contact" element={<Contacts />} />
     </Route>
   )
 );
