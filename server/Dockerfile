@@ -12,4 +12,4 @@ COPY . /server
 # Specifies the port of server, which the container will be listening.
 EXPOSE 8080
 # Specifies the command to run when the container starts (node server.js).
-CMD ["node","server.js"]
+CMD ["npm","start"]
