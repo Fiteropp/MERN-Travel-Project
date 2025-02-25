@@ -16,8 +16,15 @@ import {
   Box,
   Pagination,
   CardMedia,
-  Rating
+  Rating,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
 } from "@mui/material";
+
+import { IoIosArrowDown } from "react-icons/io";
+
+
 
 import "../styles/HotelSearch.css"
 
@@ -29,12 +36,16 @@ const HotelSearch = () => {
   const [order, setOrder] = useState("asc");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
+  const [minMaxPriceSlider, setMinMaxPriceSlider] = useState([0, 500])
   const [minRating, setMinRating] = useState("");
   const [maxRating, setMaxRating] = useState("");
+  const [minMaxRatingSlider, setMinMaxRatingSlider] = useState([0, 5])
   const [error, setError] = useState("");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [totalHotels, setTotalHotels] = useState(0);
+  const [width, setWidth] = useState(window.innerWidth);
+  const [expanded, setExpanded] = useState(window.innerWidth >= 768);
 
   const fetchHotels = async () => {
     try {
@@ -65,12 +76,59 @@ const HotelSearch = () => {
 
   useEffect(() => {
     fetchHotels();
-  }, [city, sortBy, order, search, page, minPrice, maxPrice, minRating, maxRating]);
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  
+  useEffect(() => {
+    if (width < 768) {
+      setExpanded(false); 
+    }
+  }, [width]); 
 
   const handlePageChange = (event, value) => {
     setPage(value);
   };
 
+  const handleMinPriceChange = (event) => {
+    const value = Number(event.target.value);
+    setMinPrice(value);  // Update minPrice
+    setMinMaxPriceSlider([value, maxPrice]);
+};
+
+const handleMaxPriceChange = (event) => {
+    const value = Number(event.target.value);
+    setMaxPrice(value);  // Update maxPrice
+    setMinMaxPriceSlider([minPrice, value]);
+};
+
+const handlePriceSliderChange = (event, newPriceValue) => {
+  setMinMaxPriceSlider(newPriceValue);
+  setMinPrice(newPriceValue[0])
+  setMaxPrice(newPriceValue[1])
+}
+
+const handleMinRatingChange = (event) => {
+  const value = Number(event.target.value);
+  setMinRating(value);  // Update minPrice
+  setMinMaxRatingSlider([value, maxPrice]);
+};
+
+const handleMaxRatingChange = (event) => {
+  const value = Number(event.target.value);
+  setMaxRating(value);  // Update maxPrice
+  setMinMaxRatingSlider([minPrice, value]);
+};
+
+const handleRatingSliderChange = (event, newPriceValue) => {
+setMinMaxRatingSlider(newPriceValue);
+setMinRating(newPriceValue[0])
+setMaxRating(newPriceValue[1])
+}
   
 
   const resetFilters = () => {
@@ -101,9 +159,9 @@ const HotelSearch = () => {
      
     <div className="topFilters">
       
-      <div className="topSearch">
+      <Box className="topSearch">
         {/* Search by Name */}
-        <TextField sx={{ m: 1 }}
+        <TextField sx={{ width: '100%' }}
             fullWidth
             className="topSearchBar"
             label="Search by Name"
@@ -111,7 +169,7 @@ const HotelSearch = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-      </div>
+      </Box>
       
       <div className="topSort">
             
@@ -151,76 +209,126 @@ const HotelSearch = () => {
     
     <div className="hotelsSearchContainer">
 
-      <div className="filters">
-          
-        
-
-        {/* City Filter */}
-        
+      <Box sx={{width: '95%'}} className="filters">
+      <Accordion sx={{width: 'auto', boxShadow:'none', }} defaultExpanded={expanded}>
+        <AccordionSummary
+          expandIcon={<IoIosArrowDown />}
+          aria-controls="panel1-content"
+          id="panel1-header"
+        >
+          <h3 style={{margin: "0px"}}>Filters</h3>
+        </AccordionSummary>
+        <AccordionDetails>
+          {/* City Filter */}
+        <div className="filterGroup">
+          <p className="filterName">City</p>
+          <hr />
           <FormControl className="search-input" fullWidth>
-            <InputLabel>City</InputLabel>
-            <Select 
-              label="City"
-              value={city} 
-              onChange={(e) => setCity(e.target.value)}
-            >
-              <MenuItem value="">All Cities</MenuItem>
-              <MenuItem value="Budapest">Budapest</MenuItem>
-              <MenuItem value="Tokyo">Tokyo</MenuItem>
-              <MenuItem value="Arusha">Arusha</MenuItem>
-              <MenuItem value="Sydney">Sydney</MenuItem>
-              <MenuItem value="Cancún">Cancún</MenuItem>
-            </Select>
-          </FormControl>
-        
+              <InputLabel>City</InputLabel>
+              <Select 
+                label="City"
+                value={city} 
+                variant="filled"
+                onChange={(e) => setCity(e.target.value)}
+              >
+                <MenuItem value="">All Cities</MenuItem>
+                <MenuItem value="Budapest">Budapest</MenuItem>
+                <MenuItem value="Tokyo">Tokyo</MenuItem>
+                <MenuItem value="Arusha">Arusha</MenuItem>
+                <MenuItem value="Sydney">Sydney</MenuItem>
+                <MenuItem value="Cancún">Cancún</MenuItem>
+              </Select>
+            </FormControl>
+            
+        </div>
 
+       
         
-        
-        <div className="filterRow">
-            {/* Price Range*/}
+        <div className="filterGroup">
+            <p className="filterName">Price</p>
+            <hr />
+              <Slider
+            getAriaLabel={() => 'Temperature range'}
+            value={minMaxPriceSlider}
+            sx={{ color: '#276968' }}
+            onChange={handlePriceSliderChange}
+            valueLabelDisplay="auto"
+            min={0}
+            max={350}
+            step={10}
+          />
 
-            <TextField className="search-input"
-              label="Min Price"
-              type="number"
-              variant="outlined"
-              fullWidth
-              value={minPrice}
-              onChange={(e) => setMinPrice(e.target.value)}
-            />
-          
-          
-            <TextField className="search-input"
-              label="Max Price"
-              type="number"
-              variant="outlined"
-              fullWidth
-              value={maxPrice}
-              onChange={(e) => setMaxPrice(e.target.value)}
-            />
+            <div className="priceFilterRow">
+                {/* Price Range*/}
+
+                <TextField className="search-input"
+                  label="Min"
+                  type="number"
+                  variant="filled"
+                  size="small"
+                  inputProps={{step:10}}
+                  fullWidth
+                  value={minPrice}
+                  onChange={handleMinPriceChange}
+                />
+              
+              
+                <TextField className="search-input"
+                  label="Max"
+                  type="number"
+                  variant="filled"
+                  size="small"
+                  inputProps={{step:10}}
+                  fullWidth
+                  value={maxPrice}
+                  onChange={handleMaxPriceChange}
+                />
+            </div>
+           
         </div>
         
-        <div className="filterRow">
+       
+
+        <div className="filterGroup">
+        
+        <p className="filterName">Rating</p>
+          <hr />  
+
+          <Slider
+            getAriaLabel={() => 'Temperature range'}
+            value={minMaxRatingSlider}
+            sx={{ color: '#276968' }}
+            onChange={handleRatingSliderChange}
+            valueLabelDisplay="auto"
+            min={0}
+            max={5}
+            step={0.1}
+            defaultValue={[0,5]}
+          />
+        
+        <div className="priceFilterRow">
           { /* Rating Range */}
           
             <TextField className="search-input"
-              label="Min Rating"
+              label="Min"
               type="number"
-              variant="outlined"
+              variant="filled"
               fullWidth
               inputProps={{ min: 0, max: 5, step: 0.1 }}
               value={minRating}
-              onChange={(e) => setMinRating(e.target.value)}
+              onChange={handleMinRatingChange}
             />
           
             <TextField className="search-input"
-              label="Max Rating"
+              label="Max"
               type="number"
-              variant="outlined"
+              variant="filled"
               fullWidth
               inputProps={{ min: 0, max: 5, step: 0.1 }}
               value={maxRating}
-              onChange={(e) => setMaxRating(e.target.value)}
+              onChange={handleMaxRatingChange}
             />
+        </div>
         </div>
 
        
@@ -233,6 +341,7 @@ const HotelSearch = () => {
               variant="contained" 
               color="primary" 
               onClick={fetchHotels}
+              fullWidth
             >
               Search
             </Button>
@@ -242,6 +351,7 @@ const HotelSearch = () => {
               variant="outlined" 
               color="secondary" 
               onClick={resetFilters}
+              fullWidth
             >
               Reset Filters
             </Button>
@@ -259,7 +369,9 @@ const HotelSearch = () => {
               {error}
             </Typography>
           )}
-      </div>
+        </AccordionDetails>
+      </Accordion>    
+      </Box>
         
 
         
