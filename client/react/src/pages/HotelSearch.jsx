@@ -76,7 +76,7 @@ const HotelSearch = () => {
 
   useEffect(() => {
     fetchHotels();
-  }, []);
+  }, [sortBy, order]);
 
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);
@@ -138,8 +138,10 @@ setMaxRating(newPriceValue[1])
     setOrder("asc");
     setMinPrice("");
     setMaxPrice("");
+    setMinMaxPriceSlider([0,500])
     setMinRating("");
     setMaxRating("");
+    setMinMaxRatingSlider([0,5])
     setPage(1);
   };
 
@@ -174,7 +176,7 @@ setMaxRating(newPriceValue[1])
       <div className="topSort">
             
             {/* Sort By */}
-            <FormControl sx={{ m: 1, minWidth: 150 }}>
+            <FormControl className="topSortEl" sx={{ m: 1,  minWidth:{ xs: '50%', '@680': '150px', } }}>
             <InputLabel>Sort By</InputLabel>
               <Select 
                 label="Sort By"
@@ -189,7 +191,7 @@ setMaxRating(newPriceValue[1])
           
 
           {/* Order */}
-            <FormControl sx={{ m: 1, minWidth: 150 }}>
+            <FormControl className="topSortEl" sx={{ m: 1,  minWidth:{ xs: '50%', '@680': '150px', } }}>
               <InputLabel>Order</InputLabel>
               <Select 
                 label="Order"
@@ -207,10 +209,10 @@ setMaxRating(newPriceValue[1])
      
      </section>
     
-    <div className="hotelsSearchContainer">
+    <Box className="hotelsSearchContainer"  >
 
-      <Box sx={{width: '95%'}} className="filters">
-      <Accordion sx={{width: 'auto', boxShadow:'none', }} defaultExpanded={expanded}>
+      <Box sx={{width: 1}} className="filters">
+      <Accordion sx={{width: 1, boxShadow:'none', }} defaultExpanded={expanded}>
         <AccordionSummary
           expandIcon={<IoIosArrowDown />}
           aria-controls="panel1-content"
@@ -434,7 +436,7 @@ setMaxRating(newPriceValue[1])
       )}
 
       </div>
-      </div>
+      </Box>
       
 
   </div>  

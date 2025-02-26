@@ -37,19 +37,22 @@
 }
 
 .topSearch{
+    flex: 2;
     flex-grow: 1;
 }
 
 .topSort{
+    flex: 6;
     display: flex;
-    flex-grow: 1;
     justify-content: end;
+    box-sizing: border-box;
 }
 
 .topFilters{
-    display: flex;
+    display: grid;
     flex-direction: row;
-    flex-wrap: nowrap;
+    grid-template-columns: 2fr 3fr;
+    column-gap: 33%;
     justify-content: space-between;
 }
 
@@ -64,6 +67,7 @@
     padding: 1em;
     border: 1px solid #c7c7c7;
     border-radius: 0.5em;
+    box-sizing: border-box;
 }
 
 hr{
@@ -207,12 +211,27 @@ hr{
 
 @media (max-width: 680px) {
     .topFilters {
+        display: flex;
         flex-direction: column;
         align-content: center;
         justify-content: center;
         margin: 0 auto;
         
     }
-    
+
+    .topSort{
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: 2fr 2fr;
+        margin-top: 10px;
+        margin-bottom: 10px;
+
+    }
+
+    .topSortEl{
+        margin: 0px !important;
+        box-sizing: border-box;
+    }
+
 }
 

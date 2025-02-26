@@ -37,9 +37,10 @@
   }
   
   .form-box {
-    width: 512px;
-    padding-top: 20rem;
-    padding-bottom: 20rem;
+    max-width: 512px;
+    padding-top: 3%;
+    box-sizing: border-box;
+    height: 100vh;
     margin: 0 auto;
     text-align: center;
   }
@@ -253,3 +254,9 @@
   .login-link span:hover::after {
     width: 100%;
   }
+
+@media (max-width: 600px){
+  .form-box{
+    width: 80%;
+  }
+}

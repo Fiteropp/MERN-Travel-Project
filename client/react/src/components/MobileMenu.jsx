@@ -25,6 +25,10 @@ const MobileMenu = () => {
         }
       };
 
+      const handleMenuClose = () => {
+        toggleMenu(false);
+    };
+
     return (
         <Menu
         isOpen={isMenuOpen} // Controlled by context
@@ -35,20 +39,20 @@ const MobileMenu = () => {
       >
         <ul className="nav_links">
                   <li className="link">
-                    <Link to="/">Home</Link>
+                    <Link onClick={handleMenuClose} to="/" >Home</Link>
+                  </li>
+                  <li className="link" >
+                    <Link onClick={handleMenuClose} to="/discover">Discover</Link>
                   </li>
                   <li className="link">
-                    <Link to="/discover">Discover</Link>
+                    <Link onClick={handleMenuClose} to="#">About Us</Link>
                   </li>
                   <li className="link">
-                    <Link to="#">About Us</Link>
-                  </li>
-                  <li className="link">
-                    <Link to="#">Contact</Link>
+                    <Link onClick={handleMenuClose} to="#">Contact</Link>
                   </li>
                   {user && (
                   <li className="link">
-                  <Link to={`/userprofile`}>Profile</Link>
+                  <Link onClick={handleMenuClose} to={`/userprofile`}>Profile</Link>
                   </li>)}
                 </ul>
 
@@ -56,16 +60,16 @@ const MobileMenu = () => {
               {user ? (
                 <>
                   <span className="mb-username">{user.fullName}</span>
-                  <Button variant="outlined" className="button" onClick={handleLogout}>
+                  <Button variant="outlined" className="button" onClick={() => { handleLogout(); handleMenuClose();}}>
                     Logout
                   </Button>
                 </>
               ) : (
                 <>
-                  <Button variant="text" className="button" href="/signup">
+                  <Button onClick={handleMenuClose} variant="text" className="button" href="/signup">
                     SignUp
                   </Button>
-                  <Button variant="outlined" className="button" href="/login">
+                  <Button onClick={handleMenuClose} variant="outlined" className="button" href="/login">
                     LogIn
                   </Button>
                 </>
