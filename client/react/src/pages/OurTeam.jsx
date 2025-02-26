@@ -3,7 +3,7 @@ import "./OurTeam.css";
 
 const teamMembers = [
   {
-    name: "Grigoriy",
+    name: "Grigorii",
     role: "The Idea Generator & Inspiration Seeker 🚀",
     description:
       "Always has a ticket to somewhere unknown in his pocket. Loves discovering unique routes you won’t find in a typical travel guide. Believes the best stories happen outside of comfort zones. Can buy a one-way ticket just because why not?",
@@ -11,7 +11,7 @@ const teamMembers = [
     image: "client/react/src/assets/images/grigoriy.jpg", // Добавь фото в папку public/images/
   },
   {
-    name: "Ilya",
+    name: "Ilia",
     role: "The Coder, Digital Map Wizard 💻 & Planning Master 📊",
     description:
       "Turns chaotic ideas into clean, user-friendly code. If travel could be programmed, he would have already built the perfect algorithm for every trip.",
@@ -37,7 +37,7 @@ const teamMembers = [
       image: "/images/jenni.jpg",
   },
   {
-    name: "Mickey",
+    name: "Mikhey",
     role: "The Adventure Seeker 🎒 & The Visual Storyteller 📸",
     description:
       "Seeks to capture the soul of every destination through a lens. People, streets, emotions – all come to life in his photos.",
