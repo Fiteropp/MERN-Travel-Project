@@ -2,6 +2,11 @@ import Hotel from "../models/hotel.js";
 import User from "../models/user.js";
 import Booking from "../models/booking.js";
 import mongoose from "mongoose";
+import Stripe from "stripe";
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+
 export const createBooking = async (req, res, next) => {
     const { hotel, user, checkIn, checkOut, room, price, guests, bookedDaysCount } = req.body;
 
@@ -101,3 +106,52 @@ export const deleteBooking = async (req, res, next) => {
         next(err);
     }
 };
+
+
+
+export const createPaymentIntent = async (req, res, next) =>{
+    const bookingid  = req.body.bookingid;
+    try {
+          // Fetch the booking details
+        const booking = await Booking.findById(bookingid);
+        if (!bookingid) {
+            return res.status(400).json({ message: "Booking ID is required" });
+        }
+        
+        if (!booking) {
+            return res.status(404).json({ message: "Booking not found" });
+        }
+
+        const amount = booking.price;
+        const paymentIntent = await stripe.paymentIntents.create({
+            amount: Math.round(amount * 100), // Stripe expects the amount in cents
+            currency: 'eur',
+            payment_method_types: ["card"],
+        });
+        res.status(200).json({ clientSecret: paymentIntent.client_secret });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+        next(err);
+    }
+};
+
+
+export const confirmPayment = async (req, res, next) => {
+    const bookingid = req.body.bookingid;
+    try {
+        if (!bookingid) {
+            return res.status(400).json({ message: "Booking is required" });
+        }
+        
+        const payedBooking = await Booking.findByIdAndUpdate(
+            bookingid,
+            { bookingPayed: true },
+            { new: true }
+        );
+        res.status(200).send(payedBooking);
+    } catch (err) {
+        next(err);
+    }
+};
+
+

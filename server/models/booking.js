@@ -36,6 +36,11 @@ const bookingSchema = new Schema ({
     bookedDaysCount: {
         type: Number,
         required: true
+    },
+    bookingPayed: {
+        type: Boolean,
+        default: false,
+        required: false
     }
 });
 
