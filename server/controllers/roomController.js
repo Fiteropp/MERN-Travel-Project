@@ -17,7 +17,7 @@ export const createRoom = async (req, res, next) => {
         res.status(200).json(savedroom);
     } catch(err) {
         next(err);
-        res.status(500).send({ message: err.message });
+        //res.status(500).send({ message: err.message });
     }
 };
 
@@ -31,7 +31,7 @@ export const updateRoom = async (req, res, next) => {
         res.status(200).json(updatedRoom);
     } catch (err) {
         next(err);
-        res.status(500).send({ message: err.message });
+        //res.status(500).send({ message: err.message });
     }
 };
 
@@ -49,7 +49,7 @@ export const deleteRoom = async (req, res, next) => {
 
     } catch (err) {
         next(err);
-        res.status(500).send({ message: err.message });
+        //res.status(500).send({ message: err.message });
     }
 };
 
@@ -59,7 +59,7 @@ export const getRoom = async (req, res, next) => {
         res.status(200).json(room)
     } catch (err) {
         next(err);
-        res.status(500).send({ message: err.message });
+        //res.status(500).send({ message: err.message });
     }
 };
 export const getRooms = async (req, res, next) => {
@@ -68,7 +68,7 @@ export const getRooms = async (req, res, next) => {
         res.status(200).json(rooms)
     } catch (err) {
         next(err);
-        res.status(500).send({ message: err.message });
+        //res.status(500).send({ message: err.message });
     }
 };
 
@@ -83,6 +83,6 @@ export const getRoomsByHotel = async (req, res, next) => {
         res.status(200).json(rooms);
     } catch (err) {
         next(err);
-        res.status(500).send({ message: err.message });
+        //res.status(500).send({ message: err.message });
     }
 };

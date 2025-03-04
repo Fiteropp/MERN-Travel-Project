@@ -3,6 +3,8 @@ import User from "../models/user.js";
 import Booking from "../models/booking.js";
 import mongoose from "mongoose";
 import Stripe from "stripe";
+import dotenv from "dotenv";
+dotenv.config();
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -130,7 +132,7 @@ export const createPaymentIntent = async (req, res, next) =>{
         });
         res.status(200).json({ clientSecret: paymentIntent.client_secret });
     } catch (err) {
-        res.status(500).json({ message: err.message });
+        //res.status(500).json({ message: err.message });
         next(err);
     }
 };
