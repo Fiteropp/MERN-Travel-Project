@@ -19,8 +19,6 @@ const PaymentForm = ({ bookingId, price }) => {
                 );
                 setClientSecret(paymentIntentResponse.data.clientSecret);
             } catch (error) {
-                console.error("Failed to create payment intent:", error); // Debugging
-                setError("Failed to create payment intent");
             }
         };
 
