@@ -4,33 +4,12 @@ import { MobileMenuContext } from './Navigation'; // Adjust the path if necessar
 import { Link } from 'react-router-dom';
 import "../styles/MobileMenu.css";
 import Button from "@mui/material/Button";
+import { useUser } from "../contexts/UserContext.jsx"; // Import UserContext
 
 const MobileMenu = () => {
     const { isMenuOpen, toggleMenu, stateChangeHandler } = useContext(MobileMenuContext);
-    const [user, setUser] = useState([]);
+    const { user, setUser, loading } = useUser(); // Use global user context
 
-    useEffect(() => {
-        const fetchUserData = async () => {
-          try {
-            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/auth/getuserdata`, {
-              method: "GET",
-              credentials: "include",
-            });
-    
-            if (!response.ok) {
-              throw new Error("Unauthorized");
-            }
-    
-            const data = await response.json();
-            setUser(data);
-          } catch (error) {
-            console.error("Error fetching user data:", error);
-            setUser(null);
-          }
-        };
-    
-        fetchUserData();
-      }, []);
 
       const handleLogout = async () => {
         try {
@@ -46,6 +25,10 @@ const MobileMenu = () => {
         }
       };
 
+      const handleMenuClose = () => {
+        toggleMenu(false);
+    };
+
     return (
         <Menu
         isOpen={isMenuOpen} // Controlled by context
@@ -56,20 +39,20 @@ const MobileMenu = () => {
       >
         <ul className="nav_links">
                   <li className="link">
-                    <Link to="/">Home</Link>
+                    <Link onClick={handleMenuClose} to="/" >Home</Link>
+                  </li>
+                  <li className="link" >
+                    <Link onClick={handleMenuClose} to="/discover">Discover</Link>
                   </li>
                   <li className="link">
-                    <Link to="/discover">Discover</Link>
+                    <Link onClick={handleMenuClose} to="#">About Us</Link>
                   </li>
                   <li className="link">
-                    <Link to="#">About Us</Link>
-                  </li>
-                  <li className="link">
-                    <Link to="#">Contact</Link>
+                    <Link onClick={handleMenuClose} to="#">Contact</Link>
                   </li>
                   {user && (
                   <li className="link">
-                  <Link to={`/userprofile/${user._id}`}>Profile</Link>
+                  <Link onClick={handleMenuClose} to={`/userprofile`}>Profile</Link>
                   </li>)}
                 </ul>
 
@@ -77,16 +60,16 @@ const MobileMenu = () => {
               {user ? (
                 <>
                   <span className="mb-username">{user.fullName}</span>
-                  <Button variant="outlined" className="button" onClick={handleLogout}>
+                  <Button variant="outlined" className="button" onClick={() => { handleLogout(); handleMenuClose();}}>
                     Logout
                   </Button>
                 </>
               ) : (
                 <>
-                  <Button variant="text" className="button" href="/signup">
+                  <Button onClick={handleMenuClose} variant="text" className="button" href="/signup">
                     SignUp
                   </Button>
-                  <Button variant="outlined" className="button" href="/login">
+                  <Button onClick={handleMenuClose} variant="outlined" className="button" href="/login">
                     LogIn
                   </Button>
                 </>

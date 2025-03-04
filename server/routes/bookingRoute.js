@@ -3,8 +3,9 @@ import {
     createBooking,
     getBooking,
     updateBooking,
-    deleteBooking
-
+    deleteBooking,
+    createPaymentIntent,
+    confirmPayment
 } from "../controllers/bookingController.js"
 import authJwt from "../middleware/authJwt.js"
 
@@ -23,4 +24,9 @@ export default (app) => {
     //DELETE
     app.delete("/api/delbooking/:bookingid", authJwt.verifyToken, deleteBooking);
 
+    //CREATE PAYMENT INTENT
+    app.post("/api/createPaymentIntent", authJwt.verifyToken, createPaymentIntent);
+
+    //CONFIRM PAYMENT
+    app.patch("/api/confirmPayment/", authJwt.verifyToken, confirmPayment);
 }

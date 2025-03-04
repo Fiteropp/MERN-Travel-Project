@@ -3,18 +3,17 @@ import cors from "cors";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import authRoutes from "./routes/authRoute.js";
-import userRoutes from "./routes/mockuserRoute.js";
+import adminRoutes from "./routes/adminRoute.js";
 import hotelsRoutes from "./routes/hotelsRoute.js";
 import roomsRoutes from "./routes/roomsRoute.js";
 import bookingRoutes from "./routes/bookingRoute.js";
 dotenv.config();
 
 const app = express();
-
 import db from "./models/index.js";
 const Role = db.role;
 
-var corsOptions = {
+let corsOptions = {
   origin: process.env.FRONTEND_URL,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
@@ -46,10 +45,12 @@ db.mongoose
   });
 
 authRoutes(app); // auth routes
-userRoutes(app); // autorization test routes
 hotelsRoutes(app);
 roomsRoutes(app);
 bookingRoutes(app);
+adminRoutes(app);
+
+
 
 async function initial() {
   try {
