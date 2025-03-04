@@ -137,18 +137,24 @@ export const createPaymentIntent = async (req, res, next) =>{
 
 
 export const confirmPayment = async (req, res, next) => {
-    const bookingid = req.body.bookingid;
+    const { bookingid } = req.params; // Get booking ID from URL
+
     try {
-        if (!bookingid) {
-            return res.status(400).json({ message: "Booking is required" });
+        if (!mongoose.isValidObjectId(bookingid)) {
+            return res.status(400).json({ message: "Invalid Booking ID" });
         }
-        
+
         const payedBooking = await Booking.findByIdAndUpdate(
             bookingid,
             { bookingPayed: true },
             { new: true }
         );
-        res.status(200).send(payedBooking);
+
+        if (!payedBooking) {
+            return res.status(404).json({ message: "Booking not found" });
+        }
+
+        return res.status(200).json(payedBooking);
     } catch (err) {
         next(err);
     }
