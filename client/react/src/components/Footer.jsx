@@ -20,9 +20,9 @@ const Footer = () => {
         </div>
         <div className="footer_col">
           <h4>Company</h4>
-          <p><Link to="/about">About Us</Link></p>
+          <p><Link to="/">Home</Link></p>
+          <p><Link to="/discover">Discover</Link></p>
           <p><Link to="/our-team">Our Team</Link></p>
-          <p><Link to="/blog">Blog</Link></p>
           <p><Link to="/contact">Contact Us</Link></p>
         </div>
         <div className="footer_col">
