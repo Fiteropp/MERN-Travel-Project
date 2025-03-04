@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-import PaymentForm from "../paymentForm";
+import PaymentForm from "../../paymentForm";
 import { Button, Dialog, DialogTitle, DialogContent, DialogActions, TextField, Slide } from "@mui/material";
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
