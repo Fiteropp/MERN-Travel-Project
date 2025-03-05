@@ -6,7 +6,8 @@ import {
     getHotel,
     getAssignedHotels,
     getAllSearchHotels,
-    getAllHotels
+    getAllHotels,
+    getHotelAdditionalImg
 } from "../controllers/hotelController.js"
 import authJwt from '../middleware/authJwt.js';
 
@@ -46,4 +47,7 @@ export default (app) => {
 
     //Get all hotels
     app.get("/api/getallhotels", getAllHotels)
+
+    //Get hotels additional images
+    app.get("/api/gethoteladditionalimg/:id", getHotelAdditionalImg)
 }
