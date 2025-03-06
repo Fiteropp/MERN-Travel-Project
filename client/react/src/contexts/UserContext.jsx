@@ -25,10 +25,10 @@ export const UserProvider = ({ children }) => {
 
       const data = await response.json();
       setUser(data);
-      setexpdate(JSON.stringify(dayjs().add(1, "minute")))
+      setexpdate(JSON.stringify(dayjs().add(1, "hour")))
       // Save user data to localStorage
       localStorage.setItem("user", JSON.stringify(data));
-      localStorage.setItem("exp-timestamp", JSON.stringify(dayjs().add(1, "minute")))
+      localStorage.setItem("exp-timestamp", JSON.stringify(dayjs().add(1, "hour")))
     } catch (error) {
       console.error("Error fetching user data:", error);
       setUser(null);
