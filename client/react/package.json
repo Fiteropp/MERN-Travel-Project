@@ -20,6 +20,7 @@
     "dayjs": "^1.11.13",
     "hamburger-react": "^2.5.2",
     "jwt-decode": "^4.0.0",
+    "lightbox.js-react": "^1.4.8",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-burger-menu": "^3.1.0",
@@ -27,11 +28,9 @@
     "react-dom": "^18.3.1",
     "react-hook-form": "^7.53.1",
     "react-icons": "^5.5.0",
-    "react-image-grid-gallery": "^3.1.2",
     "react-multi-carousel": "^2.8.5",
     "react-router-dom": "^6.27.0",
-    "stripe": "^17.6.0",
-    "yet-another-react-lightbox": "^3.21.7"
+    "stripe": "^17.6.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",

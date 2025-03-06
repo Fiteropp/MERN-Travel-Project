@@ -8,7 +8,8 @@ import { BookingComponent } from "../components/BookingForm/BookingComponent";
 import location_svg from "../assets/Icons/location-sign-svgrepo-com.svg"
 import "../styles/HotelDetails.css";
 
-import { ImageGallery } from "react-image-grid-gallery";
+
+import HotelImages from "../components/HotelPageImages";
 
 
 const HotelDetails = () => {
@@ -43,17 +44,8 @@ const HotelDetails = () => {
     <div className="hotel-details-container">
       <div className="hotel-details">
 
-        <section className="hotel-images">
-          <img src={hotelDetails.image} alt="Hotel Image 1" />
-        </section>
+        <HotelImages hotelDetails={hotelDetails} />
 
-        <div className="hotel-additional-images">
-          <ImageGallery columnCount={4} imagesInfoArray={hotelDetails.additionalImg?.map((img, index) => ({
-            src: img,
-            alt: `Hotel Image ${index + 1}`,
-            id: index.toString() 
-          }))} gapSize={24} />
-        </div>
 
         <section className="hotel-rating-and-desc">
           <div>

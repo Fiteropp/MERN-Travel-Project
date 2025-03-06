@@ -82,6 +82,7 @@ const Navigation = () => {
 
       setUser(null); // Clear user from context
       localStorage.removeItem("user") //Clear user credentials from local storage
+      localStorage.removeItem("exp-timestamp")
       navigate("/");
     } catch (error) {
       console.error("Error during logout:", error);

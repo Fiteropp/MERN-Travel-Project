@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect, useContext } from "react";
+import dayjs from 'dayjs';
 
 const UserContext = createContext();
 
@@ -9,6 +10,10 @@ export const UserProvider = ({ children }) => {
     return storedUser ? JSON.parse(storedUser) : null;
   });
   const [loading, setLoading] = useState(true);
+  const [expdate, setexpdate] = useState(() => {
+    const expDate = localStorage.getItem("exp-timestamp");
+    return expDate ? JSON.parse(expDate) : null;
+  })
 
   const fetchUserData = async () => {
     try {
@@ -17,14 +22,13 @@ export const UserProvider = ({ children }) => {
         credentials: "include",
       });
 
-      if (!response.ok) {
-        throw new Error("Unauthorized");
-      }
 
       const data = await response.json();
       setUser(data);
+      setexpdate(JSON.stringify(dayjs().add(1, "minute")))
       // Save user data to localStorage
       localStorage.setItem("user", JSON.stringify(data));
+      localStorage.setItem("exp-timestamp", JSON.stringify(dayjs().add(1, "minute")))
     } catch (error) {
       console.error("Error fetching user data:", error);
       setUser(null);
@@ -32,6 +36,27 @@ export const UserProvider = ({ children }) => {
       setLoading(false);
     }
   };
+
+  //check cred. expiration timer
+  useEffect(() => {
+    let reload = 1; // Check credentials again in minutes
+    const autoRefresh = setInterval(() => {
+        checkCredentialsExpiration();
+    }, reload * 60 * 1000); // Convert minutes to milliseconds
+
+    return () => {
+        clearInterval(autoRefresh); // Properly clears the previous interval
+    };
+}, []); 
+
+
+  const checkCredentialsExpiration = () => {
+    if (expdate >= dayjs()){
+      setUser(null);
+      localStorage.removeItem("user")
+      localStorage.removeItem("exp-timestamp")
+    }
+  }
 
   useEffect(() => {
     if (!user) {
