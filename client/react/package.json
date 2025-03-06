@@ -20,6 +20,7 @@
     "dayjs": "^1.11.13",
     "hamburger-react": "^2.5.2",
     "jwt-decode": "^4.0.0",
+    "lightbox.js-react": "^1.4.8",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-burger-menu": "^3.1.0",

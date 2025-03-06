@@ -6,7 +6,8 @@ import {
     getHotel,
     getAssignedHotels,
     getAllSearchHotels,
-    getAllHotels
+    getAllHotels,
+    getHotelAdditionalImg
 } from "../controllers/hotelController.js"
 import authJwt from '../middleware/authJwt.js';
 

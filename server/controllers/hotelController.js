@@ -62,6 +62,7 @@ export const getAllHotels = async (req, res, next) => {
   }
 };
 
+
 export const getAllSearchHotels = async (req, res, next) => {
   try {
     const { 

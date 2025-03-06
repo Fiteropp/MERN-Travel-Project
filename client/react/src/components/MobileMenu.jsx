@@ -7,76 +7,78 @@ import Button from "@mui/material/Button";
 import { useUser } from "../contexts/UserContext.jsx"; // Import UserContext
 
 const MobileMenu = () => {
-    const { isMenuOpen, toggleMenu, stateChangeHandler } = useContext(MobileMenuContext);
-    const { user, setUser, loading } = useUser(); // Use global user context
+  const { isMenuOpen, toggleMenu, stateChangeHandler } = useContext(MobileMenuContext);
+  const { user, setUser, loading } = useUser(); // Use global user context
 
 
-      const handleLogout = async () => {
-        try {
-          await fetch(`${import.meta.env.VITE_BACKEND_URL}api/auth/logout`, {
-            method: "POST",
-            credentials: "include",
-          });
-    
-          setUser(null);
-          navigate("/");
-        } catch (error) {
-          console.error("Error during logout:", error);
-        }
-      };
+  const handleLogout = async () => {
+    try {
+      await fetch(`${import.meta.env.VITE_BACKEND_URL}api/auth/logout`, {
+        method: "POST",
+        credentials: "include",
+      });
 
-      const handleMenuClose = () => {
-        toggleMenu(false);
-    };
-
-    return (
-        <Menu
-        isOpen={isMenuOpen} // Controlled by context
-        onStateChange={stateChangeHandler}
-        right // Updates context when menu state changes
-        className='mobile-menu'
-        customCrossIcon={ false }
-      >
-        <ul className="nav_links">
-                  <li className="link">
-                    <Link onClick={handleMenuClose} to="/" >Home</Link>
-                  </li>
-                  <li className="link" >
-                    <Link onClick={handleMenuClose} to="/discover">Discover</Link>
-                  </li>
-                  <li className="link">
-                    <Link onClick={handleMenuClose} to="#">About Us</Link>
-                  </li>
-                  <li className="link">
-                    <Link onClick={handleMenuClose} to="#">Contact</Link>
-                  </li>
-                  {user && (
-                  <li className="link">
-                  <Link onClick={handleMenuClose} to={`/userprofile`}>Profile</Link>
-                  </li>)}
-                </ul>
-
-                <div className="mobile-menu-buttons">
-              {user ? (
-                <>
-                  <span className="mb-username">{user.fullName}</span>
-                  <Button variant="outlined" className="button" onClick={() => { handleLogout(); handleMenuClose();}}>
-                    Logout
-                  </Button>
-                </>
-              ) : (
-                <>
-                  <Button onClick={handleMenuClose} variant="text" className="button" href="/signup">
-                    SignUp
-                  </Button>
-                  <Button onClick={handleMenuClose} variant="outlined" className="button" href="/login">
-                    LogIn
-                  </Button>
-                </>
-              )}
-            </div>
-      </Menu>
-    );
+      setUser(null);
+      localStorage.removeItem("user") //Clear user credentials from local storage
+      localStorage.removeItem("exp-timestamp")
+      navigate("/");
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
   };
-  
-  export default MobileMenu;
+
+  const handleMenuClose = () => {
+    toggleMenu(false);
+  };
+
+  return (
+    <Menu
+      isOpen={isMenuOpen} // Controlled by context
+      onStateChange={stateChangeHandler}
+      right // Updates context when menu state changes
+      className='mobile-menu'
+      customCrossIcon={false}
+    >
+      <ul className="nav_links">
+        <li className="link">
+          <Link onClick={handleMenuClose} to="/" >Home</Link>
+        </li>
+        <li className="link" >
+          <Link onClick={handleMenuClose} to="/discover">Discover</Link>
+        </li>
+        <li className="link">
+          <Link to="/our-team">Our Team</Link>
+        </li>
+        <li className="link">
+          <Link to="/contact">Contact</Link>
+        </li>
+        {user && (
+          <li className="link">
+            <Link onClick={handleMenuClose} to={`/userprofile`}>Profile</Link>
+          </li>)}
+      </ul>
+
+      <div className="mobile-menu-buttons">
+        {user ? (
+          <>
+            <span className="mb-username">{user.fullName}</span>
+            <Button variant="outlined" className="button" onClick={() => { handleLogout(); handleMenuClose(); }}>
+              Logout
+            </Button>
+          </>
+        ) : (
+          <>
+            <Button onClick={handleMenuClose} variant="text" className="button" href="/signup">
+              SignUp
+            </Button>
+            <Button onClick={handleMenuClose} variant="outlined" className="button" href="/login">
+              LogIn
+            </Button>
+          </>
+        )}
+      </div>
+    </Menu>
+  );
+};
+
+export default MobileMenu;
