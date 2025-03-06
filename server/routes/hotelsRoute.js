@@ -47,7 +47,4 @@ export default (app) => {
 
     //Get all hotels
     app.get("/api/getallhotels", getAllHotels)
-
-    //Get hotels additional images
-    app.get("/api/gethoteladditionalimg/:id", getHotelAdditionalImg)
 }

@@ -62,20 +62,6 @@ export const getAllHotels = async (req, res, next) => {
   }
 };
 
-export const getHotelAdditionalImg = async (req, res, next) => {
-  try {
-    const hotel = await Hotel.findById(req.params.id).select('additionalImg');
-
-    if (!hotel) {
-      return res.status(404).json({ message: "Hotel not found" });
-    }
-
-    res.status(200).json(hotel.additionalImg); 
-  } catch (err) {
-    next(err); 
-  }
-};
-
 
 export const getAllSearchHotels = async (req, res, next) => {
   try {
