@@ -22,6 +22,11 @@ export const UserProvider = ({ children }) => {
         credentials: "include",
       });
 
+      if (!response.ok) {
+        console.warn("Unauthorized access");
+        return null;
+      }
+
 
       const data = await response.json();
       setUser(data);
