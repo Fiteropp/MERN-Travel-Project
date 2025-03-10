@@ -5,13 +5,13 @@
     100% {
         background-position: center bottom;
     }
-} /**/
+} 
 
 .header_container{
     height: 60vh;
     max-height: 800px;
     background-size: cover;
-    background-position: center top; /**/
+    background-position: center top; 
     border-radius: 12px;
     position: relative;
     overflow: hidden;
@@ -27,30 +27,24 @@
     transition: filter 1s ease-in-out;
 }
 .header_contentHero {
-    max-width: 30%;
     padding: 80px 100px;
 }
 
 .header_contentHero {
-    display: inline-block; /* Компактная рамка */
-    padding: 40px 30px 12px 20px; /* Минимальные отступы */
+    display: inline-block; 
+    padding: 40px 30px 12px 20px; 
     background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(8px); /*Background-bur*/
-    border-radius: 8px; /*Round borders*/
+    backdrop-filter: blur(8px); 
+    border-radius: 8px;
     box-shadow: 0 2px 6px rgba(255, 255, 255, 0.2);
     text-align: left;
-    color: white; /*Text*/
-    /*width: auto;*/
-    /*height: 5px;*/
-    /*margin: auto;*/
-    position: absolute;
-    top: 50%;
-    left: 5%; /* Отступ слева */
-    transform: translateY(-50%); /* Центрируем рамку по вертикали */
+    color: white; 
+    margin-top: 20em;
+    transform: translateY(-50%); 
     animation: fadeIn 1s ease-in-out;
-} /**/
+} 
 
-/* Анимация появления */
+
 @keyframes fadeIn {
     from {
         opacity: 0.5;
