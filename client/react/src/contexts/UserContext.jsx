@@ -50,7 +50,7 @@ export const UserProvider = ({ children }) => {
     }, reload * 60 * 1000); // Convert minutes to milliseconds
 
     return () => {
-        clearInterval(autoRefresh); // Properly clears the previous interval
+        clearInterval(autoRefresh); 
     };
 }, []); 
 

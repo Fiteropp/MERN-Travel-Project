@@ -9,16 +9,17 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { HomePage } from "./pages/HomePage.jsx";
-import  SignupForm  from "./pages/SignupForm.jsx";
+import SignupForm from "./pages/SignupForm.jsx";
 import BookingForm from "./components/bookingForm.jsx";
-import  LoginForm  from "./pages/LoginForm.jsx";
+import LoginForm from "./pages/LoginForm.jsx";
 import { HotelDetails } from "./pages/HotelDetails.jsx";
 import { HotelSearch } from "./pages/HotelSearch.jsx";
 import ModDash from "./pages/ModDash.jsx";
-import UserDash from "./pages/UserDash.jsx";
-import {OurTeam} from "./pages/OurTeam.jsx";
-import Contacts from "./pages/Contact.jsx"
 import AdminDash from "./pages/AdminDash.jsx";
+import { OurTeam } from "./pages/OurTeam.jsx";
+import Contacts from "./pages/Contact.jsx"
+import { generateProtectedRoutes } from "./components/Routes and redirects/GenerateProtectedRoutes.jsx";
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,9 +29,9 @@ const router = createBrowserRouter(
       <Route path="/signup" element={<SignupForm />} />
       <Route path="/hotel/:id" element={<HotelDetails />} />
       <Route path="/discover" element={<HotelSearch />} />
-      <Route path="/userprofile" element={<UserDash />} />
-      <Route path="/moderator" element={<ModDash />} />
-      <Route path="/admindash" element={<AdminDash />} />
+
+      {generateProtectedRoutes()}
+
       <Route path="/booking-form/:id" element={<BookingForm />} />
       <Route path="/our-team" element={<OurTeam />} />
       <Route path="/contact" element={<Contacts />} />

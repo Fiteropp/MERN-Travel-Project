@@ -13,6 +13,8 @@
     background-size: cover;
     background-position: center top; 
     border-radius: 12px;
+    display: flex;
+    align-items: end;
     position: relative;
     overflow: hidden;
     transition: background-image 1s ease-in-out;    
@@ -36,23 +38,22 @@
     background: rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(8px); 
     border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(255, 255, 255, 0.2);
     text-align: left;
     color: white; 
-    margin-top: 20em;
-    transform: translateY(-50%); 
     animation: fadeIn 1s ease-in-out;
 } 
 
 
 @keyframes fadeIn {
     from {
+        filter: blur(8px);
         opacity: 0.5;
         transform: translateY(20px);
     }
     to {
         opacity: 1;
         transform: translateY(0);
+        filter: none;
     }
 }
 

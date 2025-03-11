@@ -39,8 +39,8 @@
   .form-box {
     max-width: 512px;
     padding-top: 3%;
+    padding-bottom: 3%;
     box-sizing: border-box;
-    height: 100vh;
     margin: 0 auto;
     text-align: center;
   }
@@ -257,6 +257,9 @@
 
 @media (max-width: 600px){
   .form-box{
+    height: 100vh;
+    padding-top: 35%;
+    padding-bottom: 35%;
     width: 80%;
   }
 }

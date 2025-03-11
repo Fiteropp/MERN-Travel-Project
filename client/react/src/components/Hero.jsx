@@ -12,11 +12,11 @@ export const Hero = () => {
 
   useEffect(() =>{
     const interval = setInterval(() =>{
-      setIsAnimating(true); //
-      setTimeout(() => { //
+      setIsAnimating(true); 
+      setTimeout(() => { 
       setCurrentImage((prev)=> (prev + 1) %images.length);
-      setIsAnimating(false); //
-      }, 4000); // Время анимации = 4 секунды
+      setIsAnimating(false); 
+      }, 4000); 
 
     }, 5000);
     return () => clearInterval(interval);
@@ -25,7 +25,7 @@ export const Hero = () => {
   return (
     <div>
       <header 
-      //className="section_container header_container"//
+      
       className={`section_container header_container ${isAnimating ? "animated" : ""}`}
       style={{
         backgroundImage: `url(${images[currentImage]})`

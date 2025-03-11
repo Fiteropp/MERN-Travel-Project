@@ -108,9 +108,21 @@ const Navigation = () => {
               <li className="link">
                 <Link to="/contact">Contact</Link>
               </li>
-            {user && (
+              {user?.roles.some(role => role.name === "user") && (
               <li className="link">
                 <Link to={`/userprofile`}>Profile</Link>
+              </li>
+            )}
+
+            {user?.roles.some(role => role.name === "moderator") && (
+              <li className="link">
+                <Link to={`/moderator`}>Mod Dashboard</Link>
+              </li>
+            )}
+
+              {user?.roles.some(role => role.name === "admin") && (
+              <li className="link">
+                <Link to={`/admindash`}>Admin Dashboard</Link>
               </li>
             )}
           </ul>
