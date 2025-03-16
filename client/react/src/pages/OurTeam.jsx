@@ -6,9 +6,9 @@ const teamMembers = [
     name: "Grigorii",
     role: "The Idea Generator & Inspiration Seeker 🚀",
     description:
-      "Always has a ticket to somewhere unknown in his pocket. Loves discovering unique routes you won’t find in a typical travel guide. Believes the best stories happen outside of comfort zones. Can buy a one-way ticket just because why not?",
+      "Always has a ticket to somewhere unknown in his pocket. Loves discovering unique routes you won't find in a typical travel guide. Believes the best stories happen outside of comfort zones. Can buy a one-way ticket just because why not?",
     favoritePlace: "📍 Favorite place: 🏙️ The buzzing streets of big cities that never sleep.",
-    image: "client/react/src/assets/images/grigoriy.jpg", // Добавь фото в папку public/images/
+    image: "/src/assets/images/Grigorii.jpg",
   },
   {
     name: "Ilia",
@@ -17,24 +17,24 @@ const teamMembers = [
       "Turns chaotic ideas into clean, user-friendly code. If travel could be programmed, he would have already built the perfect algorithm for every trip.",
     favoritePlace:
       "📍 Favorite place: ⛰️ The mountains, where the internet barely works, but the stars shine brightest.",
-      image: "/images/ilya.jpg",
+    image: "/src/assets/images/Ilia.jpg",
   },
   {
     name: "Purity",
     role: "The Storyteller & Memory Keeper 📸",
     description:
-      "Travel isn’t just about places – it’s about the stories they leave behind. Loves capturing moments, writing notes, and finding beauty in the details. Fascinated by the traditions of different cultures, the personal stories of people, and the unique customs that make each country special. For her, every journey is a chance to discover not just new places, but new perspectives on the world.",
+      "Travel isn't just about places – it's about the stories they leave behind. Loves capturing moments, writing notes, and finding beauty in the details. Fascinated by the traditions of different cultures, the personal stories of people, and the unique customs that make each country special. For her, every journey is a chance to discover not just new places, but new perspectives on the world.",
     favoritePlace: "📍 Favorite place: ☕ A cozy café overlooking a lively square, watching the world go by.",
-    image: "/images/purity.jpg",
+    image: "/src/assets/images/Purity.jpg",
   },
   {
     name: "Jenni",
     role: "The Logistics Master & Comfort Explorer ✈️",
     description:
-      "Loves the perfect balance between spontaneity and comfort. Can embark on a last-minute trip but always knows where to stay and how to get there. Loves when every trip is perfectly mapped out – logistics, budget, even the best dessert spots. But if things go off-plan, they’ll always have a Plan B.",
+      "Loves the perfect balance between spontaneity and comfort. Can embark on a last-minute trip but always knows where to stay and how to get there. Loves when every trip is perfectly mapped out – logistics, budget, even the best dessert spots. But if things go off-plan, they'll always have a Plan B.",
     favoritePlace:
       "📍 Favorite place:  Wild trails in the morning. 🌊 The coastline, working on a laptop while listening to the waves in the evening.",
-      image: "/images/jenni.jpg",
+    image: "/src/assets/images/Jenni.jpg",
   },
   {
     name: "Mikhey",
@@ -42,7 +42,7 @@ const teamMembers = [
     description:
       "Seeks to capture the soul of every destination through a lens. People, streets, emotions – all come to life in his photos.",
     favoritePlace: "📍 Favorite place: 🏘️ Narrow streets full of surprises at every turn.",
-    image: "/assets/images/mickey.jpg",
+    image: "/src/assets/images/Mikhey.jpg",
   },
 ];
 
@@ -69,9 +69,8 @@ const OurTeam = () => {
       <div className="our-team-grid">
         {teamMembers.map((member, index) => (
           <div key={index} className="team-card">
-            {/* Profile photo */}
-            {/* <img src={member.image} alt={member.name} className="team-member-photo" /> */}
             <h2 className="team-member-name">{member.name}</h2>
+            <img src={member.image} alt={member.name} className="team-member-photo" />
             <h3 className="team-member-role">{member.role}</h3>
             <p className="team-member-description">{member.description}</p>
             <p className="team-member-place">{member.favoritePlace}</p>
