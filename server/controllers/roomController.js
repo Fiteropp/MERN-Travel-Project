@@ -71,3 +71,18 @@ export const getRooms = async (req, res, next) => {
         res.status(500).send({ message: err.message });
     }
 };
+
+export const getRoomsByHotel = async (req, res, next) => {
+    try {
+        const hotel = await Hotel.findById(req.params.hotelid);
+        if (!hotel) {
+            return res.status(404).json({ message: "Hotel not found" });
+        }
+
+        const rooms = await Room.find({ _id: { $in: hotel.rooms } });
+        res.status(200).json(rooms);
+    } catch (err) {
+        next(err);
+        res.status(500).send({ message: err.message });
+    }
+};

@@ -4,13 +4,15 @@ import { axiosInstance, setAuthToken } from '../services/authService.js';
 import '../styles/Form.css';
 import eyeOpen from '../assets/Icons/eye-open.png';
 import eyeClosed from '../assets/Icons/eye-closed.png';
+import { useUser } from "../contexts/UserContext.jsx"; // Import UserContext
 
 function LoginForm() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordVisible, setPasswordVisible] = useState(false);
-  const [wholedata, setWholeData] = useState([]);
+ 
+  const { fetchUserData } = useUser(); // Access the context function
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,8 +21,7 @@ function LoginForm() {
       const response = await axiosInstance.post('api/auth/signin', { email, password });
       const { token } = response.data;
       const data = response.data;
-      setWholeData(data);
-      setAuthToken(token);
+      await fetchUserData();
       navigate(`/`);
     } catch (error) {
       alert('Login failed. Please try again.');

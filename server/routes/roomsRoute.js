@@ -4,7 +4,8 @@ import {
     deleteRoom,
     getRoom,
     getRooms,
-    updateRoom
+    updateRoom,
+    getRoomsByHotel
 } from "../controllers/roomController.js"
 import authJwt from '../middleware/authJwt.js';
 
@@ -39,4 +40,8 @@ export default (app) => {
 
     //GET ALL
     app.get("/api/getrooms", getRooms)
+
+    //GET BY HOTEL
+    //Replace :hotelid with ObjectId of Hotel!
+    app.get("/api/getroomsbyhotel/:hotelid", getRoomsByHotel)
 }
