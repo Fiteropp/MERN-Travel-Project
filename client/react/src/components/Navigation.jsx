@@ -5,6 +5,8 @@ import { useLocation, Link, useNavigate } from "react-router-dom";
 import { Squash as Hamburger } from "hamburger-react"; // Import the animated icon
 import { useUser } from './../contexts/UserContext.jsx'; // Import UserContext
 
+import logo_no_text from "./../assets/logo-no-text.png"
+
 
 // Create MobileMenuContext
 const MobileMenuContext = React.createContext();
@@ -32,8 +34,8 @@ const MenuToggleButton = () => {
     <Hamburger
       toggled={isMenuOpen}
       toggle={toggleMenu}
-      size={24} 
-      color="#fff" 
+      size={24}
+      color="#fff"
     />
   );
 };
@@ -72,7 +74,7 @@ const Navigation = () => {
   }, [scroll, location.pathname]);
 
 
-  
+
   const handleLogout = async () => {
     try {
       await fetch(`${import.meta.env.VITE_BACKEND_URL}api/auth/logout`, {
@@ -92,7 +94,13 @@ const Navigation = () => {
   return (
     <header className={className}>
       <div className="nav-container">
-        <div className="nav_logo">Mern Travel Booking</div>
+        <div className="logo-and-name-cont">
+          <div className="site-logo-cont">
+            <img className="site-logo" src={logo_no_text} alt="" />
+          </div>
+          <div className="nav_logo">Arieval Travel</div>
+        </div>
+
 
         <div className="desktop-menu-links">
           <ul className="nav_links">
@@ -102,13 +110,13 @@ const Navigation = () => {
             <li className="link">
               <Link to="/discover">Discover</Link>
             </li>
-             <li className="link">
-                <Link to="/our-team">Our Team</Link>
-              </li>
-              <li className="link">
-                <Link to="/contact">Contact</Link>
-              </li>
-              {user?.roles.some(role => role.name === "user") && (
+            <li className="link">
+              <Link to="/our-team">Our Team</Link>
+            </li>
+            <li className="link">
+              <Link to="/contact">Contact</Link>
+            </li>
+            {user?.roles.some(role => role.name === "user") && (
               <li className="link">
                 <Link to={`/userprofile`}>Profile</Link>
               </li>
@@ -120,7 +128,7 @@ const Navigation = () => {
               </li>
             )}
 
-              {user?.roles.some(role => role.name === "admin") && (
+            {user?.roles.some(role => role.name === "admin") && (
               <li className="link">
                 <Link to={`/admindash`}>Admin Dashboard</Link>
               </li>
