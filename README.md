@@ -1,6 +1,7 @@
-# MERN Travel Agency Website
 
-Welcome to the **MERN Travel Agency Website**, a school project designed to showcase a fully functional travel agency platform. This web application allows users to browse destinations, book trips, and explore exciting travel packages. It is built using the **MERN Stack** (MongoDB, Express, React, Node.js) with **Vite** for the frontend.
+# Arieval Travel Agency Website 
+
+Welcome to the **Arieval Travel Agency Website**, a school project designed to showcase a fully functional travel agency platform. This web application allows users to browse destinations, book trips, and explore exciting travel packages. It is built using the **MERN Stack** (MongoDB, Express, React, Node.js) with **Vite** for the frontend.
 
 ## Table of Contents
 - [Features](#features)
