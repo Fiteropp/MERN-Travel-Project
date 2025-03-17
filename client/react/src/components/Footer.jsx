@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer_container">
         <div className="footer_section">
-          <h3>Mern Hotel Booking</h3>
+          <h3>Arieval Travel</h3>
           <p>
             Making the world a better place through seamless hotel booking and elegant experiences.
           </p>
@@ -27,13 +27,13 @@ const Footer = () => {
         </div>
         <div className="footer_col">
           <h4>Legal</h4>
-          <p><Link to="/faqs">FAQS</Link></p>
-          <p><Link to="/terms">Terms & Conditions</Link></p>
-          <p><Link to="/privacy">Privacy Policy</Link></p>
+          <p><Link to="#">FAQS</Link></p>
+          <p><Link to="#">Terms & Conditions</Link></p>
+          <p><Link to="#">Privacy Policy</Link></p>
         </div>
       </div>
       <div className="footer_bar">
-        Copyright © 2024 Mern Hotel Booking. All rights reserved.
+        Copyright © 2025 Arieval Travel Agency. All rights reserved.
       </div>
     </footer>
   );
