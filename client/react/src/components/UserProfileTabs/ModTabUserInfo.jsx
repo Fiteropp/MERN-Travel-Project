@@ -14,6 +14,7 @@ export default function ModTabUserInfo() {
     const [currentField, setCurrentField] = useState('');
     const [currentValue, setCurrentValue] = useState('');
     const { showAlert } = useAlert();
+    const [isFieldEmail, setIsFieldEmail] = useState(false);
 
     // Prevent rendering if user is null and loading is false (meaning no user data fetched yet)
     if (loading) return <p>Loading...</p>;
@@ -23,6 +24,15 @@ export default function ModTabUserInfo() {
         setCurrentField(field);
         setCurrentValue(user?.[field] || '');
         setOpen(true);
+        if (field == "email") {
+            setIsFieldEmail(true)
+        } else {
+            setIsFieldEmail(false)
+        }
+    };
+
+    function emailIsValid (email) {
+        return /\S+@\S+\.\S+/.test(email)
     };
 
     const handleClose = () => {
@@ -30,6 +40,13 @@ export default function ModTabUserInfo() {
     };
 
     const handleSubmit = async () => {
+        if (isFieldEmail) {
+            if (!emailIsValid(currentValue)) {
+                showAlert("Invalid email format", "error");
+                return;
+            }
+        }
+
         const payload = {
             [currentField]: currentValue,
         };
