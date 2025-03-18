@@ -109,7 +109,7 @@ export const BookingComponent = () => {
                 bookedDaysCount: nightsCount
             };
             const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}api/bookings`, bookingData, { withCredentials: true });
-            showAlert("Booking Succsessfully Created!", "succsess");
+            showAlert("Booking Succsessfully Created!", "success");
             
         } catch (error) {
             console.error("Error creating booking:", error);
