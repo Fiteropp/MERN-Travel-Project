@@ -22,6 +22,22 @@
   margin: 0 auto;
 }
 
+.logo-and-name-cont{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.site-logo-cont{
+  display: flex;
+  align-items: center;
+}
+
+.site-logo{
+  height: 3.5em;
+  width: 3.5em;
+}
+
 .desktop-menu-links{
   display: flex;
   justify-content: center;
@@ -33,16 +49,15 @@
   color: var(--extra-light);
 }
 
-/* Half-transparent style for home page */
+
 .navbar-home {
-  background-color: rgba(0, 0, 0, 0.8); /* Slightly less transparent when scrolled */
+  background-color: rgba(0, 0, 0, 0.8); 
   color: white;
   backdrop-filter: blur(10px);
   
   padding: .5rem 0;
 }
 
-/* Opaque style for other pages */
 .navbar-other {
   background-color: rgba(0, 0, 0, 0.8);
   color: white;
@@ -50,7 +65,6 @@
   padding: .5rem 0;
 }
 
-/* Scrolled version of the home navbar */
 .navbar-home-scrolled {
   background-color: rgba(0, 0, 0, 0.8); /* Slightly less transparent when scrolled */
   color: white;
