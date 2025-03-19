@@ -6,7 +6,14 @@ import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-
+/*
+This funqtion creates a new booking for a hotel room.
+It checks if the room is available for the selected dates.
+It also checks if the hotel exists.
+@param req: Request object
+@param res: Response object
+@param next: Next middleware function
+*/
 export const createBooking = async (req, res, next) => {
     const { hotel, user, checkIn, checkOut, room, price, guests, bookedDaysCount } = req.body;
 
