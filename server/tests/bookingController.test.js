@@ -30,8 +30,7 @@ describe('Booking Controller', () => {
     beforeAll(async () => {
         // Connect to the test MongoDB server using the connection string from .env
         await mongoose.connect(process.env.TEST_DB_STRING);
-    }, 45000); // 45 seconds timeout
-
+    }); 
     beforeEach(async () => {
         // Clean up the test database
         await mongoose.connection.db.dropDatabase();
@@ -67,15 +66,11 @@ describe('Booking Controller', () => {
         token = jwt.sign({ id: userId }, process.env.JWT_SECRET);
     }, 45000); // 45 seconds timeout
 
-    afterEach(async () => {
-        // Clean up the test database
-        await mongoose.connection.db.dropDatabase();
-    }, 45000); // 45 seconds timeout
-
     afterAll(async () => {
         // Close the connection
+        await mongoose.connection.db.dropDatabase();
         await mongoose.connection.close();
-    }, 45000); // 45 seconds timeout
+    }); 
 
     it('should create a new booking', async () => {
         const response = await request(app)
@@ -86,7 +81,7 @@ describe('Booking Controller', () => {
         expect(response.status).toBe(201);
         expect(response.body.hotel).toBe(hotelId.toString());
         bookingId = response.body._id;
-    }, 45000); // 45 seconds timeout
+    }, 20000); 
 
     it('should get bookings for a user', async () => {
         const response = await request(app)
@@ -96,7 +91,7 @@ describe('Booking Controller', () => {
 
         expect(response.status).toBe(200);
         expect(response.body.length).toBeGreaterThan(0);
-    }, 45000); // 45 seconds timeout
+    }, 20000); 
 
     it('should update a booking', async () => {
         const response = await request(app)
@@ -106,7 +101,7 @@ describe('Booking Controller', () => {
 
         expect(response.status).toBe(200);
         expect(response.body.price).toBe(250);
-    }, 45000); // 45 seconds timeout
+    }, 20000); 
 
     it('should delete a booking', async () => {
         const response = await request(app)
@@ -114,5 +109,5 @@ describe('Booking Controller', () => {
             .set('Authorization', `Bearer ${token}`);
 
         expect(response.status).toBe(200);
-    }, 45000); // 45 seconds timeout
+    }, 20000); 
 });
